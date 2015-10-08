@@ -11,40 +11,37 @@ public class GameWindow extends JFrame implements Runnable {
 	private int pixelSize = 0; // Taille des pixels (pixels du jeu).
 	private int width = 720; // Taille de la fenetre (largeur).
 	private int height = 720; // Taille de la denetre (hauteur).
-	private GamePanel panel;
+	private GamePanel gamePanel;
+	private UIPanel uiPanel;
 
 	public GameWindow() {
 		Thread t = new Thread(this);
 		t.start();
 	}
 
-	public GamePanel getPanel() {
-		return this.panel;
+	public GamePanel getGamePanel() {
+		return this.gamePanel;
 	}
 
-	public void addUI() {
-		getPanel().add(new SpellButton(Conflict_Of_Pixels_Client.GAME, Conflict_Of_Pixels_Client.GAME.getChampTest(), 0));
-		getPanel().add(new SpellButton(Conflict_Of_Pixels_Client.GAME, Conflict_Of_Pixels_Client.GAME.getChampTest(), 1));
-		getPanel().add(new SpellButton(Conflict_Of_Pixels_Client.GAME, Conflict_Of_Pixels_Client.GAME.getChampTest(), 2));
-		getPanel().add(new SpellButton(Conflict_Of_Pixels_Client.GAME, Conflict_Of_Pixels_Client.GAME.getChampTest(), 3));
+	public UIPanel getUiPanel() {
+		return uiPanel;
 	}
-
 	@Override
 	public void run() {
 		setTitle("Conflict Of Pixels");
 		setSize(width, height);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(null);
 
-		panel = new GamePanel();
-		add(panel);
-		addUI();
+		uiPanel = new UIPanel();
+		uiPanel.setBounds(0, 0, getWidth(), getHeight());
+		gamePanel = new GamePanel();
+		gamePanel.setBounds(0, 0, getWidth(), getHeight());
+		add(gamePanel);
+		add(uiPanel);
 
 		setVisible(true);
-
-		while (true) {
-			getPanel().repaint();
-		}
 
 	}
 }

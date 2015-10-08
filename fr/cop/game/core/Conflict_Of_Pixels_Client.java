@@ -65,7 +65,6 @@ public class Conflict_Of_Pixels_Client implements Runnable {
 		//Temporaire avant serveur
 		for (Iterator iterator = animations.iterator(); iterator.hasNext();) {
 			Animation anim = (Animation) iterator.next();
-			System.out.println("Test");
 			anim.move();
 		}
 	}
@@ -75,8 +74,11 @@ public class Conflict_Of_Pixels_Client implements Runnable {
 		 * - Actualisation du jeu dans la frame.S
 		 * 
 		 */
-		System.out.println("Repaint");
-		GAME.getWindow().repaint();
+//		GAME.getWindow().getGamePanel().repaint();
+		
+		GAME.getWindow().getUiPanel().repaint();
+		
+		GAME.getWindow().getGamePanel().revalidate();
 	}
 
 	public GameWindow getWindow() {

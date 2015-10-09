@@ -2,12 +2,10 @@ package fr.cop.game.visual;
 
 import javax.swing.JFrame;
 
-import fr.cop.game.core.Conflict_Of_Pixels_Client;
-import fr.cop.game.visual.customsButtons.SpellButton;
-
 @SuppressWarnings("serial")
 public class GameWindow extends JFrame implements Runnable {
 
+	@SuppressWarnings("unused")
 	private int pixelSize = 0; // Taille des pixels (pixels du jeu).
 	private int width = 720; // Taille de la fenetre (largeur).
 	private int height = 720; // Taille de la denetre (hauteur).

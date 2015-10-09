@@ -9,6 +9,7 @@ public class Animation {
 	private int speed, actualX, actualY, maxX;
 	private ImageIcon ico;
 	
+	@SuppressWarnings("static-access")
 	public Animation(int x, int y, int x2, int y2, int speed, String path){
 		this.speed = speed/Conflict_Of_Pixels_Client.GAME.nbUps;
 		ico = new ImageIcon(getClass().getResource(path));

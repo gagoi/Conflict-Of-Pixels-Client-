@@ -25,7 +25,7 @@ public class Conflict_Of_Pixels_Client implements Runnable {
 		t.start();// On demarre notre Thread.
 	}
 
-	public static void main(String[] args) { // Methode de démarrage d'un programme en Java.
+	public static void main(String[] args) { // Methode de dï¿½marrage d'un programme en Java.
 		GAME = new Conflict_Of_Pixels_Client();
 	}
 
@@ -39,14 +39,11 @@ public class Conflict_Of_Pixels_Client implements Runnable {
 		long startTimeFPS = System.currentTimeMillis(); //Temps de depart du programme, utilise pour les FPS.
 		while (true) { // Boucle principale de notre programme.
 			long currentTime = System.currentTimeMillis(); //Temps en millisecondes.
-			if(currentTime >= startTimeUPS+nbUps) { // Si le temps du processeur est supérieur au temps de depart + nbUps...
-				System.out.println("T_UPS : " + (currentTime-startTimeUPS));
+			if(currentTime >= startTimeUPS+nbUps) { // Si le temps du processeur est supï¿½rieur au temps de depart + nbUps...
 				startTimeUPS = System.currentTimeMillis(); // ... on remet le temps de depart a 0 ...
 				gameUpdate(); //... puis on fait une update.
-				System.err.println("TEST");
 			}
-			if(currentTime >= startTimeFPS+nbFps) { // Si le temps du processeur est supérieur au temps de depart + nbFps...
-				System.out.println("T_FPS : " + (currentTime-startTimeFPS));
+			if(currentTime >= startTimeFPS+nbFps) { // Si le temps du processeur est supï¿½rieur au temps de depart + nbFps...			
 				startTimeFPS = System.currentTimeMillis(); // ... on remet le temps de depart a 0 ...
 				visualUpdate(); //... puis on fait une update.
 			}
@@ -63,7 +60,8 @@ public class Conflict_Of_Pixels_Client implements Runnable {
 		 * */
 		
 		//Temporaire avant serveur
-		for (Iterator iterator = animations.iterator(); iterator.hasNext();) {
+		for (@SuppressWarnings("rawtypes")
+		Iterator iterator = animations.iterator(); iterator.hasNext();) {
 			Animation anim = (Animation) iterator.next();
 			anim.move();
 		}

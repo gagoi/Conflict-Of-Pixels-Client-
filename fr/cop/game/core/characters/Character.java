@@ -14,7 +14,7 @@ public abstract class Character {
 	public abstract void spell2();
 	public abstract void spell3();
 
-	public void spell(int idSpell) {
+	public void spe ll(int idSpell) {
 		switch (idSpell) {
 		case 0:
 			spell0();

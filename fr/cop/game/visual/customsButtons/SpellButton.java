@@ -1,4 +1,4 @@
-package game.visual.customsButtons;
+package fr.cop.game.visual.customsButtons;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +16,7 @@ public class SpellButton extends JButton{
 	public SpellButton(Conflict_Of_Pixels_Client game, Character champ, int idSpell) {
 		ico =new ImageIcon(getClass().getResource("/fr/cop/resources/images/characters/"+ champ.getName()+"/spellIcon/" + idSpell +".png")); // On instancie l'image en fonction de idSpell.
 		this.setIcon(ico); //On met l'icone au bouton.
-		setBounds(530+60*idSpell, 600, 50, 50); // On délimite les bords du boutons. En fonction de l'id.
+		setBounds(530+60*idSpell, 600, 50, 50); // On dï¿½limite les bords du boutons. En fonction de l'id.
 		setEnabled(true);
 		setBorder(null);
 		addActionListener(new ActionListener() {

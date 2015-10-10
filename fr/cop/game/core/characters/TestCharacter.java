@@ -1,10 +1,5 @@
-package game.core.characters;
+package fr.cop.game.core.characters;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
-import fr.cop.game.core.Conflict_Of_Pixels_Client;
-import fr.cop.game.visual.Animation;
 
 public class TestCharacter extends Character {
 
@@ -23,24 +18,24 @@ public class TestCharacter extends Character {
 
 	@Override
 	public void spell0() {
-		Conflict_Of_Pixels_Client.animations.add(new Animation(0, 0, 500, 500, 40, "/fr/cop/resources/images/characters/Test/spellAnimation/Spell0.png"));
+//		Conflict_Of_Pixels_Client.animations.add(new Animation(0, 0, 500, 500, 40, "/fr/cop/resources/images/characters/Test/spellAnimation/Spell0.png"));
 	}
 
 	@Override
 	public void spell1() {
-		Conflict_Of_Pixels_Client.animations.add(new Animation(0, 0, 500, 500, 40, "/fr/cop/resources/images/characters/Test/spellAnimation/Spell1.png"));
+//		Conflict_Of_Pixels_Client.animations.add(new Animation(0, 0, 500, 500, 40, "/fr/cop/resources/images/characters/Test/spellAnimation/Spell1.png"));
 		
 	}
 
 	@Override
 	public void spell2() {
-		Conflict_Of_Pixels_Client.animations.add(new Animation(0, 0, 500, 500, 40, "/fr/cop/resources/images/characters/Test/spellAnimation/Spell2.png"));
+//		Conflict_Of_Pixels_Client.animations.add(new Animation(0, 0, 500, 500, 40, "/fr/cop/resources/images/characters/Test/spellAnimation/Spell2.png"));
 		
 	}
 
 	@Override
 	public void spell3() {
-		Conflict_Of_Pixels_Client.animations.add(new Animation(0, 0, 500, 500, 40, "/fr/cop/resources/images/characters/Test/spellAnimation/Spell3.png"));
+//		Conflict_Of_Pixels_Client.animations.add(new Animation(0, 0, 500, 500, 40, "/fr/cop/resources/images/characters/Test/spellAnimation/Spell3.png"));	
 		
 	}
 }

@@ -1,4 +1,4 @@
-package game.core.characters;
+package fr.cop.game.core.characters;
 
 public abstract class Character {
 	
@@ -14,7 +14,7 @@ public abstract class Character {
 	public abstract void spell2();
 	public abstract void spell3();
 
-	public void spe ll(int idSpell) {
+	public void spell(int idSpell) {
 		switch (idSpell) {
 		case 0:
 			spell0();

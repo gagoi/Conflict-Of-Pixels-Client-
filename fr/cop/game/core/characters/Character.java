@@ -1,4 +1,4 @@
-package fr.cop.game.core.characters;
+package game.core.characters;
 
 public abstract class Character {
 	

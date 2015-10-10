@@ -1,4 +1,4 @@
-package fr.cop.game.core.items;
+package game.core.items;
 
 public interface Item {
 	String stats[] = null;

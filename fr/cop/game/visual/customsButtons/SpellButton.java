@@ -1,4 +1,4 @@
-package fr.cop.game.visual.customsButtons;
+package game.visual.customsButtons;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -1,4 +1,4 @@
-package fr.cop.game.core.usefull;
+package game.core.usefull;
 
 @SuppressWarnings("unused")
 public class Stat {

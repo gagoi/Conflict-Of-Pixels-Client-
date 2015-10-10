@@ -1,4 +1,4 @@
-package fr.cop.game.visual;
+package game.visual;
 
 import java.awt.Color;
 import java.awt.Graphics;

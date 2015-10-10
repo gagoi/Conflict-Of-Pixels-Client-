@@ -1,4 +1,4 @@
-package fr.cop.game.core;
+package game.core;
 
 import java.util.ArrayList;
 import java.util.Iterator;

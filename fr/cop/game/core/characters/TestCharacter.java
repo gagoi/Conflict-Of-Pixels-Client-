@@ -1,4 +1,4 @@
-package fr.cop.game.core.characters;
+package game.core.characters;
 
 import java.awt.Color;
 import java.awt.Graphics;

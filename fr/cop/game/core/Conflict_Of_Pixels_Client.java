@@ -36,6 +36,8 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private static int height = width / 16 * 9; // Taille de la denetre
 												// (hauteur).
 	private static Dimension size = new Dimension(width * scale, height * scale); // Taille de la fenetre.
+	
+	public static boolean scorePWAL1;
 
 	private BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); //Image de notre jeu (en tempon)
 	private int[] pixels = ((DataBufferInt) bufferedImage.getRaster().getDataBuffer()).getData(); // Pixels de l'image.
@@ -43,7 +45,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private JFrame f; // Fenetre
 	private Screen screen; // Notre ecran de jeu.
 	private Keyboard keyboard; // Entrée clavier.
-	public SimpleDebugWindow debugWindow; // Fenetre de debug.
+	public static SimpleDebugWindow debugWindow; // Fenetre de debug.
 
 	private TestCharacter champTest; /*Temporaire*/
 	private Thread t; // Thread de notre jeu.
@@ -213,12 +215,12 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 	public synchronized void stop() {
 		running = false;
+		System.exit(0);
 		try {
 			t.join();
 		} catch (InterruptedException e){
 			e.printStackTrace();
 		}
-		System.exit(0);
 	}
 	
 	public boolean getDebugState(){

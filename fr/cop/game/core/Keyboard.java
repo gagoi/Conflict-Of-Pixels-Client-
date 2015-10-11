@@ -1,7 +1,11 @@
 package fr.cop.game.core;
 
+import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class Keyboard extends KeyAdapter {
 
@@ -9,6 +13,9 @@ public class Keyboard extends KeyAdapter {
 	public boolean[] spells = new boolean[4];
 	public boolean[] directions = new boolean[4];
 	public boolean[] items = new boolean[6];
+	
+	public boolean pwal;
+	private JFrame pwalFrame;
 
 	public void update() {
 		spells[0] = keys[KeyEvent.VK_A];
@@ -27,6 +34,21 @@ public class Keyboard extends KeyAdapter {
 		items[3] = keys[KeyEvent.VK_4] || keys[KeyEvent.VK_NUMPAD4];
 		items[4] = keys[KeyEvent.VK_5] || keys[KeyEvent.VK_NUMPAD5];
 		items[5] = keys[KeyEvent.VK_6] || keys[KeyEvent.VK_NUMPAD6];
+		
+		pwal = (keys[KeyEvent.VK_P] && keys[KeyEvent.VK_A] && keys[KeyEvent.VK_W] && keys[KeyEvent.VK_L]);
+		
+		
+		if(pwal && !Conflict_Of_Pixels_Client.scorePWAL1){
+			Conflict_Of_Pixels_Client.scorePWAL1 = true;
+			pwalFrame = new JFrame();
+			pwalFrame.setResizable(false);
+			pwalFrame.setSize(250, 60);
+			pwalFrame.setTitle("~~GG PWAL~~");
+			pwalFrame.add(new JLabel("Bravo tu aimes les PWALs !!"), BorderLayout.CENTER);
+			pwalFrame.setVisible(true);
+			Conflict_Of_Pixels_Client.debugWindow.repaint();
+			keys[KeyEvent.VK_A] = false;
+		}
 	}
 
 	@Override

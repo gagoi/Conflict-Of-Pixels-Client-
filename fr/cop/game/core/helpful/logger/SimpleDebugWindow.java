@@ -1,10 +1,13 @@
 package fr.cop.game.core.helpful.logger;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,11 +31,14 @@ public class SimpleDebugWindow extends JFrame {
 
 	private JTextField fpsLimitationField = new JTextField();
 
+	private ImageIcon icon;
+
 	public SimpleDebugWindow() {
 		setTitle("Cop Debug");
 		setResizable(false);
 		setLayout(null);
 		setSize(500, 300);
+		icon = new ImageIcon(getClass().getResource("/fr/cop/resources/images/gameLogo.jpg"));
 
 		fpsLabel.setBounds(10, 45, 300, 30);
 		upsLabel.setBounds(10, 65, 300, 30);
@@ -45,22 +51,22 @@ public class SimpleDebugWindow extends JFrame {
 		fpsLimitationField.setBounds(220, 5, 100, 35);
 		fpsLimitationField.setText("60");
 		fpsLimitationField.addKeyListener(new KeyListener() {
-			
+
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void keyPressed(KeyEvent e) {
-				changeFpsLimitationButton.doClick();				
+				changeFpsLimitationButton.doClick();
 			}
 		});
 
@@ -148,5 +154,11 @@ public class SimpleDebugWindow extends JFrame {
 	public String adaptValuesToColoredString(boolean value) {
 		if (value) return "<span style=\"color:#009C15\">" + value + "</>";
 		else return "<span style=\"color:#FF0000\">" + value + "</>";
+	}
+
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		if (Conflict_Of_Pixels_Client.scorePWAL1) g.drawImage(icon.getImage(), 450, 30, 40, 40, null);
 	}
 }

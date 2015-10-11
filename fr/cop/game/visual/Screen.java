@@ -11,7 +11,7 @@ public class Screen {
 	public int[] tiles = new int[mapSize * mapSize];
 	private Random rand = new Random();
 
-	int offset = 0;
+	int test = 0;
 
 	public Screen(int witdh, int height) {
 		this.width = witdh;
@@ -21,15 +21,6 @@ public class Screen {
 		for (int i = 0; i < tiles.length; i++) {
 			tiles[i] = rand.nextInt(0xff_ff_ff);
 		}
- 
-		tiles[0] = 0xffffff;
-		tiles[1] = 0xffffff;
-		tiles[64] = 0xffffff;
-		tiles[65] = 0xffffff;
-		tiles[0] = 0xffffff;
-		tiles[1] = 0xffffff;
-		tiles[64] = 0xffffff;
-		tiles[65] = 0xffffff;
 	}
 
 	public void clear() {
@@ -38,20 +29,19 @@ public class Screen {
 		}
 	}
 
-	public void render(int time) {
-		offset++;
-		if (offset >= time)
-			offset = 0;
+	public void render() {
 		for (int y = 0; y < height; y++) {
-			int yy = y + offset*2;
+			int yy = y;
 			for (int x = 0; x < width; x++) {
-				int xx = x + offset;
+				int xx = x + test;
 				try {
-					int tileIndex = (xx / 4) + (yy / 4) * mapSize;
+					int tileIndex = ((xx / 4) & mapSize-1) + ((yy / 4) & mapSize-1) * mapSize;
 					pixels[x + y * width] = tiles[tileIndex];
 				} catch (Exception e) {
 				}
 			}
 		}
+
+		test++;
 	}
 }

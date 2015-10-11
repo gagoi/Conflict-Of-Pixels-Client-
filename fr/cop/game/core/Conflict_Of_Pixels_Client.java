@@ -91,7 +91,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 															// millisecondes.
 			if (currentTime >= startTimeUPS + nbUps) { // Si le temps du
 														// processeur est
-														// supérieur au temps de
+														// supï¿½rieur au temps de
 														// depart + nbUps...
 				startTimeUPS = System.currentTimeMillis(); // ... on remet le
 															// temps de depart a
@@ -99,14 +99,14 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 				gameUpdate(); // ... puis on fait une update.
 				upsCalc++;
 			}
-			if (currentTime >= startTimeFPS + nbFps) { // Si le temps du
+			if (currentTime >= startTimeFPS + nbFps || nbFps < 0) { // Si le temps du
 														// processeur est
-														// supérieur au temps de
+														// supï¿½rieur au temps de
 														// depart + nbFps...
 				startTimeFPS = System.currentTimeMillis(); // ... on remet le
 															// temps de depart a
 															// 0 ...
-				visualUpdate(upsCalc); // ... puis on fait une update.
+				visualUpdate(); // ... puis on fait une update.
 				fpsCalc++;
 			}
 
@@ -139,7 +139,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		}
 	}
 
-	public synchronized void visualUpdate(int time) { // Methode actualisant
+	public synchronized void visualUpdate() { // Methode actualisant
 														// l'ecran.
 		// Pas le jeu. Peut etre
 		// different entre chaque
@@ -150,7 +150,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 			return;
 		}
 		screen.clear();
-		screen.render(time);
+		screen.render();
 
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];

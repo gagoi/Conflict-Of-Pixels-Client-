@@ -1,9 +1,9 @@
 package fr.cop.game.core;
 
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-public class Keyboard implements KeyListener {
+public class Keyboard extends KeyAdapter {
 
 	private boolean[] keys = new boolean[KeyEvent.KEY_LAST]; // Tableau permettant de savoir quelles touches sont appuyées.
 	public boolean[] spells = new boolean[4];
@@ -32,18 +32,10 @@ public class Keyboard implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		keys[e.getKeyCode()] = true;
-		System.out.println("Pressed");
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		keys[e.getKeyCode()] = false;
 	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
 }

@@ -7,7 +7,7 @@ public class Screen {
 	private int width, height; // Taille de l'écran
 	public int[] pixels; // Pixels de l'image = écran.
 
-	private static final int MAP_SIZE = 128; // Taille de la map.
+	private static final int MAP_SIZE = 64; // Taille de la map.
 	public int[] tiles = new int[MAP_SIZE * MAP_SIZE]; // Tiles (carrés) de l'images.
 	private Random rand = new Random(); // Instance de random.
 
@@ -23,6 +23,10 @@ public class Screen {
 		for (int i = 0; i < tiles.length; i++) { // On met une couleur random, à chacun de nos tiles.
 			tiles[i] = rand.nextInt(0xff_ff_ff);
 		}
+		tiles[0] = 0;
+		tiles[1] = 0;
+		tiles[MAP_SIZE] = 0;
+		tiles[MAP_SIZE+1] = 0;
 	}
 
 	public void clear() { // Methode pour vider l'écran.

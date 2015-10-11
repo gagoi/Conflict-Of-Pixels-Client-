@@ -2,6 +2,8 @@ package fr.cop.game.core.helpful.logger;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -41,6 +43,26 @@ public class SimpleDebugWindow extends JFrame {
 		spellsKeysStateLabel.setBounds(10, 200, 500, 30);
 
 		fpsLimitationField.setBounds(220, 5, 100, 35);
+		fpsLimitationField.setText("60");
+		fpsLimitationField.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				changeFpsLimitationButton.doClick();				
+			}
+		});
 
 		debugModeButton.setBounds(100, 50, 200, 40);
 		debugModeButton.addActionListener(new ActionListener() {

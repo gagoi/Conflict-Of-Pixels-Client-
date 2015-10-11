@@ -11,6 +11,7 @@ import java.awt.image.DataBufferInt;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import fr.cop.game.core.characters.CharacterList;
@@ -72,6 +73,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		GAME.f.setSize(size); // On choisis la taille
 		GAME.f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Eteint le programme lorsque qu'on ferme la fenêtre.
 		GAME.f.add(GAME); // On ajoute notre jeu à la fenêtre.
+		GAME.f.setIconImage(new ImageIcon(GAME.getClass().getResource("/fr/cop/resources/images/gameLogo.jpg")).getImage());
 
 		GAME.f.setVisible(true); // On affiche la fenêtre.
 

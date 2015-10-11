@@ -4,44 +4,47 @@ import java.util.Random;
 
 public class Screen {
 
-	private int width, height;
-	public int[] pixels;
+	private int width, height; // Taille de l'écran
+	public int[] pixels; // Pixels de l'image = écran.
 
-	private int mapSize = 128;
-	public int[] tiles = new int[mapSize * mapSize];
-	private Random rand = new Random();
+	private int mapSize = 128; // Taille de la map.
+	public int[] tiles = new int[mapSize * mapSize]; // Tiles (carrés) de l'images.
+	private Random rand = new Random(); // Instance de random.
 
-	int test = 0;
+	int test = 0; /*Temporaire*/
 
-	public Screen(int witdh, int height) {
-		this.width = witdh;
-		this.height = height;
-		pixels = new int[witdh * height];
+	public Screen(int witdh, int height) { // Objet Screen.
+		this.width = witdh; // On établit la largeur...
+		this.height = height; // ... et la hauteur de l'image.
+		pixels = new int[witdh * height]; // On créée notre tableau de pixels.
 
-		for (int i = 0; i < tiles.length; i++) {
+		
+		/*Temporaire*/
+		for (int i = 0; i < tiles.length; i++) { // On met une couleur random, à chacun de nos tiles.
 			tiles[i] = rand.nextInt(0xff_ff_ff);
 		}
 	}
 
-	public void clear() {
-		for (int i = 0; i < pixels.length; i++) {
-			pixels[i] = 0;
+	public void clear() { // Methode pour vider l'écran.
+		for (int i = 0; i < pixels.length; i++) { // Pour chaque pixel...
+			pixels[i] = 0; // ... on met la couleur 0 (=noir).
 		}
 	}
 
-	public void render() {
-		for (int y = 0; y < height; y++) {
-			int yy = y;
-			for (int x = 0; x < width; x++) {
-				int xx = x + test;
-				try {
-					int tileIndex = ((xx / 4) & mapSize-1) + ((yy / 4) & mapSize-1) * mapSize;
-					pixels[x + y * width] = tiles[tileIndex];
+	public void render() { // Fonction de rendu.
+		for (int y = 0; y < height; y++) { // Pour chaque pixel en hauteur.
+			int yy = y; // permet de faire un décalage, oas encore utilisé.
+			for (int x = 0; x < width; x++) { // Pour chaque pixel en largeur.
+				int xx = x + test; // permet de faire un décalage, pas encore pleinement utilisé.
+				try { // On essaie de :
+					int tileIndex = ((xx / 4) & mapSize-1) + ((yy / 4) & mapSize-1) * mapSize; // récupérer l'id du tile sur la map.
+					pixels[x + y * width] = tiles[tileIndex]; // Et on met la couleur du pixel en fonction de celle du tile.
 				} catch (Exception e) {
 				}
 			}
 		}
 
-		test++;
+		/*Temporaire*/
+		test++; //Incremente test, pour animation.
 	}
 }

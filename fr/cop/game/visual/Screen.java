@@ -7,8 +7,8 @@ public class Screen {
 	private int width, height; // Taille de l'écran
 	public int[] pixels; // Pixels de l'image = écran.
 
-	private int mapSize = 128; // Taille de la map.
-	public int[] tiles = new int[mapSize * mapSize]; // Tiles (carrés) de l'images.
+	private static final int MAP_SIZE = 128; // Taille de la map.
+	public int[] tiles = new int[MAP_SIZE * MAP_SIZE]; // Tiles (carrés) de l'images.
 	private Random rand = new Random(); // Instance de random.
 
 	int test = 0; /*Temporaire*/
@@ -31,13 +31,13 @@ public class Screen {
 		}
 	}
 
-	public void render() { // Fonction de rendu.
+	public void render(int xOffset, int yOffset) { // Fonction de rendu.
 		for (int y = 0; y < height; y++) { // Pour chaque pixel en hauteur.
-			int yy = y; // permet de faire un décalage, oas encore utilisé.
+			int yy = y + yOffset; // permet de faire un décalage, oas encore utilisé.
 			for (int x = 0; x < width; x++) { // Pour chaque pixel en largeur.
-				int xx = x + test; // permet de faire un décalage, pas encore pleinement utilisé.
+				int xx = x + xOffset; // permet de faire un décalage, pas encore pleinement utilisé.
 				try { // On essaie de :
-					int tileIndex = ((xx / 4) & mapSize-1) + ((yy / 4) & mapSize-1) * mapSize; // récupérer l'id du tile sur la map.
+					int tileIndex = ((xx / 4) & MAP_SIZE-1) + ((yy / 4) & MAP_SIZE-1) * MAP_SIZE; // récupérer l'id du tile sur la map.
 					pixels[x + y * width] = tiles[tileIndex]; // Et on met la couleur du pixel en fonction de celle du tile.
 				} catch (Exception e) {
 				}

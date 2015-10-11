@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 
 import fr.cop.game.core.characters.CharacterList;
 import fr.cop.game.core.characters.TestCharacter;
+import fr.cop.game.core.helpful.logger.SimpleDebugWindow;
 import fr.cop.game.visual.Animation;
 import fr.cop.game.visual.Screen;
 
@@ -25,7 +26,9 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private int actualFPS, actualUPS; // Variable permettant d'afficher le nombre de FPS.
 	private static int nbFps = 1000 / 60; // Si négatif, FPS non limités.
 	private boolean running = false; // Boolean permettant de dire si le jeu fonctionne ou non.
-	private static boolean debug = true; // Mode débug.
+	
+	public boolean debug = false; // Mode débug.
+	private static int cameraSpeed = 3; // Vitesse de la caméra
 
 	private static int scale = 3; // Taille des pixels (pixels du jeu).
 	private static int width = 350; // Taille de la fenetre (largeur).
@@ -38,6 +41,8 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 	private JFrame f; // Fenetre
 	private Screen screen; // Notre ecran de jeu.
+	private Keyboard keyboard; // Entrée clavier.
+	public SimpleDebugWindow debugWindow; // Fenetre de debug.
 
 	private TestCharacter champTest; /*Temporaire*/
 	private Thread t; // Thread de notre jeu.
@@ -45,10 +50,16 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	public static CharacterList CHARACTER_LIST; // Liste des Champions.
 	public static ArrayList<Animation> animations = new ArrayList<Animation>(); /*Temporaire */
 
+	public int x, y; /*Temporaire*/
+
 	public Conflict_Of_Pixels_Client() { // Objet etant notre jeu.
 		setSize(size); // Cet objet étant un canvas, on choisis sa taille.
 		f = new JFrame(); // On instancie notre fenetre...
 		screen = new Screen(width, height); // ... et notre screen.
+		keyboard = new Keyboard();
+		addKeyListener(keyboard);
+		
+		debugWindow = new SimpleDebugWindow();
 	}
 
 	public static void main(String[] args) { // Methode de demarrage d'un
@@ -100,9 +111,9 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 				upsCalc++;
 			}
 			if (currentTime >= startTimeFPS + nbFps || nbFps < 0) { // Si le temps du
-														// processeur est
-														// sup�rieur au temps de
-														// depart + nbFps ou si on ne limite pas les fps...
+				// processeur est
+				// sup�rieur au temps de
+				// depart + nbFps ou si on ne limite pas les fps...
 				startTimeFPS = System.currentTimeMillis(); // ... on remet le
 															// temps de depart a
 															// 0 ...
@@ -133,6 +144,17 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		 */
 
 		/* Temporaire avant serveur*/
+
+		keyboard.update();
+		if (keyboard.directions[0])  y-=cameraSpeed;
+		if (keyboard.directions[1])  y+=cameraSpeed;
+		if (keyboard.directions[2])  x-=cameraSpeed;
+		if (keyboard.directions[3])  x+=cameraSpeed;
+		
+		debugWindow.setDirectionKeysState(keyboard.directions);
+		debugWindow.setItemsKeysState(keyboard.items);
+		debugWindow.setSpellsKeysState(keyboard.spells);
+		
 		for (Iterator<Animation> iterator = animations.iterator(); iterator.hasNext();) {
 			Animation anim = (Animation) iterator.next();
 			anim.move();
@@ -140,7 +162,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	}
 
 	public synchronized void visualUpdate() { // Methode actualisant
-														// l'ecran.
+												// l'ecran.
 		// Pas le jeu. Peut etre
 		// different entre chaque
 		// joueur.
@@ -150,13 +172,16 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 			return; // Et on ne dessine rien, pour ne pas crash.
 		}
 		screen.clear(); // On vide l'écran actuel.
-		screen.render(); // On fait le rendu du jeu.
+		screen.render(x, y); // On fait le rendu du jeu.
 
 		// On transforme tous les pixels rendus en pixels affichés.
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
 		}
 
+		debugWindow.setFPS(actualFPS);
+		debugWindow.setUPS(actualUPS);
+		
 		Graphics g = bs.getDrawGraphics(); // On récupère les graphics de notre canvas.
 		g.setColor(Color.BLACK); // On met la couleur en noire pour ...
 		g.fillRect(0, 0, getWidth(), getHeight()); // ... vider l'écran.
@@ -182,5 +207,27 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	/* Temporaire */
 	public void setChampTest(TestCharacter champTest) {
 		this.champTest = champTest;
+	}
+
+	public synchronized void stop() {
+		running = false;
+		try {
+			t.join();
+		} catch (InterruptedException e){
+			e.printStackTrace();
+		}
+		System.exit(0);
+	}
+	
+	public boolean getDebugState(){
+		return debug;
+	}
+	
+	public void setDebugState(boolean debugState){
+		debug = debugState;
+	}
+	
+	public void setFpsLimitatiob(int fps){
+		nbFps = 1000/fps;
 	}
 }

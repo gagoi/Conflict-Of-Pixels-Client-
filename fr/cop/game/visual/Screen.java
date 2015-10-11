@@ -21,11 +21,11 @@ public class Screen {
 		for (int i = 0; i < tiles.length; i++) {
 			tiles[i] = rand.nextInt(0xff_ff_ff);
 		}
-
-		tiles[0] = 0;
-		tiles[1] = 0;
-		tiles[64] = 0;
-		tiles[65] = 0;
+ 
+		tiles[0] = 0xffffff;
+		tiles[1] = 0xffffff;
+		tiles[64] = 0xffffff;
+		tiles[65] = 0xffffff;
 	}
 
 	public void clear() {

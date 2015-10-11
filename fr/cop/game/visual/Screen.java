@@ -26,6 +26,10 @@ public class Screen {
 		tiles[1] = 0xffffff;
 		tiles[64] = 0xffffff;
 		tiles[65] = 0xffffff;
+		tiles[0] = 0xffffff;
+		tiles[1] = 0xffffff;
+		tiles[64] = 0xffffff;
+		tiles[65] = 0xffffff;
 	}
 
 	public void clear() {

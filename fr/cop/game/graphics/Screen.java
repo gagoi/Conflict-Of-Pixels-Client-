@@ -1,8 +1,6 @@
-package fr.cop.game.visual;
+package fr.cop.game.graphics;
 
 import java.util.Random;
-
-import fr.cop.game.core.usefull.Sprites;
 
 public class Screen {
 

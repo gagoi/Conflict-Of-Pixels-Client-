@@ -1,4 +1,4 @@
-package fr.cop.game.visual;
+package fr.cop.game.graphics;
 
 import javax.swing.ImageIcon;
 

@@ -1,19 +1,19 @@
-package fr.cop.game.visual;
+package fr.cop.game.graphics;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class SpritesSheet {
+public class SpriteSheet {
 	private String path;
 	final int SIZE;
 	public int[] pixels;
 	
 	
-	public static SpritesSheet testSheet = new SpritesSheet("spritesTest.png", 256);
+	public static SpriteSheet testSheet = new SpriteSheet("spritesTest.png", 256);
 
-	public SpritesSheet(String path, int size) {
+	public SpriteSheet(String path, int size) {
 		this.path = path;
 		SIZE = size;
 		pixels = new int[SIZE * SIZE];

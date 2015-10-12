@@ -1,12 +1,12 @@
-package fr.cop.game.visual;
+package fr.cop.game.graphics;
 
 public class Sprite {
 	final int SIZE;
 	private int x, y;
 	public int[] pixels;
-	private SpritesSheet spritesSheet;
+	private SpriteSheet spritesSheet;
 
-	public Sprite(int size, int x, int y, SpritesSheet spritesSheet) {
+	public Sprite(int size, int x, int y, SpriteSheet spritesSheet) {
 		SIZE = size;
 		pixels = new int[SIZE*SIZE];
 		this.x = x * size;

@@ -1,4 +1,4 @@
-package fr.cop.game.core;
+package fr.cop.game.core.inputs;
 
 import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
@@ -6,6 +6,8 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import fr.cop.game.core.Conflict_Of_Pixels_Client;
 
 public class Keyboard extends KeyAdapter {
 

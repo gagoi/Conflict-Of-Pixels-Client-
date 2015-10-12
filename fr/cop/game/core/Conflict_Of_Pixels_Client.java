@@ -17,8 +17,9 @@ import javax.swing.JFrame;
 import fr.cop.game.core.characters.CharacterList;
 import fr.cop.game.core.characters.TestCharacter;
 import fr.cop.game.core.helpful.logger.SimpleDebugWindow;
-import fr.cop.game.visual.Animation;
-import fr.cop.game.visual.Screen;
+import fr.cop.game.core.inputs.Keyboard;
+import fr.cop.game.graphics.Animation;
+import fr.cop.game.graphics.Screen;
 
 public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L; // Convention java.

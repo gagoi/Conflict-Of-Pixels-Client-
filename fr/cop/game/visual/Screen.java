@@ -11,7 +11,7 @@ public class Screen {
 
 	private static final int MAP_SIZE = 8; // Taille de la map.
 	public int[] tiles = new int[MAP_SIZE * MAP_SIZE]; // Tiles (carrés) de l'images.
-	@SuppressWarnings("unused")
+	@SuppressWarnings("unused") // Temporaire
 	private Random rand = new Random(); // Instance de random.
 
 	int test = 0; /*Temporaire*/

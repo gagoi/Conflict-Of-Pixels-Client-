@@ -170,6 +170,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		}
 		
 //		int pwalX = get
+		
 	}
 
 	public synchronized void visualUpdate() { // Methode actualisant

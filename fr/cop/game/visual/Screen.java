@@ -2,13 +2,16 @@ package fr.cop.game.visual;
 
 import java.util.Random;
 
+import fr.cop.game.core.usefull.Sprites;
+
 public class Screen {
 
 	private int width, height; // Taille de l'écran
 	public int[] pixels; // Pixels de l'image = écran.
 
-	private static final int MAP_SIZE = 64; // Taille de la map.
+	private static final int MAP_SIZE = 8; // Taille de la map.
 	public int[] tiles = new int[MAP_SIZE * MAP_SIZE]; // Tiles (carrés) de l'images.
+	@SuppressWarnings("unused")
 	private Random rand = new Random(); // Instance de random.
 
 	int test = 0; /*Temporaire*/
@@ -17,16 +20,6 @@ public class Screen {
 		this.width = witdh; // On établit la largeur...
 		this.height = height; // ... et la hauteur de l'image.
 		pixels = new int[witdh * height]; // On créée notre tableau de pixels.
-
-		
-		/*Temporaire*/
-		for (int i = 0; i < tiles.length; i++) { // On met une couleur random, à chacun de nos tiles.
-			tiles[i] = rand.nextInt(0xff_ff_ff);
-		}
-		tiles[0] = 0;
-		tiles[1] = 0;
-		tiles[MAP_SIZE] = 0;
-		tiles[MAP_SIZE+1] = 0;
 	}
 
 	public void clear() { // Methode pour vider l'écran.
@@ -37,12 +30,13 @@ public class Screen {
 
 	public void render(int xOffset, int yOffset) { // Fonction de rendu.
 		for (int y = 0; y < height; y++) { // Pour chaque pixel en hauteur.
-			int yy = y + yOffset; // permet de faire un décalage, oas encore utilisé.
+			int yp = y + yOffset; // permet de faire un décalage, oas encore utilisé.
+			if (yp < 0 || yp >= height) continue;
 			for (int x = 0; x < width; x++) { // Pour chaque pixel en largeur.
-				int xx = x + xOffset; // permet de faire un décalage, pas encore pleinement utilisé.
+				int xp = x + xOffset; // permet de faire un décalage, pas encore pleinement utilisé.
+				if (xp < 0 || xp >= width) continue;
 				try { // On essaie de :
-					int tileIndex = ((xx / 4) & MAP_SIZE-1) + ((yy / 4) & MAP_SIZE-1) * MAP_SIZE; // récupérer l'id du tile sur la map.
-					pixels[x + y * width] = tiles[tileIndex]; // Et on met la couleur du pixel en fonction de celle du tile.
+					pixels[xp + yp * width] = Sprites.grass.pixels[(x & Sprites.grass.SIZE - 1) + (y & Sprites.grass.SIZE - 1) * Sprites.grass.SIZE];
 				} catch (Exception e) {
 				}
 			}

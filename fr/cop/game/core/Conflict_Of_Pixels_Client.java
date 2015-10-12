@@ -93,6 +93,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 	@Override
 	public void run() { // Exécution de notre jeu. 
+		requestFocus(); // Met le focus sur le jeu.
 		long timer = System.currentTimeMillis(); // Pour compter FPS et UPS
 		long startTimeUPS = System.currentTimeMillis(); // Temps de depart du
 														// programme, utilise
@@ -150,10 +151,10 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		/* Temporaire avant serveur*/
 
 		keyboard.update();
-		if (keyboard.directions[0])  y-=cameraSpeed;
-		if (keyboard.directions[1])  y+=cameraSpeed;
-		if (keyboard.directions[2])  x-=cameraSpeed;
-		if (keyboard.directions[3])  x+=cameraSpeed;
+		if (keyboard.directions[0])  y+=cameraSpeed;
+		if (keyboard.directions[1])  y-=cameraSpeed;
+		if (keyboard.directions[2])  x+=cameraSpeed;
+		if (keyboard.directions[3])  x-=cameraSpeed;
 		
 		debugWindow.setDirectionKeysState(keyboard.directions);
 		debugWindow.setItemsKeysState(keyboard.items);

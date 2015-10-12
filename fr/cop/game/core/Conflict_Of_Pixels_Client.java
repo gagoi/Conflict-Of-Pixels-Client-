@@ -18,6 +18,7 @@ import fr.cop.game.core.characters.CharacterList;
 import fr.cop.game.core.characters.TestCharacter;
 import fr.cop.game.core.helpful.logger.SimpleDebugWindow;
 import fr.cop.game.core.inputs.Keyboard;
+import fr.cop.game.core.inputs.Mouse;
 import fr.cop.game.graphics.Animation;
 import fr.cop.game.graphics.Screen;
 
@@ -46,6 +47,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private JFrame f; // Fenetre
 	private Screen screen; // Notre ecran de jeu.
 	private Keyboard keyboard; // Entrée clavier.
+	private Mouse mouse;
 	public static SimpleDebugWindow debugWindow; // Fenetre de debug.
 
 	private TestCharacter champTest; /*Temporaire*/
@@ -62,6 +64,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		screen = new Screen(width, height); // ... et notre screen.
 		keyboard = new Keyboard();
 		addKeyListener(keyboard);
+		addMouseListener(mouse);
 		
 		debugWindow = new SimpleDebugWindow();
 	}
@@ -165,6 +168,8 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 			Animation anim = (Animation) iterator.next();
 			anim.move();
 		}
+		
+//		int pwalX = get
 	}
 
 	public synchronized void visualUpdate() { // Methode actualisant

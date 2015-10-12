@@ -1,6 +1,5 @@
 package fr.cop.game.core.helpful.logger;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

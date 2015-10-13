@@ -73,6 +73,11 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 	public static void main(String[] args) { // Methode de demarrage d'un
 												// programme en Java.
+		
+		JFrame f = new JFrame();
+		f.add(new PanelTest());
+		f.setSize(1280, 720);
+		f.setVisible(true);
 		GAME = new Conflict_Of_Pixels_Client();
 
 		GAME.f.setTitle("Conflict Of Pixels"); // Titre de la fenêtre.
@@ -80,6 +85,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		GAME.f.setLayout(null); // On supprime les layouts.
 		GAME.f.setSize(size); // On choisis la taille
 		GAME.f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Eteint le programme lorsque qu'on ferme la fenêtre.
+		GAME.f.setLocationRelativeTo(null);
 		GAME.f.add(GAME); // On ajoute notre jeu à la fenêtre.
 		GAME.f.setIconImage(new ImageIcon(GAME.getClass().getResource("/fr/cop/resources/images/gameLogo.jpg")).getImage());
 

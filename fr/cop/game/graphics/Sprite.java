@@ -5,13 +5,17 @@ public class Sprite {
 	private int x, y;
 	public int[] pixels;
 	private SpriteSheet spritesSheet;
+	private String id;
+	private char code;
 
-	public Sprite(int size, int x, int y, SpriteSheet spritesSheet) {
+	public Sprite(int size, int x, int y, SpriteSheet spritesSheet, String id, char code) {
 		SIZE = size;
 		pixels = new int[SIZE*SIZE];
 		this.x = x * size;
 		this.y = y * size;
 		this.spritesSheet = spritesSheet;
+		this.setId(id);
+		this.setCode(code);
 		loadSprites();
 	}
 
@@ -21,6 +25,22 @@ public class Sprite {
 				pixels[x+y*SIZE] = spritesSheet.pixels[(x+this.x) + (y + this.y)*spritesSheet.SIZE];
 			}
 		}
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public char getCode() {
+		return code;
+	}
+
+	public void setCode(char code) {
+		this.code = code;
 	}
 
 }

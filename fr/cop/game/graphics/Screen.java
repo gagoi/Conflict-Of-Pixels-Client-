@@ -2,6 +2,8 @@ package fr.cop.game.graphics;
 
 import java.util.Random;
 
+import fr.cop.game.core.Conflict_Of_Pixels_Client;
+
 public class Screen {
 
 	private int width, height; // Taille de l'écran
@@ -34,7 +36,7 @@ public class Screen {
 				int xp = x + xOffset; // permet de faire un décalage, pas encore pleinement utilisé.
 				if (xp < 0 || xp >= width) continue;
 				try { // On essaie de :
-					pixels[xp + yp * width] = Sprites.grass.pixels[(x & Sprites.grass.SIZE - 1) + (y & Sprites.grass.SIZE - 1) * Sprites.grass.SIZE];
+					pixels[xp + yp * width] = Conflict_Of_Pixels_Client.MAP.getSpriteAt(xp, yp).pixels[(x & Conflict_Of_Pixels_Client.MAP.getSpriteAt(xp, yp).SIZE - 1) + (y & Conflict_Of_Pixels_Client.MAP.getSpriteAt(xp, yp).SIZE - 1) * Conflict_Of_Pixels_Client.MAP.getSpriteAt(xp, yp).SIZE];
 				} catch (Exception e) {
 				}
 			}

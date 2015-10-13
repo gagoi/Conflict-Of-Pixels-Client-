@@ -41,6 +41,8 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	
 	public static boolean scorePWAL1;
 
+	public static final Level MAP = new Level("map", 12);
+
 	private BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); //Image de notre jeu (en tempon)
 	private int[] pixels = ((DataBufferInt) bufferedImage.getRaster().getDataBuffer()).getData(); // Pixels de l'image.
 

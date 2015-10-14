@@ -14,7 +14,9 @@ import javax.swing.JButton;
 public class ButtonTest extends JButton {
 
 	Icon ico;
-	
+	int x0, x1, x2, x3; // Points clés
+	int y0, y1, y2, y3, y4; // Points clés
+	int a1 = (y0-y2)/(y1-y2), a2 = (y0-y3)/(y3-y4); // Coefficients directeurs des droites inclinees.
 
 	public ButtonTest(Icon ico) {
 		super(ico);
@@ -35,6 +37,7 @@ public class ButtonTest extends JButton {
 
 	@Override
 	public boolean contains(int x, int y) {
+		
 		return true;
 	}
 

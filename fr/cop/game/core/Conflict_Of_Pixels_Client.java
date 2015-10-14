@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
@@ -37,7 +39,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private static int width = 350; // Taille de la fenetre (largeur).
 	private static int height = width / 16 * 9; // Taille de la denetre
 												// (hauteur).
-	private static Dimension size = new Dimension(width * scale, height * scale); // Taille de la fenetre.
+	static Dimension size = new Dimension(width * scale, height * scale); // Taille de la fenetre.
 	
 	public static boolean scorePWAL1;
 
@@ -46,11 +48,12 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); //Image de notre jeu (en tempon)
 	private int[] pixels = ((DataBufferInt) bufferedImage.getRaster().getDataBuffer()).getData(); // Pixels de l'image.
 
-	private JFrame f; // Fenetre
+	public JFrame f; // Fenetre
 	private Screen screen; // Notre ecran de jeu.
 	private Keyboard keyboard; // Entrée clavier.
 	private Mouse mouse;
 	public static SimpleDebugWindow debugWindow; // Fenetre de debug.
+	public static JFrame menuFrame;
 
 	private TestCharacter champTest; /*Temporaire*/
 	private Thread t; // Thread de notre jeu.
@@ -74,24 +77,15 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	public static void main(String[] args) { // Methode de demarrage d'un
 												// programme en Java.
 		
-		JFrame f = new JFrame();
-		f.add(new PanelTest());
-		f.setSize(1280, 720);
-		f.setVisible(true);
-		GAME = new Conflict_Of_Pixels_Client();
-
-		GAME.f.setTitle("Conflict Of Pixels"); // Titre de la fenêtre.
-		GAME.f.setResizable(false); // Empeche de redimensionner.
-		GAME.f.setLayout(null); // On supprime les layouts.
-		GAME.f.setSize(size); // On choisis la taille
-		GAME.f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Eteint le programme lorsque qu'on ferme la fenêtre.
-		GAME.f.setLocationRelativeTo(null);
-		GAME.f.add(GAME); // On ajoute notre jeu à la fenêtre.
-		GAME.f.setIconImage(new ImageIcon(GAME.getClass().getResource("/fr/cop/resources/images/gameLogo.jpg")).getImage());
-
-		GAME.f.setVisible(true); // On affiche la fenêtre.
-
-		GAME.start(); // On lance le jeu.
+		menuFrame = new JFrame();
+		menuFrame.add(new PanelTest());
+		menuFrame.setTitle("Menu CoP... Test");
+		menuFrame.setSize(1280, 720);
+		menuFrame.setResizable(false);
+		menuFrame.setVisible(true);
+		menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
 	}
 
 	public synchronized void start() { // Fonction de démarrage du jeu.

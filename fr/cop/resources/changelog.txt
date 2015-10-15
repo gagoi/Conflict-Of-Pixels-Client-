@@ -1,13 +1,12 @@
 <html>
 	<center>News</center>
-	\"color:#009C15\"
 	<ul>
-		<span style="font-size:20px; text-decoration:underline; color:#FFFFFF;">Alpha 0.0.0.2 :</span><ul>
+		<span style="font-size:22px; text-decoration:underline; color: red;">Alpha 0.0.0.2 :</span><ul>
 			<li> Background ajouté à l'onglet détailé de chaque menu... (seulement "news" pour le moment).</li>
 			<li> Modifications ajoutées au fichier permettant de voir le changelog. Pas encore définitif.</li>
 			<li> Launcher encore et toujours en cours d'amélioration afin d'améliorer l'expérience utilisateur. </li>
 		</ul>
-		<font size= +1>Alpha 0.0.0.1 :</font><ul>
+		<span style="font-size:22px; text-decoration:underline; color: red;">Alpha 0.0.0.1 :</span><ul>
 			<li> Création d'un changelog officiel.</li>
 			<li> Launcher encore et toujours en cours d'amélioration afin d'améliorer l'expérience utilisateur. </li>
 		</ul>

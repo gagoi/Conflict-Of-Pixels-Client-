@@ -12,7 +12,7 @@ public class ProfilBarPanel extends JPanel{
 	ImageIcon profilIco, backgroundIco;
 	Font f;
 	Color[] rankColor = {new Color(255, 0, 0)};
-	private int xp = 250, xpMax = 1000;
+	private int xp = 750, xpMax = 1000;
 
 	public ProfilBarPanel() {
 		setLayout(null);
@@ -40,8 +40,18 @@ public class ProfilBarPanel extends JPanel{
 			g.drawLine(567, i+147, 671+i, 0);
 		}
 		
-		g.setColor(new Color(200, 0, 0));
-		g.fillRect(50, 100, 500, 10);
+		g.setColor(new Color(120, 0, 0));
+		g.fillRect(10, 108, 400, 15);
+		
+		g.setColor(new Color(255, 0, 0));
+		g.fillRect(10, 108, 400*xp/xpMax, 15);
+		
+		g.setColor(Color.BLACK);
+		g.drawRect(10, 108, 400, 15);
+		g.drawRect(9, 107, 401, 16);
+		
+		g.setFont(f.deriveFont(15f));
+		g.drawString(xp + " / " + xpMax + " XP", 160, 123);
 		
 		g.setFont(f);
 		g.setColor(Color.YELLOW);

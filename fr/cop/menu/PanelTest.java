@@ -19,14 +19,12 @@ public class PanelTest extends JPanel {
 		int[] x = {0, 400, 512, 400, 0};
 		int[][] y = {{180, 180, 360, 252, 252}, {252, 252, 360, 324, 324}, {324, 324, 360, 397, 397}, {397, 397, 360, 469, 469}, {469, 469, 360, 541, 541}};
 		setLayout(null);
-		
+
 		PlayButton pb = new PlayButton(512, 360, 100, new ImageIcon(getClass().getResource("/fr/cop/resources/menus/menu_round.png")));
 		pb.setBounds(0, 0, getWidth(), getHeight());
 
-		
 		MenusButton v0 = new MenusButton(new Polygon(x, y[0], x.length), "Profil", new ImageIcon(getClass().getResource("/fr/cop/resources/menus/menu_haut_2.png")), pb);
 		v0.setBounds(0, 0, getWidth(), getHeight());
-		
 
 		MenusButton v1 = new MenusButton(new Polygon(x, y[1], x.length), "Shop", new ImageIcon(getClass().getResource("/fr/cop/resources/menus/menu_haut_1.png")), pb);
 		v1.setBounds(0, 0, getWidth(), getHeight());
@@ -63,18 +61,20 @@ public class PanelTest extends JPanel {
 			}
 		});
 
-		
+		DetailsPanel detailPanel = new DetailsPanel();
+		detailPanel.setBounds(850, 90, getWidth(), getHeight()-200);
+
 		JPanel p = new JPanel();
 		p.setBounds(0, 0, getWidth(), getHeight());
 		p.setLayout(null);
-		
+
 		JPanel p2 = new JPanel();
 		p2.setBounds(0, 0, getWidth(), getHeight());
 		p2.setLayout(null);
-		
+
 		ProfilBarPanel profilBar = new ProfilBarPanel();
 		profilBar.setBounds(0, 0, getWidth(), getHeight());
-		
+
 		p.add(v0);
 		p.add(v1);
 		p.add(v2);
@@ -84,5 +84,6 @@ public class PanelTest extends JPanel {
 		add(p);
 		add(p2);
 		add(profilBar);
+		add(detailPanel);
 	}
 }

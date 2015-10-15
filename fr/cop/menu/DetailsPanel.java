@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -15,9 +16,12 @@ public class DetailsPanel extends JPanel {
 
 	String file;
 	JLabel label;
+	ImageIcon background;
 
 	public DetailsPanel() {
+		super();
 		label = new JLabel("PWAL");
+		background = new ImageIcon(getClass().getResource("/fr/cop/resources/menus/menu_detailed_panel_background.png"));
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(new URL("https://raw.githubusercontent.com/gagoi/Conflict-Of-Pixels-Client-/master/fr/cop/resources/changelog.txt").openConnection().getInputStream()));
 			String line = "";
@@ -30,14 +34,16 @@ public class DetailsPanel extends JPanel {
 			e.printStackTrace();
 		}
 		label.setText(file);
+		label.setForeground(Color.YELLOW);
 		label.setBackground(Color.BLUE);
 		label.setBounds(0, 50, 250, 250);
 		add(label);
 		setOpaque(true);
 	}
-	@Override
-	public void paint(Graphics g) {
-		super.paint(g);
+
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(background.getImage(), 0, 0, null);
 	}
 
 }

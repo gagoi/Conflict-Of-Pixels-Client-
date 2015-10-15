@@ -62,7 +62,7 @@ public class PanelTest extends JPanel {
 		});
 
 		DetailsPanel detailPanel = new DetailsPanel();
-		detailPanel.setBounds(850, 90, getWidth(), getHeight()-200);
+		detailPanel.setBounds(582, 108, getWidth(), getHeight()-200);
 
 		JPanel p = new JPanel();
 		p.setBounds(0, 0, getWidth(), getHeight());

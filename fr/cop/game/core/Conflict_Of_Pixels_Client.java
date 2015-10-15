@@ -23,6 +23,7 @@ import fr.cop.game.core.inputs.Keyboard;
 import fr.cop.game.core.inputs.Mouse;
 import fr.cop.game.graphics.Animation;
 import fr.cop.game.graphics.Screen;
+import fr.cop.menu.PanelTest;
 
 public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L; // Convention java.
@@ -39,7 +40,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private static int width = 350; // Taille de la fenetre (largeur).
 	private static int height = width / 16 * 9; // Taille de la denetre
 												// (hauteur).
-	static Dimension size = new Dimension(width * scale, height * scale); // Taille de la fenetre.
+	public static Dimension size = new Dimension(width * scale, height * scale); // Taille de la fenetre.
 	
 	public static boolean scorePWAL1;
 

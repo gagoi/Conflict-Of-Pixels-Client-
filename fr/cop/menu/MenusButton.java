@@ -1,4 +1,4 @@
-package fr.cop.game.core;
+package fr.cop.menu;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -56,7 +56,6 @@ public class MenusButton extends JButton {
 		if (pos - middle < 0) g.drawImage(ico.getImage(), getX(), pos, null);
 		else g.drawImage(ico.getImage(), getX(), middle, null);
 		g.setColor(Color.RED);
-		g.drawPolygon(p);
 		g.setFont(f);
 		g.drawString(this.text, (p.xpoints[0] + 100), (p.ypoints[0] + 58));
 		g.dispose();

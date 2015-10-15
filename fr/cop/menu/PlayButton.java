@@ -1,4 +1,4 @@
-package fr.cop.game.core;
+package fr.cop.menu;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.InputStream;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class PlayButton extends JButton {
@@ -16,9 +17,16 @@ public class PlayButton extends JButton {
 	Polygon p1 = new Polygon();
 	Polygon p2 = new Polygon();
 	
+	int centerX, centerY, radius;
+	
 	Font f;
+	ImageIcon ico;
 
-	public PlayButton(int centerX, int centerY, int radius) {
+	public PlayButton(int centerX, int centerY, int radius, ImageIcon ico) {
+		this.ico = ico;
+		this.centerX = centerX;
+		this.centerY = centerY;
+		this.radius = radius;
 		for (int i = -radius; i <= radius; i++) {
 
 			p1.addPoint(i + centerX, (int) Math.sqrt(radius * radius - i * i) + centerY);
@@ -36,14 +44,7 @@ public class PlayButton extends JButton {
 		setBorderPainted(false);
 		setFocusPainted(false);
 		setOpaque(true);
-		addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("play");
-
-			}
-		});
+	
 	}
 	@Override
 	public boolean contains(int x, int y) {
@@ -51,14 +52,11 @@ public class PlayButton extends JButton {
 	}
 	@Override
 	public void paint(Graphics g) {
-		g.setColor(Color.GREEN);
-		g.fillPolygon(p1);
-		g.setColor(Color.BLUE);
-		g.fillPolygon(p2);
+		g.drawImage(ico.getImage(), centerX-radius, centerY-radius, null);
 		
 		g.setColor(Color.RED);
 		g.setFont(f);
-		g.drawString("Play", 480, 360);
+		g.drawString("Play", 450, 380);
 		g.dispose();
 	}
 }

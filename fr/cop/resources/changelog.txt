@@ -1,4 +1,5 @@
 <html>
+	<center>News</center>
 	<ul>
 		Alpha 0.0.0.2 :<ul>
 			<li> Background ajouté à l'onglet détailé de chaque menu... (seulement "news" pour le moment).</li>

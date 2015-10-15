@@ -23,7 +23,7 @@ public class DetailsPanel extends JPanel {
 		label = new JLabel("PWAL");
 		background = new ImageIcon(getClass().getResource("/fr/cop/resources/menus/menu_detailed_panel_background.png"));
 		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(new URL("https://raw.githubusercontent.com/gagoi/Conflict-Of-Pixels-Client-/789d30a8f40bdac0ee473447b6841d2983761926/fr/cop/resources/changelog.txt").openConnection().getInputStream()));
+			BufferedReader br = new BufferedReader(new InputStreamReader(new URL("https://raw.githubusercontent.com/gagoi/Conflict-Of-Pixels-Client-/master/fr/cop/resources/changelog.txt").openConnection().getInputStream()));
 			String line = "";
 			while ((line = br.readLine()) != null) {
 				if (file == null) file = line;
@@ -36,13 +36,14 @@ public class DetailsPanel extends JPanel {
 		label.setForeground(Color.YELLOW);
 		label.setBackground(Color.BLUE);
 		label.setBounds(0, 0, 50, 50);
+//		setLayout(null);
 		add(label);
 		setOpaque(true);
 	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(background.getImage(), 0, 0, null);
+		g.drawImage(background.getImage(), 72+100, 0, null);
 	}
 
 }

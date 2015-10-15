@@ -36,7 +36,7 @@ public class DetailsPanel extends JPanel {
 		label.setText(file);
 		label.setForeground(Color.YELLOW);
 		label.setBackground(Color.BLUE);
-		label.setBounds(0, 50, 250, 250);
+		label.setBounds(0, 0, 50, 50);
 		add(label);
 		setOpaque(true);
 	}

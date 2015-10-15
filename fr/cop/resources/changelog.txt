@@ -1,3 +1,4 @@
-Alpha 0.0.0.1 :
-\r	- Création d'un changelog officiel.
-\r	- Launcher encore et toujours en cours d'amélioration afin d'améliorer l'expérience utilisateur.
+<html>Alpha 0.0.0.1 :
+<br>	- Création d'un changelog officiel.
+<br>	- Launcher encore et toujours en cours d'amélioration afin d'améliorer l'expérience utilisateur.
+</html>

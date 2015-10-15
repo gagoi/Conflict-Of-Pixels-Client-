@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 public class ProfilBarPanel extends JPanel{
 	ImageIcon profilIco, backgroundIco;
 	Font f;
+	Color[] rankColor = {new Color(255, 0, 0)};
+	private int xp = 250, xpMax = 1000;
 
 	public ProfilBarPanel() {
 		setLayout(null);
@@ -29,11 +31,21 @@ public class ProfilBarPanel extends JPanel{
 	@Override
 	public void paint(Graphics g) {
 		g.drawImage(backgroundIco.getImage(), 0, 0,null);
-
-		g.drawImage(profilIco.getImage(), 5, 5, 80, 80,null);
+		g.drawImage(profilIco.getImage(), 5, 5, 95, 95,null);
+		g.setColor(rankColor[0]);
+		for (int i = 0; i < 4; i++) {
+			g.drawLine(0, i+135, 450, i+135);
+			g.drawLine(450, i+135, 462, 147+i);
+			g.drawLine(462, i+147, 568, i+147);
+			g.drawLine(567, i+147, 671+i, 0);
+		}
+		
+		g.setColor(new Color(200, 0, 0));
+		g.fillRect(50, 100, 500, 10);
+		
 		g.setFont(f);
 		g.setColor(Color.YELLOW);
-		g.drawString("Gagoi", 100, 60);
+		g.drawString("Gagoi", 120, 70);
 		g.dispose();
 	}
 }

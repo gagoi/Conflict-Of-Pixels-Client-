@@ -23,10 +23,9 @@ public class DetailsPanel extends JPanel {
 		label = new JLabel("PWAL");
 		background = new ImageIcon(getClass().getResource("/fr/cop/resources/menus/menu_detailed_panel_background.png"));
 		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(new URL("https://raw.githubusercontent.com/gagoi/Conflict-Of-Pixels-Client-/master/fr/cop/resources/changelog.txt").openConnection().getInputStream()));
+			BufferedReader br = new BufferedReader(new InputStreamReader(new URL("https://raw.githubusercontent.com/gagoi/Conflict-Of-Pixels-Client-/789d30a8f40bdac0ee473447b6841d2983761926/fr/cop/resources/changelog.txt").openConnection().getInputStream()));
 			String line = "";
 			while ((line = br.readLine()) != null) {
-				System.out.println(line);
 				if (file == null) file = line;
 				else file += line;
 			}

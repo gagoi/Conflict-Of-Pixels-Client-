@@ -1,5 +1,6 @@
 package fr.cop.menu;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.io.BufferedReader;
@@ -35,8 +36,6 @@ public class DetailsPanel extends JPanel {
 		label.setText(file);
 		label.setForeground(Color.YELLOW);
 		label.setBackground(Color.BLUE);
-		label.setBounds(0, 0, 50, 50);
-//		setLayout(null);
 		add(label);
 		setOpaque(true);
 	}

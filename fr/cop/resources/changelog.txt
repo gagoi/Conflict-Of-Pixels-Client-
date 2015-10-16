@@ -2,23 +2,22 @@
 	<body>
 		<center><h1>News</h1></center>
 		<ul>
-			<span style="font-size:22px; text-decoration:underline; color: red;"><li>Alpha 0.0.0.2 :</li></span>
+			<span style="font-size:22px; text-decoration:underline; color:red;"><li>Alpha 0.0.0.2 : (16/10/15)</li></span>
 				<ul>
 					<p>
-						<li> Blablablabla</li>
-						<li> Blablablabla</li>
-						<li> Blablablabla</li>
-						<li>Fond d'écran ajouté</li>
+						<li> Test</li>
+						<li> Test 2</li>
+						<li> Optimisation de l'interface</li>
+						<li> Mise à jour de l'interface</li>
 					</p>
 				</ul>
 			<br>
-			<span style="font-size:22px; text-decoration:underline; color: red;"><li>Alpha 0.0.0.2 :</li></span>
+			<span style="font-size:22px; text-decoration:underline; color:red;"><li>Alpha 0.0.0.1 : (15/10/15)</li></span>
 			<ul>
 				<p>
-					<li> Blablablabla</li>
-					<li> Blablablabla</li>
-					<li> Blablablabla</li>
-					<li>Fond d'écran ajouté</li>
+					<li> Création d'un launcher pour CoP</li>
+					<li> Changelog ajouté également</li>
+					<li> Fond d'écran ajouté</li>
 				</p>
 			</ul>
 		</ul>

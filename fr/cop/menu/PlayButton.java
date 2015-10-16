@@ -5,13 +5,12 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.InputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+@SuppressWarnings("serial")
 public class PlayButton extends JButton {
 
 	Polygon p1 = new Polygon();

@@ -96,14 +96,14 @@ public class SimpleDebugWindow extends JFrame {
 						if (!Character.isDigit(fpsString.charAt(i))) {
 							isValid = false;
 							fpsLimitationField.setText("");
-							JOptionPane.showMessageDialog(Conflict_Of_Pixels_Client.GAME.debugWindow, "Seul un nombre peut être écrit ici.");
+							JOptionPane.showMessageDialog(Conflict_Of_Pixels_Client.debugWindow, "Seul un nombre peut être écrit ici.");
 							break;
 						}
 					}
 				} else {
 					isValid = false;
 					fpsLimitationField.setText("");
-					JOptionPane.showMessageDialog(Conflict_Of_Pixels_Client.GAME.debugWindow, "Seul un nombre peut être écrit ici.");
+					JOptionPane.showMessageDialog(Conflict_Of_Pixels_Client.debugWindow, "Seul un nombre peut être écrit ici.");
 				}
 
 				if (isValid) {

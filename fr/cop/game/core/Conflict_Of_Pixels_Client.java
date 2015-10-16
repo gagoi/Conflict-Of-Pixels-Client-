@@ -5,15 +5,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import fr.cop.game.core.characters.CharacterList;
@@ -23,7 +20,7 @@ import fr.cop.game.core.inputs.Keyboard;
 import fr.cop.game.core.inputs.Mouse;
 import fr.cop.game.graphics.Animation;
 import fr.cop.game.graphics.Screen;
-import fr.cop.menu.PanelTest;
+import fr.cop.menu.PanelMenu;
 
 public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L; // Convention java.
@@ -78,13 +75,13 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	public static void main(String[] args) { // Methode de demarrage d'un
 												// programme en Java.
 		
-		menuFrame = new JFrame();
-		menuFrame.add(new PanelTest());
-		menuFrame.setTitle("Menu CoP... Test");
-		menuFrame.setSize(1280, 720);
-		menuFrame.setResizable(false);
-		menuFrame.setVisible(true);
-		menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		menuFrame = new JFrame(); // On instancie notre fenetre de launcher
+		menuFrame.add(new PanelMenu()); // On lui ajoute un nouveau paneau de menu.
+		menuFrame.setTitle("Menu CoP... Test"); // On met son titre.
+		menuFrame.setSize(1280, 720); // On choisit sa taille.
+		menuFrame.setResizable(false); // On empeche le redimensionnement de la fenetre.
+		menuFrame.setVisible(true); // On l'affiche.
+		menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // On ferme le programme lorsque la fentre est fermée.
 		
 		
 	}

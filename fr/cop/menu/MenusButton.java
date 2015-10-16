@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
-import java.awt.geom.Area;
 import java.io.InputStream;
 
 import javax.swing.ImageIcon;
@@ -45,7 +44,7 @@ public class MenusButton extends JButton {
 
 	@Override
 	public boolean contains(int x, int y) {
-		Point pt = new Point(x,y);
+		Point pt = new Point(x, y);
 		return p.contains(pt);
 	}
 
@@ -53,8 +52,10 @@ public class MenusButton extends JButton {
 	public void paint(Graphics g) {
 		int pos = p.ypoints[0];
 		int middle = p.ypoints[p.ypoints.length / 2];
-		if (pos - middle < 0) g.drawImage(ico.getImage(), getX(), pos, null);
-		else g.drawImage(ico.getImage(), getX(), middle, null);
+		if (pos - middle < 0)
+			g.drawImage(ico.getImage(), getX(), pos, null);
+		else
+			g.drawImage(ico.getImage(), getX(), middle, null);
 		g.setColor(Color.RED);
 		g.setFont(f);
 		g.drawString(this.text, (p.xpoints[0] + 100), (p.ypoints[0] + 58));

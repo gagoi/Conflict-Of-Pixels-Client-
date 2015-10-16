@@ -1,36 +1,28 @@
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title>News</title>
-    </head>
-	
+<html>	
 	<body>
-	<center><h1>News</h1></center>
-	<ul>
-	<span style="font-size:22px; text-decoration:underline; color: red;"><li>Alpha 0.0.0.2 :</li></span>
-	
-	</ul>
-	<ul>
-	<p>
-		<li> Blablablabla</li>
-		<li> Blablablabla</li>
-		<li> Blablablabla</li>
-		<li>Fond d'écran ajouté</li>
-	</p></ul>
-	<br>
-	<ul>
-	<span style="font-size:22px; text-decoration:underline; color: red;"><li>Alpha 0.0.0.2 :</li></span>
-	
-	</ul>
-	<ul>
-	<p>
-		<li> Blablablabla</li>
-		<li> Blablablabla</li>
-		<li> Blablablabla</li>
-		<li>Fond d'écran ajouté</li>
-	</p></ul>
-	
-	
+		<center><h1>News</h1></center>
+		<ul>
+			<span style="font-size:22px; text-decoration:underline; color: red;"><li>Alpha 0.0.0.2 :</li></span>
+		</ul>
+		<ul>
+			<p>
+				<li> Blablablabla</li>
+				<li> Blablablabla</li>
+				<li> Blablablabla</li>
+				<li>Fond d'écran ajouté</li>
+			</p>
+		</ul>
+		<br>
+		<ul>
+			<span style="font-size:22px; text-decoration:underline; color: red;"><li>Alpha 0.0.0.2 :</li></span>
+		</ul>
+		<ul>
+			<p>
+				<li> Blablablabla</li>
+				<li> Blablablabla</li>
+				<li> Blablablabla</li>
+				<li>Fond d'écran ajouté</li>
+			</p>
+		</ul>
 	</body>
-	
 </html>

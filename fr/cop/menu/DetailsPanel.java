@@ -1,6 +1,5 @@
 package fr.cop.menu;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,15 +32,13 @@ public class DetailsPanel extends JPanel {
 			e.printStackTrace();
 		}
 		label.setText(file);
-		label.setForeground(Color.YELLOW);
-		label.setBackground(Color.BLUE);
 		add(label);
 		setOpaque(true);
 	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(background.getImage(), 72+100, 0, null);
+		g.drawImage(background.getImage(), 530, 0, null);
 	}
 
 }

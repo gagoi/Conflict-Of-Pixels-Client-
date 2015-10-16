@@ -18,15 +18,8 @@ public class PanelMenu extends JPanel {
 		int[] x = { 0, 400, 512, 400, 0 }; // On definit un tableau portant des
 											// coordonnes de points en x.
 		int[][] y = { { 180, 180, 360, 252, 252 }, { 252, 252, 360, 324, 324 }, { 324, 324, 360, 397, 397 },
-				{ 397, 397, 360, 469, 469 }, { 469, 469, 360, 541, 541 } }; // Et
-																			// la
-																			// correspondance
-																			// en
-																			// y,
-																			// en
-																			// fonction
-																			// du
-																			// bouton
+				{ 397, 397, 360, 469, 469 }, { 469, 469, 360, 541, 541 } };
+		// Et la correspondance en y, en fonction du bouton
 		setLayout(null); // On supprime le layout manager, afin de placé nos
 							// éléments sur le bon pixel.
 
@@ -126,14 +119,14 @@ public class PanelMenu extends JPanel {
 		// On créé un paneau pour nos details de menus (ex : news). Puis on lui
 		// mets des bords.
 		DetailsPanel detailPanel = new DetailsPanel();
-		detailPanel.setBounds(400, 108, getWidth(), getHeight() - 200);
+		detailPanel.setBounds(50, 108, getWidth(), getHeight() - 200);
 
 		// On créé un paneau pour notre barre de profil. Puis on lui
 		// mets des bords.
 		ProfilBarPanel profilBar = new ProfilBarPanel();
 		profilBar.setBounds(0, 0, getWidth(), getHeight());
 
-		//On ajoute tout à notre paneau de menu.
+		// On ajoute tout à notre paneau de menu.
 		add(v0);
 		add(v1);
 		add(v2);

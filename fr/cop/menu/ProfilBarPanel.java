@@ -13,7 +13,7 @@ public class ProfilBarPanel extends JPanel{
 	ImageIcon profilIco, backgroundIco; // Images de profil et d'arriere plan.
 	Font f; // La police utilisée.
 	Color[] rankColor = {new Color(255, 0, 0)}; // Couleur de mon rank, (niveau) sera changé.
-	private int xp = 750, xpMax = 1000; // Valeur par défaut permettant de testé la barre d'xp.
+	private int xp = 50, xpMax = 1000; // Valeur par défaut permettant de testé la barre d'xp.
 
 	public ProfilBarPanel() { // Objet panel, personalisé
 		setLayout(null); // On enleve le layoutManager

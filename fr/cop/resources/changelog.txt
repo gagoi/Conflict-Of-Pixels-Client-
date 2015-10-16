@@ -1,14 +1,37 @@
+<!DOCTYPE html>
 <html>
-	<center>News</center>
+    <head>
+        <meta charset="utf-8" />
+        <title>News</title>
+    </head>
+	
+	<body>
+	<center><h1>News</h1></center>
 	<ul>
-		<span style="font-size:22px; text-decoration:underline; color: red;">Alpha 0.0.0.2 :</span><ul>
-			<li> Background ajouté à l'onglet détailé de chaque menu... (seulement "news" pour le moment).</li>
-			<li> Modifications ajoutées au fichier permettant de voir le changelog. Pas encore définitif.</li>
-			<li> Launcher encore et toujours en cours d'amélioration afin d'améliorer l'expérience utilisateur. </li>
-		</ul>
-		<span style="font-size:22px; text-decoration:underline; color: red;">Alpha 0.0.0.1 :</span><ul>
-			<li> Création d'un changelog officiel.</li>
-			<li> Launcher encore et toujours en cours d'amélioration afin d'améliorer l'expérience utilisateur. </li>
-		</ul>
+	<span style="font-size:22px; text-decoration:underline; color: red;"><li>Alpha 0.0.0.2 :</li></span>
+	
 	</ul>
+	<ul>
+	<p>
+		<li> Blablablabla</li>
+		<li> Blablablabla</li>
+		<li> Blablablabla</li>
+		<li>Fond d'�cran ajout�</li>
+	</p></ul>
+	<br>
+	<ul>
+	<span style="font-size:22px; text-decoration:underline; color: red;"><li>Alpha 0.0.0.2 :</li></span>
+	
+	</ul>
+	<ul>
+	<p>
+		<li> Blablablabla</li>
+		<li> Blablablabla</li>
+		<li> Blablablabla</li>
+		<li>Fond d'�cran ajout�</li>
+	</p></ul>
+	
+	
+	</body>
+	
 </html>

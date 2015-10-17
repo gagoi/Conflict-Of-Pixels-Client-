@@ -34,14 +34,14 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private static int cameraSpeed = 3; // Vitesse de la caméra
 
 	private static int scale = 3; // Taille des pixels (pixels du jeu).
-	private static int width = 350; // Taille de la fenetre (largeur).
-	private static int height = width / 16 * 9; // Taille de la denetre
+	public static int width = 350; // Taille de la fenetre (largeur).
+	public static int height = width / 16 * 9; // Taille de la denetre
 												// (hauteur).
 	public static Dimension size = new Dimension(width * scale, height * scale); // Taille de la fenetre.
 	
 	public static boolean scorePWAL1;
 
-	public static final Level MAP = new Level("map", 1);
+	public static final Level MAP = new Level("map", 12);
 
 	private BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); //Image de notre jeu (en tempon)
 	private int[] pixels = ((DataBufferInt) bufferedImage.getRaster().getDataBuffer()).getData(); // Pixels de l'image.

@@ -44,8 +44,12 @@ public class Level {
 	}
 
 	public Sprite getSpriteAt(int x, int y, int width, int height) {
-		int xMap = (x*SIZE)/width;
+		int xMap = (x*SIZE)/height;
 		int yMap = (y*SIZE)/height;
+		if(xMap*16 > width) {
+			xMap-=width/16;
+			yMap+=width/16;
+		}
 		return tiles[xMap + yMap * SIZE];
 	}
 }

@@ -32,6 +32,9 @@ public class DetailsPanel extends JPanel {
 			e.printStackTrace();
 		}
 		label.setText(file);
+		setLayout(null);
+		label.setVerticalAlignment(JLabel.TOP);
+		label.setBounds(720, 0, 500, 1000);
 		add(label);
 		setOpaque(true);
 	}

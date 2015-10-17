@@ -2,7 +2,7 @@
 	<body>
 		<center><h1>News</h1></center>
 		<ul>
-			<span style="font-size:22px; text-decoration:underline; color:#254869;"><h1><li>Alpha 0.0.0.2 : (16/10/15)</h1></li></span>
+			<span style="font-size:22px; text-decoration:underline; color:red;"><h1><li>Alpha 0.0.0.2 : (16/10/15)</h1></li></span>
 				<ul>
 					<p>
 						<li> Test</li>

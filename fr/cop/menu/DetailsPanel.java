@@ -1,5 +1,6 @@
 package fr.cop.menu;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,6 +34,7 @@ public class DetailsPanel extends JPanel {
 		}
 		label.setText(file);
 		setLayout(null);
+		label.setForeground(Color.YELLOW);
 		label.setVerticalAlignment(JLabel.TOP);
 		label.setBounds(720, 0, 500, 1000);
 		add(label);

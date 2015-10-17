@@ -1,5 +1,6 @@
 package fr.cop.menu;
 
+import java.awt.Color;
 import java.awt.Polygon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +23,7 @@ public class PanelMenu extends JPanel {
 		// Et la correspondance en y, en fonction du bouton
 		setLayout(null); // On supprime le layout manager, afin de placé nos
 							// éléments sur le bon pixel.
-
+		
 		// On créé un bouton play, avec sa position, son diametre et son arriere
 		// plan. Puis on définis les bords du boutons.
 		PlayButton pb = new PlayButton(512, 360, 100,

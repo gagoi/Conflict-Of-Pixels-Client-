@@ -19,11 +19,14 @@ public class Level {
 		PATH = path;
 		tiles = new Sprite[SIZE * SIZE];
 		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/fr/cop/resources/maps/" + PATH + ".txt")));
+			BufferedReader br = new BufferedReader(
+					new InputStreamReader(getClass().getResourceAsStream("/fr/cop/resources/maps/" + PATH + ".txt")));
 			String line = " ";
 			while ((line = br.readLine()) != null) {
-				if (map == null) map = line;
-				else map += line;
+				if (map == null)
+					map = line;
+				else
+					map += line;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -34,12 +37,15 @@ public class Level {
 	private void loadMap() {
 		for (int y = 0; y < SIZE; y++) {
 			for (int x = 0; x < SIZE; x++) {
+				System.out.println(Sprites.getSprites(map.charAt(x + y * SIZE)).getId());
 				tiles[x + y * SIZE] = Sprites.getSprites(map.charAt(x + y * SIZE));
 			}
 		}
 	}
-	
-	public Sprite getSpriteAt(int x, int y){
-		return tiles[x+y*SIZE];
+
+	public Sprite getSpriteAt(int x, int y, int width, int height) {
+		int xMap = (x*SIZE)/width;
+		int yMap = (y*SIZE)/height;
+		return tiles[xMap + yMap * SIZE];
 	}
 }

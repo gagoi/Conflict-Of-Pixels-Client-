@@ -41,7 +41,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	
 	public static boolean scorePWAL1;
 
-	public static final Level MAP = new Level("map", 12);
+	public static final Level MAP = new Level("map", 1);
 
 	private BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); //Image de notre jeu (en tempon)
 	private int[] pixels = ((DataBufferInt) bufferedImage.getRaster().getDataBuffer()).getData(); // Pixels de l'image.
@@ -59,7 +59,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	public static CharacterList CHARACTER_LIST; // Liste des Champions.
 	public static ArrayList<Animation> animations = new ArrayList<Animation>(); /*Temporaire */
 
-	public int x, y; /*Temporaire*/
+	public int x = 0, y = 0; /*Temporaire*/
 
 	public Conflict_Of_Pixels_Client() { // Objet etant notre jeu.
 		setSize(size); // Cet objet étant un canvas, on choisis sa taille.

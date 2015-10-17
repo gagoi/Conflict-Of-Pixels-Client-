@@ -1,6 +1,5 @@
 package fr.cop.menu;
 
-import java.awt.Color;
 import java.awt.Polygon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -26,7 +26,7 @@ public class Screen {
 		for (int i = 0; i < pixels.length; i++) { // Pour chaque pixel...
 			pixels[i] = 0; // ... on met la couleur 0 (=noir).
 		}
-	}
+	} 
 
 	public void render(int xOffset, int yOffset) { // Fonction de rendu.
 		for (int y = 0; y < height; y++) { // Pour chaque pixel en hauteur.
@@ -36,12 +36,12 @@ public class Screen {
 				int xp = x + xOffset; // permet de faire un décalage, pas encore pleinement utilisé.
 				if (xp < 0 || xp >= width) continue;
 				try { // On essaie de :
-					pixels[xp + yp * width] = Conflict_Of_Pixels_Client.MAP.getSpriteAt(xp, yp).pixels[(x & Conflict_Of_Pixels_Client.MAP.getSpriteAt(xp, yp).SIZE - 1) + (y & Conflict_Of_Pixels_Client.MAP.getSpriteAt(xp, yp).SIZE - 1) * Conflict_Of_Pixels_Client.MAP.getSpriteAt(xp, yp).SIZE];
+					pixels[xp+yp*width] = Conflict_Of_Pixels_Client.MAP.getSpriteAt(x, y, width, height).getPixelValue(x%16, y%16);
+				
 				} catch (Exception e) {
 				}
 			}
 		}
-
 		/*Temporaire*/
 		test++; //Incremente test, pour animation.
 	}

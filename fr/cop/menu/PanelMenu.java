@@ -1,6 +1,7 @@
 package fr.cop.menu;
 
 import java.awt.Desktop;
+import java.awt.Graphics;
 import java.awt.Polygon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +22,10 @@ public class PanelMenu extends JPanel {
 
 	private JLabel versionLabel;
 	private JButton twitterButton;
+	private ImageIcon background;
 	public PanelMenu() {
+		super();
+		background = new ImageIcon(getClass().getResource("/fr/cop/resources/menus/menu_background.png"));
 		setSize(1280, 720); // On �tabli la taille de notre paneau.
 		int[] x = { 0, 400, 512, 400, 0 }; // On definit un tableau portant des
 											// coordonnes de points en x.
@@ -162,5 +166,13 @@ public class PanelMenu extends JPanel {
 		add(detailPanel);
 		add(versionLabel);
 		add(twitterButton);
+		setOpaque(true);
 	}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(background.getImage(), 0, 0, null);
+	}
+	
+	
 }

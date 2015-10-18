@@ -1,6 +1,5 @@
 package fr.cop.menu;
 
-import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Graphics;
 import java.awt.Polygon;
@@ -22,7 +21,7 @@ import fr.cop.game.core.Conflict_Of_Pixels_Client;
 public class PanelMenu extends JPanel {
 
 	private JLabel versionLabel;
-	private JButton twitterButton;
+	private JButton twitterButton, facebookButton;
 	private ImageIcon background;
 	public PanelMenu() {
 		super();
@@ -155,6 +154,19 @@ public class PanelMenu extends JPanel {
 				}
 			}
 		});
+		
+		facebookButton = new JButton("Facebook");
+		facebookButton.setBounds(getWidth() - 210, 10, 100, 30);
+		facebookButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Desktop.getDesktop().browse(new URI("https://www.facebook.com/conflictofpixels?__mref=message_bubble"));
+				} catch (IOException | URISyntaxException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 
 		// On ajoute tout � notre paneau de menu.
 		add(v0);
@@ -167,6 +179,7 @@ public class PanelMenu extends JPanel {
 		add(detailPanel);
 		add(versionLabel);
 		add(twitterButton);
+		add(facebookButton);
 	}
 	
 	

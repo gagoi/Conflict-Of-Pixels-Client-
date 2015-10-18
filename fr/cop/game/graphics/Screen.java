@@ -1,6 +1,5 @@
 package fr.cop.game.graphics;
 
-import java.awt.Color;
 import java.util.Random;
 
 import fr.cop.game.core.Conflict_Of_Pixels_Client;
@@ -33,24 +32,20 @@ public class Screen {
 	}
 
 	public void render(int xOffset, int yOffset) { // Fonction de rendu.
-		int renderSize = 16;
-		for (int y = 0; y < height; y++) { // Pour chaque pixel en hauteur.
+		for (int y = 0; y < Conflict_Of_Pixels_Client.MAP.getSize()*16; y++) { // Pour chaque pixel en hauteur.
 			int yp = y + yOffset; // permet de faire un décalage, oas encore
 									// utilisé.
 			if (yp < 0 || yp >= height)
 				continue;
-			for (int x = 0; x < width; x++) { // Pour chaque pixel en largeur.
+			for (int x = 0; x < Conflict_Of_Pixels_Client.MAP.getSize()*16; x++) { // Pour chaque pixel en largeur.
 				int xp = x + xOffset; // permet de faire un décalage, pas
 										// encore pleinement utilisé.
 				if (xp < 0 || xp >= width)
 					continue;
 				try { // On essaie de :
-					String tileId = Conflict_Of_Pixels_Client.MAP.getSpriteAt(x, y).getId();
-					System.out.println("Tile at (" + x + ";" + y + ") = " + tileId);
 					pixels[xp][yp] = Conflict_Of_Pixels_Client.MAP.getSpriteAt(x, y).getPixelValue(x % 16, y % 16);
 
 				} catch (Exception e) {
-					pixels[xp][yp] = new Color(125, 125, 255).getRGB();
 				}
 			}
 		}

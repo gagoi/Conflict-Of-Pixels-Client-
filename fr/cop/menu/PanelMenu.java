@@ -1,6 +1,5 @@
 package fr.cop.menu;
 
-import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Graphics;
 import java.awt.Polygon;

@@ -38,7 +38,7 @@ public class DetailsPanel extends JPanel {
 		label.setVerticalAlignment(JLabel.TOP);
 		label.setBounds(720, 0, 500, 1000);
 		add(label);
-		setOpaque(true);
+		setOpaque(false);
 	}
 
 	public void paintComponent(Graphics g) {

@@ -1,5 +1,6 @@
 package fr.cop.menu;
 
+import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Graphics;
 import java.awt.Polygon;
@@ -166,13 +167,12 @@ public class PanelMenu extends JPanel {
 		add(detailPanel);
 		add(versionLabel);
 		add(twitterButton);
-		setOpaque(true);
 	}
 	
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
+	
+	@Override
+	public void paint(Graphics g) {
 		g.drawImage(background.getImage(), 0, 0, null);
+		super.paint(g);
 	}
-	
-	
 }

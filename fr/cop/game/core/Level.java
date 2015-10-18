@@ -37,7 +37,6 @@ public class Level {
 	private void loadMap() {
 		for (int y = 0; y < SIZE; y++) {
 			for (int x = 0; x < SIZE; x++) {
-				System.out.println(Sprites.getSprites(map.charAt(x + y * SIZE)).getId());
 				tiles[x + y * SIZE] = Sprites.getSprites(map.charAt(x + y * SIZE));
 			}
 		}

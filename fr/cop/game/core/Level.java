@@ -43,12 +43,13 @@ public class Level {
 	}
 
 	public Sprite getSpriteAt(int x, int y) {
-		int xMap = (x*SIZE)/Conflict_Of_Pixels_Client.height;
-		int yMap = (y*SIZE)/Conflict_Of_Pixels_Client.height;
-		if(xMap*16 > Conflict_Of_Pixels_Client.width) {
-			xMap-=Conflict_Of_Pixels_Client.width/16;
-			yMap+=Conflict_Of_Pixels_Client.width/16;
-		}
+		int xMap = x/16;
+		int yMap = y/16;
+		if(x > Conflict_Of_Pixels_Client.MAP.SIZE*16-1) return null;
 		return tiles[xMap + yMap * SIZE];
+	}
+
+	public int getSize() {
+		return SIZE;
 	}
 }

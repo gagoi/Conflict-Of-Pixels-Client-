@@ -28,8 +28,6 @@ public class Sprite {
 	}
 	
 	public int getPixelValue(int x, int y){
-		int xPixel = 0;
-		int yPixel = 0;
 		return pixels[(x+y*SIZE)];
 	}
 

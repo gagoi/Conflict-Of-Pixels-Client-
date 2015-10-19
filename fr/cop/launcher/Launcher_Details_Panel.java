@@ -1,4 +1,4 @@
-package fr.cop.menu;
+package fr.cop.launcher;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -12,13 +12,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class DetailsPanel extends JPanel {
+public class Launcher_Details_Panel extends JPanel {
 
 	String file;
 	JLabel label;
 	ImageIcon background;
 
-	public DetailsPanel() {
+	public Launcher_Details_Panel() {
 		super();
 		label = new JLabel("PWAL");
 		background = new ImageIcon(getClass().getResource("/fr/cop/resources/menus/menu_detailed_panel_background.png"));

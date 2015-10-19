@@ -1,4 +1,4 @@
-package fr.cop.menu;
+package fr.cop.launcher;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -11,16 +11,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 @SuppressWarnings("serial")
-public class MenusButton extends JButton {
+public class Launcher_Parts_Button extends JButton {
 
 	ImageIcon ico;
 	int[] xAvaible, yAvaible;
 	Polygon p;
 	Font f;
 	String text;
-	PlayButton pb;
+	Laucher_Play_Button pb;
 
-	public MenusButton(Polygon p, String text, ImageIcon ico, PlayButton pb) {
+	public Launcher_Parts_Button(Polygon p, String text, ImageIcon ico, Laucher_Play_Button pb) {
 		this.xAvaible = p.xpoints;
 		this.yAvaible = p.ypoints;
 		this.p = p;

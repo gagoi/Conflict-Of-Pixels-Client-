@@ -27,6 +27,7 @@ public class SimpleDebugWindow extends JFrame {
 	private JButton debugModeButton = new JButton("Turn on debug mod.");
 	private JButton stopButton = new JButton("Exit game.");
 	private JButton changeFpsLimitationButton = new JButton("Change FPS limitation.");
+	private JButton toggleFullScreen = new JButton("Toggle FullScreen mode.");
 
 	private JTextField fpsLimitationField = new JTextField();
 
@@ -112,6 +113,15 @@ public class SimpleDebugWindow extends JFrame {
 			}
 		});
 
+		
+		toggleFullScreen.setBounds(10, 5, 200, 35);
+		toggleFullScreen.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Conflict_Of_Pixels_Client.isFullScreen = !Conflict_Of_Pixels_Client.isFullScreen;
+			}
+		});
+		
 		add(fpsLabel);
 		add(upsLabel);
 

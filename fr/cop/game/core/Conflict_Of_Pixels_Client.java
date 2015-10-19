@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import fr.cop.game.core.characters.CharacterList;
 import fr.cop.game.core.characters.TestCharacter;
@@ -20,7 +22,7 @@ import fr.cop.game.core.inputs.Keyboard;
 import fr.cop.game.core.inputs.Mouse;
 import fr.cop.game.graphics.Animation;
 import fr.cop.game.graphics.Screen;
-import fr.cop.menu.PanelMenu;
+import fr.cop.launcher.Launcher_Panel;
 
 public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L; // Convention java.
@@ -34,9 +36,10 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 	public boolean debug = false; // Mode débug.
 	private static int cameraSpeed = 3; // Vitesse de la caméra
+	private static boolean isCameraBlocked = false;
 
-	private static int scale = 3; // Taille des pixels (pixels du jeu).
-	public static int width = 350; // Taille de la fenetre (largeur).
+	private static int scale = 5; // Taille des pixels (pixels du jeu).
+	public static int width = 250; // Taille de la fenetre (largeur).
 	public static int height = width / 16 * 9; // Taille de la denetre
 												// (hauteur).
 	public static Dimension size = new Dimension(width * scale, height * scale); // Taille
@@ -71,9 +74,15 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	public static CharacterList CHARACTER_LIST; // Liste des Champions.
 	public static ArrayList<Animation> animations = new ArrayList<Animation>(); /* Temporaire */
 
-	public int x = 0, y = 0; /* Temporaire */
+	public static boolean isFullScreen;
 
-	public Conflict_Of_Pixels_Client() { // Objet etant notre jeu.
+	public int x = 0, y = 0; /* Temporaire */
+	
+	
+	private JLabel label = new JLabel();
+	
+
+	public Conflict_Of_Pixels_Client(JPanel container) { // Objet etant notre jeu.
 		setSize(size); // Cet objet étant un canvas, on choisis sa taille.
 		f = new JFrame(); // On instancie notre fenetre...
 		screen = new Screen(width, height); // ... et notre screen.
@@ -88,7 +97,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 												// programme en Java.
 
 		menuFrame = new JFrame(); // On instancie notre fenetre de launcher
-		menuFrame.add(new PanelMenu()); // On lui ajoute un nouveau paneau de
+		menuFrame.add(new Launcher_Panel()); // On lui ajoute un nouveau paneau de
 										// menu.
 		menuFrame.setTitle("Menu CoP... Test"); // On met son titre.
 		menuFrame.setSize(1280, 720); // On choisit sa taille.
@@ -100,7 +109,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 																	// lorsque
 																	// la fentre
 																	// est
-																	// ferm�e.
+																	// ferm�e.
 
 	}
 
@@ -162,7 +171,6 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 				upsCalc = 0; // ... et d'UPS à 0.
 			}
 		}
-
 	}
 
 	public synchronized void gameUpdate() { // Methode visant l'actualisation du
@@ -252,6 +260,8 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		g.dispose(); // On détruit notre objet graphique. Pour libérer la ram
 						// pour la prochaine image.
 		bs.show(); // On affiche notre buffered Image.
+		
+		label.repaint();
 	}
 
 	/* Temporaire */

@@ -1,4 +1,4 @@
-package fr.cop.menu;
+package fr.cop.launcher;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 @SuppressWarnings("serial")
-public class PlayButton extends JButton {
+public class Laucher_Play_Button extends JButton {
 
 	Polygon p1 = new Polygon();
 	Polygon p2 = new Polygon();
@@ -21,7 +21,7 @@ public class PlayButton extends JButton {
 	Font f;
 	ImageIcon ico;
 
-	public PlayButton(int centerX, int centerY, int radius, ImageIcon ico) {
+	public Laucher_Play_Button(int centerX, int centerY, int radius, ImageIcon ico) {
 		this.ico = ico;
 		this.centerX = centerX;
 		this.centerY = centerY;

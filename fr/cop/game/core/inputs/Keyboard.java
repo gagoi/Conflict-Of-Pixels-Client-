@@ -11,7 +11,7 @@ import fr.cop.game.core.Conflict_Of_Pixels_Client;
 
 public class Keyboard extends KeyAdapter {
 
-	private boolean[] keys = new boolean[KeyEvent.KEY_LAST]; // Tableau permettant de savoir quelles touches sont appuyées.
+	public boolean[] keys = new boolean[KeyEvent.KEY_LAST]; // Tableau permettant de savoir quelles touches sont appuyées.
 	public boolean[] spells = new boolean[4];
 	public boolean[] directions = new boolean[4];
 	public boolean[] items = new boolean[6];

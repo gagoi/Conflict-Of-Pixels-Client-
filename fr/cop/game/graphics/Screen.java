@@ -15,7 +15,7 @@ public class Screen {
 	@SuppressWarnings("unused") // Temporaire
 	private Random rand = new Random(); // Instance de random.
 
-	int test = 0; /* Temporaire */
+	int internalTimer = 0; //Permet d'afficher des animations
 
 	public Screen(int witdh, int height) { // Objet Screen.
 		this.width = witdh; // On établit la largeur...
@@ -32,24 +32,28 @@ public class Screen {
 	}
 
 	public void render(int xOffset, int yOffset) { // Fonction de rendu.
-		for (int y = 0; y < Conflict_Of_Pixels_Client.MAP.getSize()*16; y++) { // Pour chaque pixel en hauteur.
+		for (int y = 0; y < Conflict_Of_Pixels_Client.GAME.getHeight(); y++) { // Pour chaque pixel en hauteur.
 			int yp = y + yOffset; // permet de faire un décalage, oas encore
 									// utilisé.
 			if (yp < 0 || yp >= height)
 				continue;
-			for (int x = 0; x < Conflict_Of_Pixels_Client.MAP.getSize()*16; x++) { // Pour chaque pixel en largeur.
+			for (int x = 0; x < Conflict_Of_Pixels_Client.GAME.getWidth(); x++) { // Pour chaque pixel en largeur.
 				int xp = x + xOffset; // permet de faire un décalage, pas
 										// encore pleinement utilisé.
 				if (xp < 0 || xp >= width)
 					continue;
 				try { // On essaie de :
-					pixels[xp][yp] = Conflict_Of_Pixels_Client.MAP.getSpriteAt(x, y).getPixelValue(x % 16, y % 16);
+					pixels[xp][yp] = Conflict_Of_Pixels_Client.MAP.getSpriteAt(x, y, internalTimer%16, true).getPixelValue(x % 16, y % 16);
 
 				} catch (Exception e) {
 				}
 			}
 		}
-		/* Temporaire */
-		test++; // Incremente test, pour animation.
+	}
+
+	public void increaseTimer() {
+		internalTimer ++;
+		if (internalTimer > 100) internalTimer = 0;
+		
 	}
 }

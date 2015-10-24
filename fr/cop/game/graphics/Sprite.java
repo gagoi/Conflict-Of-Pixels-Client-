@@ -16,10 +16,21 @@ public class Sprite {
 		this.spritesSheet = spritesSheet;
 		this.setId(id);
 		this.setCode(code);
-		loadSprites();
+		loadSprite();
+	}
+	
+	public Sprite(int size, int x, int y, SpriteSheet spritesSheet) {
+		SIZE = size;
+		pixels = new int[SIZE*SIZE];
+		this.x = x * size;
+		this.y = y * size;
+		this.spritesSheet = spritesSheet;
+		this.setId(id);
+		this.setCode(code);
+		loadSprite();
 	}
 
-	private void loadSprites() {
+	private void loadSprite() {
 		for (int y = 0; y < SIZE; y++) {
 			for (int x = 0; x < SIZE; x++) {
 				pixels[x+y*SIZE] = spritesSheet.pixels[(x+this.x) + (y + this.y)*spritesSheet.SIZE];

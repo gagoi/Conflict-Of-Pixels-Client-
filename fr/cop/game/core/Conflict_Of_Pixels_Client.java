@@ -49,7 +49,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 	public static boolean scorePWAL1;
 
-	public static final Level MAP = new Level("map", 12);
+	public static final Level MAP = new Level("map", 16);
 
 	private BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); // Image
 																										// de
@@ -200,12 +200,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		debugWindow.setItemsKeysState(keyboard.items);
 		debugWindow.setSpellsKeysState(keyboard.spells);
 
-		for (Iterator<Animation> iterator = animations.iterator(); iterator.hasNext();) {
-			Animation anim = (Animation) iterator.next();
-			anim.move();
-		}
-
-		// int pwalX = get
+		screen.increaseTimer();
 
 	}
 

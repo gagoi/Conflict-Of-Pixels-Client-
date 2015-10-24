@@ -12,6 +12,7 @@ public class SpriteSheet {
 	
 	
 	public static SpriteSheet testSheet = new SpriteSheet("spritesTest.png", 256);
+	public static SpriteSheet animatedSheet = new SpriteSheet("spritesAnimated.png", 256);
 
 	public SpriteSheet(String path, int size) {
 		this.path = path;

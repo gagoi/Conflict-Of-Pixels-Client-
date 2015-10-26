@@ -8,19 +8,14 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import fr.cop.game.core.characters.CharacterList;
 import fr.cop.game.core.characters.TestCharacter;
 import fr.cop.game.core.helpful.logger.SimpleDebugWindow;
 import fr.cop.game.core.inputs.Keyboard;
 import fr.cop.game.core.inputs.Mouse;
-import fr.cop.game.graphics.Animation;
 import fr.cop.game.graphics.Screen;
 import fr.cop.launcher.Launcher_Panel;
 
@@ -51,18 +46,18 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 	public static final Level MAP = new Level("map", 16);
 
-	private BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); // Image
+	public BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); // Image
 																										// de
 																										// notre
 																										// jeu
 																										// (en
 																										// tempon)
-	private int[] pixels = ((DataBufferInt) bufferedImage.getRaster().getDataBuffer()).getData(); // Pixels
+	public int[] pixels = ((DataBufferInt) bufferedImage.getRaster().getDataBuffer()).getData(); // Pixels
 																									// de
 																									// l'image.
 
-	public JFrame f; // Fenetre
-	private Screen screen; // Notre ecran de jeu.
+	public static Game_Frame gameFrame; // Fenetre
+	public static Screen screen; // Notre ecran de jeu.
 	private Keyboard keyboard; // Entrée clavier.
 	private Mouse mouse;
 	public static SimpleDebugWindow debugWindow; // Fenetre de debug.
@@ -70,21 +65,14 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 	private TestCharacter champTest; /* Temporaire */
 	private Thread t; // Thread de notre jeu.
-	public static Conflict_Of_Pixels_Client GAME; // Instance de notre jeu.
 	public static CharacterList CHARACTER_LIST; // Liste des Champions.
-	public static ArrayList<Animation> animations = new ArrayList<Animation>(); /* Temporaire */
 
 	public static boolean isFullScreen;
 
 	public int x = 0, y = 0; /* Temporaire */
-	
-	
-	private JLabel label = new JLabel();
-	
 
-	public Conflict_Of_Pixels_Client(JPanel container) { // Objet etant notre jeu.
+	public Conflict_Of_Pixels_Client() { // Objet etant notre jeu.
 		setSize(size); // Cet objet étant un canvas, on choisis sa taille.
-		f = new JFrame(); // On instancie notre fenetre...
 		screen = new Screen(width, height); // ... et notre screen.
 		keyboard = new Keyboard();
 		addKeyListener(keyboard);
@@ -97,8 +85,9 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 												// programme en Java.
 
 		menuFrame = new JFrame(); // On instancie notre fenetre de launcher
-		menuFrame.add(new Launcher_Panel()); // On lui ajoute un nouveau paneau de
-										// menu.
+		menuFrame.add(new Launcher_Panel()); // On lui ajoute un nouveau paneau
+												// de
+		// menu.
 		menuFrame.setTitle("Menu CoP... Test"); // On met son titre.
 		menuFrame.setSize(1280, 720); // On choisit sa taille.
 		menuFrame.setResizable(false); // On empeche le redimensionnement de la
@@ -216,13 +205,13 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 										// images tampons).
 			return; // Et on ne dessine rien, pour ne pas crash.
 		}
+
 		screen.clear(); // On vide l'écran actuel.
 		screen.render(x, y); // On fait le rendu du jeu.
 
 		// On transforme tous les pixels rendus en pixels affichés.
 		for (int x = 0; x < screen.pixels.length; x++) {
 			for (int y = 0; y < screen.pixels[x].length; y++) {
-
 				pixels[x + y * width] = screen.pixels[x][y];
 			}
 		}
@@ -234,7 +223,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 											// notre canvas.
 		g.setColor(Color.BLACK); // On met la couleur en noire pour ...
 		g.fillRect(0, 0, getWidth(), getHeight()); // ... vider l'écran.
-		g.drawImage(bufferedImage, 0, 0, getWidth(), getHeight(), null); // Puis
+		g.drawImage(bufferedImage, 0, 0, gameFrame.getWidth(), gameFrame.getHeight(), null); // Puis
 																			// on
 																			// dessine
 																			// notre
@@ -252,11 +241,12 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 			g.drawString("FPS : " + actualFPS, 25, 40); // Affichage des FPS.
 			g.drawString("UPS : " + actualUPS, 25, 60); // Affichage des UPS.
 		}
+		g.setColor(Color.BLACK);
+		g.drawLine(getWidth() / 2 - 50, getHeight() / 2, getWidth() / 2 + 50, getHeight() / 2);
+		g.drawLine(getWidth() / 2, getHeight() / 2 - 50, getWidth() / 2, getHeight() / 2 + 50);
 		g.dispose(); // On détruit notre objet graphique. Pour libérer la ram
 						// pour la prochaine image.
 		bs.show(); // On affiche notre buffered Image.
-		
-		label.repaint();
 	}
 
 	/* Temporaire */

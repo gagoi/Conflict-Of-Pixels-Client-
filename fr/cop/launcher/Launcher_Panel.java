@@ -11,11 +11,11 @@ import java.net.URISyntaxException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import fr.cop.game.core.Conflict_Of_Pixels_Client;
+import fr.cop.game.core.Game_Frame;
 
 @SuppressWarnings("serial")
 public class Launcher_Panel extends JPanel {
@@ -24,11 +24,8 @@ public class Launcher_Panel extends JPanel {
 	private JButton twitterButton, facebookButton;
 	private ImageIcon background;
 
-	private JPanel instance;
-
 	public Launcher_Panel() {
 		super();
-		instance = this;
 		background = new ImageIcon(getClass().getResource("/fr/cop/resources/menus/menu_background.png"));
 		setSize(1280, 720); // On �tabli la taille de notre paneau.
 		int[] x = {0, 400, 512, 400, 0}; // On definit un tableau portant des
@@ -80,50 +77,7 @@ public class Launcher_Panel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// On ferme le launcher, et on lance le jeu.
 				Conflict_Of_Pixels_Client.menuFrame.dispose();
-				Conflict_Of_Pixels_Client.GAME = new Conflict_Of_Pixels_Client(instance);
-
-				Conflict_Of_Pixels_Client.GAME.f.setTitle("Conflict Of Pixels"); // Titre
-																					// de
-																					// la
-																					// fenêtre.
-//				Conflict_Of_Pixels_Client.GAME.f.setDefaultLookAndFeelDecorated(true);  //Permet de mettre en plein ecran le jeu.
-				Conflict_Of_Pixels_Client.GAME.f.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				Conflict_Of_Pixels_Client.GAME.f.setUndecorated(true);
-
-								Conflict_Of_Pixels_Client.GAME.f.setResizable(false); // Empeche
-//				 de
-//				 redimensionner.
-				Conflict_Of_Pixels_Client.GAME.f.setLayout(null); // On supprime
-																	// les
-																	// layouts.
-																	//				Conflict_Of_Pixels_Client.GAME.f.setSize(Conflict_Of_Pixels_Client.size); // On
-				// choisis
-				// la
-				// taille
-				Conflict_Of_Pixels_Client.GAME.f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Eteint
-																									// le
-																									// programme
-																									// lorsque
-																									// qu'on
-																									// ferme
-																									// la
-																									// fenêtre.
-				Conflict_Of_Pixels_Client.GAME.f.setLocationRelativeTo(null);
-				Conflict_Of_Pixels_Client.GAME.f.add(Conflict_Of_Pixels_Client.GAME); // On
-																						// ajoute
-																						// notre
-																						// jeu
-																						// à
-																						// la
-																						// fenêtre.
-				Conflict_Of_Pixels_Client.GAME.f.setIconImage(new ImageIcon(Conflict_Of_Pixels_Client.GAME.getClass().getResource("/fr/cop/resources/images/gameLogo.jpg")).getImage());
-
-				Conflict_Of_Pixels_Client.GAME.f.setVisible(true); // On affiche
-																	// la
-																	// fenêtre.
-
-				Conflict_Of_Pixels_Client.GAME.start(); // On lance le jeu.
-
+				Conflict_Of_Pixels_Client.gameFrame = new Game_Frame(new Conflict_Of_Pixels_Client());
 			}
 		});
 

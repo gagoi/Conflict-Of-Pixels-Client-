@@ -2,7 +2,7 @@ package fr.cop.game.graphics;
 
 import javax.swing.ImageIcon;
 
-import fr.cop.game.core.Conflict_Of_Pixels_Client;
+import fr.cop.game.core.Game_Frame;
 
 public class Animation {
 	
@@ -11,7 +11,7 @@ public class Animation {
 	
 	@SuppressWarnings("static-access")
 	public Animation(int x, int y, int x2, int y2, int speed, String path){
-		this.speed = speed/Conflict_Of_Pixels_Client.GAME.nbUps;
+		this.speed = speed/Game_Frame.GAME.nbUps;
 		ico = new ImageIcon(getClass().getResource(path));
 		actualX = 0;
 		actualY = 0;

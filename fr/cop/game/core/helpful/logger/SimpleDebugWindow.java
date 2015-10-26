@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import fr.cop.game.core.Conflict_Of_Pixels_Client;
+import fr.cop.game.core.Game_Frame;
 
 @SuppressWarnings("serial")
 public class SimpleDebugWindow extends JFrame {
@@ -74,8 +75,8 @@ public class SimpleDebugWindow extends JFrame {
 		debugModeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Conflict_Of_Pixels_Client.GAME.setDebugState(!Conflict_Of_Pixels_Client.GAME.getDebugState());
-				if (Conflict_Of_Pixels_Client.GAME.getDebugState()) debugModeButton.setText("Turn off debug mod.");
+				Game_Frame.GAME.setDebugState(!Game_Frame.GAME.getDebugState());
+				if (Game_Frame.GAME.getDebugState()) debugModeButton.setText("Turn off debug mod.");
 				else debugModeButton.setText("Turn on debug mod.");
 			}
 		});
@@ -83,7 +84,7 @@ public class SimpleDebugWindow extends JFrame {
 		stopButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Conflict_Of_Pixels_Client.GAME.stop();
+				Game_Frame.GAME.stop();
 			}
 		});
 		changeFpsLimitationButton.setBounds(10, 5, 200, 35);
@@ -108,7 +109,7 @@ public class SimpleDebugWindow extends JFrame {
 				}
 
 				if (isValid) {
-					Conflict_Of_Pixels_Client.GAME.setFpsLimitatiob(Integer.parseInt(fpsString));
+					Game_Frame.GAME.setFpsLimitatiob(Integer.parseInt(fpsString));
 				}
 			}
 		});
@@ -118,7 +119,8 @@ public class SimpleDebugWindow extends JFrame {
 		toggleFullScreenButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Conflict_Of_Pixels_Client.isFullScreen = !Conflict_Of_Pixels_Client.isFullScreen;
+				Game_Frame.instance.toggleFullScreen();
+				
 			}
 		});
 		

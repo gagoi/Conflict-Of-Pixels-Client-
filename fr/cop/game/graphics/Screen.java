@@ -28,7 +28,7 @@ public class Screen {
 	}
 
 	public void render(int xOffset, int yOffset) { // Fonction de rendu.
-		int tempHeight = height, tempWidth = width;
+		int tempHeight = height*2, tempWidth = width*2;
 		for (int y = 0; y < tempHeight; y++) { // Pour chaque pixel en hauteur.
 			int yp = y + yOffset; // permet de faire un décalage, oas encore
 									// utilisé.

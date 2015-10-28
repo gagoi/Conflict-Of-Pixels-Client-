@@ -18,6 +18,7 @@ public class Keyboard extends KeyAdapter {
 	
 	public boolean pwal;
 	private JFrame pwalFrame;
+	public boolean canPressP;
 
 	public void update() {
 		spells[0] = keys[KeyEvent.VK_A];
@@ -61,5 +62,6 @@ public class Keyboard extends KeyAdapter {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		keys[e.getKeyCode()] = false;
+		if(e.getKeyCode() == KeyEvent.VK_P) canPressP = true;
 	}
 }

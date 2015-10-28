@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
@@ -28,6 +29,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private static int nbFps = 1000 / 60; // Si négatif, FPS non limités.
 	private boolean running = false; // Boolean permettant de dire si le jeu
 										// fonctionne ou non.
+	private boolean pause = false;
 
 	public boolean debug = false; // Mode débug.
 	private static int cameraSpeed = 3; // Vitesse de la caméra
@@ -184,6 +186,8 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 			x += cameraSpeed;
 		if (keyboard.directions[3])
 			x -= cameraSpeed;
+		if (keyboard.keys[KeyEvent.VK_P])
+			pause();
 
 		debugWindow.setDirectionKeysState(keyboard.directions);
 		debugWindow.setItemsKeysState(keyboard.items);
@@ -249,16 +253,19 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		bs.show(); // On affiche notre buffered Image.
 	}
 
-	/* Temporaire */
-	public TestCharacter getChampTest() {
-		return champTest;
+	public synchronized void pause(){
+		pause = true;
+		while (pause) {
+			if(keyboard.keys[KeyEvent.VK_P])
+				backToTheGame();
+		}
 	}
-
-	/* Temporaire */
-	public void setChampTest(TestCharacter champTest) {
-		this.champTest = champTest;
+	
+	public synchronized void backToTheGame(){
+		pause = false;
+		run();
 	}
-
+	
 	public synchronized void stop() {
 		running = false;
 		System.exit(0);
@@ -272,7 +279,6 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	public boolean getDebugState() {
 		return debug;
 	}
-
 	public void setDebugState(boolean debugState) {
 		debug = debugState;
 	}

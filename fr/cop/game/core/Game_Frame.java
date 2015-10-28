@@ -46,8 +46,10 @@ public class Game_Frame extends JFrame {
 		gameInstance.start();
 	}
 	
-	public void toggleFullScreen(){
+	public synchronized void toggleFullScreen(){
 		isFullScreen = !isFullScreen;
+		GAME.stop();
+		GAME = new Conflict_Of_Pixels_Client();
 		Game_Frame.instance.dispose();
 		Game_Frame.instance = new Game_Frame(GAME);
 	}

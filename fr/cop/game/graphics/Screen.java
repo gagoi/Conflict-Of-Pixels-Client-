@@ -1,6 +1,7 @@
 package fr.cop.game.graphics;
 
 import fr.cop.game.core.Conflict_Of_Pixels_Client;
+import fr.cop.game.core.Game_Frame;
 
 public class Screen {
 
@@ -9,11 +10,8 @@ public class Screen {
 	public int[][] pixels; // Pixels de l'image = écran.
 
 	int internalTimer = 0; // Permet d'afficher des animations
-
-	public static Screen instance;
 	
 	public Screen(int witdh, int height) { // Objet Screen.
-		instance = this;
 		this.width = witdh; // On établit la largeur...
 		this.height = height; // ... et la hauteur de l'image.
 		pixels = new int[witdh][height]; // On créée notre tableau de pixels.
@@ -28,16 +26,16 @@ public class Screen {
 	}
 
 	public void render(int xOffset, int yOffset) { // Fonction de rendu.
-		int tempHeight = height*2, tempWidth = width*2;
-		for (int y = 0; y < tempHeight; y++) { // Pour chaque pixel en hauteur.
+		int mapSize = Game_Frame.GAME.MAP.getSize()*16;
+		for (int y = 0; y < mapSize; y++) { // Pour chaque pixel en hauteur.
 			int yp = y + yOffset; // permet de faire un décalage, oas encore
 									// utilisé.
-			if (yp < 0 || yp >= tempHeight)
+			if (yp < 0 || yp >= mapSize)
 				continue;
-			for (int x = 0; x < tempWidth; x++) { // Pour chaque pixel en largeur.
+			for (int x = 0; x < mapSize; x++) { // Pour chaque pixel en largeur.
 				int xp = x + xOffset; // permet de faire un décalage, pas
 										// encore pleinement utilisé.
-				if (xp < 0 || xp >= tempWidth)
+				if (xp < 0 || xp >= mapSize)
 					continue;
 				try { // On essaie de :
 					pixels[xp][yp] = Conflict_Of_Pixels_Client.MAP.getSpriteAt(x, y, (internalTimer / 2) % 16, true)

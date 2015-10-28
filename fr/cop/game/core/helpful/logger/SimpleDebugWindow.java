@@ -19,26 +19,27 @@ import fr.cop.game.core.Game_Frame;
 @SuppressWarnings("serial")
 public class SimpleDebugWindow extends JFrame {
 
-	private JLabel fpsLabel = new JLabel("FPS : ..fps."), upsLabel = new JLabel("UPS : ..ups.");
-	private JLabel directionsKeyStateLabel = new JLabel("Up : ... | Down : ... | Left : ... | Right ...");
-	private JLabel itemsKeysStateLabel1 = new JLabel("Items : 1 : ... | 3 : ... | 5 : ...");
-	private JLabel itemsKeysStateLabel2 = new JLabel("                2 : ... | 4 : ... | 6 : ...");
-	private JLabel spellsKeysStateLabel = new JLabel("Spells : A : ... | Z : ... | E : ... | R ...");
+	private JLabel		fpsLabel					= new JLabel("FPS : ..fps.");
+	private JLabel		upsLabel					= new JLabel("UPS : ..ups.");
+	private JLabel		directionsKeyStateLabel		= new JLabel("Up : ... | Down : ... | Left : ... | Right ...");
+	private JLabel		itemsKeysStateLabel1		= new JLabel("Items : 1 : ... | 3 : ... | 5 : ...");
+	private JLabel		itemsKeysStateLabel2		= new JLabel("                2 : ... | 4 : ... | 6 : ...");
+	private JLabel		spellsKeysStateLabel		= new JLabel("Spells : A : ... | Z : ... | E : ... | R ...");
 
-	private JButton debugModeButton = new JButton("Turn on debug mod.");
-	private JButton stopButton = new JButton("Exit game.");
-	private JButton changeFpsLimitationButton = new JButton("Change FPS limitation.");
-	private JButton toggleFullScreenButton = new JButton("Toggle FullScreen.");
+	private JButton		debugModeButton				= new JButton("Turn on debug mod.");
+	private JButton		stopButton					= new JButton("Exit game.");
+	private JButton		changeFpsLimitationButton	= new JButton("Change FPS limitation.");
+	private JButton		toggleFullScreenButton		= new JButton("Toggle FullScreen.");
 
-	private JTextField fpsLimitationField = new JTextField();
+	private JTextField	fpsLimitationField			= new JTextField();
 
-	private ImageIcon icon;
+	private ImageIcon	icon;
 
 	public SimpleDebugWindow() {
 		setTitle("Cop Debug");
 		setResizable(false);
 		setLayout(null);
-		setSize(500, 300);
+		setSize(700, 300);
 		icon = new ImageIcon(getClass().getResource("/fr/cop/resources/images/gameLogo.jpg"));
 
 		fpsLabel.setBounds(10, 45, 300, 30);
@@ -80,7 +81,7 @@ public class SimpleDebugWindow extends JFrame {
 				else debugModeButton.setText("Turn on debug mod.");
 			}
 		});
-		stopButton.setBounds(310, 50, 150, 40);
+		stopButton.setBounds(490, 5, 200, 35);
 		stopButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -114,16 +115,15 @@ public class SimpleDebugWindow extends JFrame {
 			}
 		});
 
-		
 		toggleFullScreenButton.setBounds(330, 5, 150, 35);
 		toggleFullScreenButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Game_Frame.instance.toggleFullScreen();
-				
+
 			}
 		});
-		
+
 		add(fpsLabel);
 		add(upsLabel);
 
@@ -144,6 +144,7 @@ public class SimpleDebugWindow extends JFrame {
 		setAlwaysOnTop(true);
 		setVisible(true);
 	}
+
 	public void setFPS(int fps) {
 		fpsLabel.setText("<html>- FPS : " + fps + "fps.<html>");
 	}
@@ -153,14 +154,19 @@ public class SimpleDebugWindow extends JFrame {
 	}
 
 	public void setDirectionKeysState(boolean[] directionsKeysState) {
-		directionsKeyStateLabel.setText("<html>- Direction : Up : " + adaptValuesToColoredString(directionsKeysState[0]) + " | Down : " + adaptValuesToColoredString(directionsKeysState[1]) + " | Left : " + adaptValuesToColoredString(directionsKeysState[2]) + " | Right : " + adaptValuesToColoredString(directionsKeysState[3]) + ".</html>");
+		directionsKeyStateLabel.setText("<html>- Direction : Up : " + adaptValuesToColoredString(directionsKeysState[0]) + " | Down : " + adaptValuesToColoredString(directionsKeysState[1]) + " | Left : "
+				+ adaptValuesToColoredString(directionsKeysState[2]) + " | Right : " + adaptValuesToColoredString(directionsKeysState[3]) + ".</html>");
 	}
+
 	public void setItemsKeysState(boolean[] itemsKeysState) {
 		itemsKeysStateLabel1.setText("<html>- Items : 1 : " + adaptValuesToColoredString(itemsKeysState[0]) + " | 3 : " + adaptValuesToColoredString(itemsKeysState[2]) + " | 5 : " + adaptValuesToColoredString(itemsKeysState[4]) + "</html>");
-		itemsKeysStateLabel2.setText("<html>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2 : " + adaptValuesToColoredString(itemsKeysState[1]) + " | 4 : " + adaptValuesToColoredString(itemsKeysState[3]) + " | 6 : " + adaptValuesToColoredString(itemsKeysState[5]) + "</html>");
+		itemsKeysStateLabel2.setText("<html>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2 : " + adaptValuesToColoredString(itemsKeysState[1]) + " | 4 : " + adaptValuesToColoredString(itemsKeysState[3]) + " | 6 : "
+				+ adaptValuesToColoredString(itemsKeysState[5]) + "</html>");
 	}
+
 	public void setSpellsKeysState(boolean[] spellsKeysState) {
-		spellsKeysStateLabel.setText("<html>- Spells : A : " + adaptValuesToColoredString(spellsKeysState[0]) + " | Z : " + adaptValuesToColoredString(spellsKeysState[1]) + " | E : " + adaptValuesToColoredString(spellsKeysState[2]) + " | R : " + adaptValuesToColoredString(spellsKeysState[3]) + ".</html>");
+		spellsKeysStateLabel.setText("<html>- Spells : A : " + adaptValuesToColoredString(spellsKeysState[0]) + " | Z : " + adaptValuesToColoredString(spellsKeysState[1]) + " | E : " + adaptValuesToColoredString(spellsKeysState[2]) + " | R : "
+				+ adaptValuesToColoredString(spellsKeysState[3]) + ".</html>");
 	}
 
 	public String adaptValuesToColoredString(boolean value) {

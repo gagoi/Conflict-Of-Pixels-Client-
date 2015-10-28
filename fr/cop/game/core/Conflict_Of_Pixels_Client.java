@@ -13,7 +13,6 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import fr.cop.game.core.characters.CharacterList;
-import fr.cop.game.core.characters.TestCharacter;
 import fr.cop.game.core.helpful.logger.SimpleDebugWindow;
 import fr.cop.game.core.inputs.Keyboard;
 import fr.cop.game.core.inputs.Mouse;
@@ -21,69 +20,55 @@ import fr.cop.game.graphics.Screen;
 import fr.cop.launcher.Launcher_Panel;
 
 public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
-	private static final long		serialVersionUID	= 1L;																																																																																																																																																																																																																													 // Convention java.
+	private static final long serialVersionUID = 1L;																																																																																																																																																																																																																																																															 // Convention java.
 
-	public static int				nbUps				= 1000 / 60;																																																																																																																																																																																																			 // Nombre d'UPS du jeu.
-	private int						actualFPS, actualUPS;																																																																																																																																																																																																																																										 // Variable permettant d'afficher le
-	// nombre de FPS.
-	private static int				nbFps				= 1000 / 60;																																																																																																																																																																																																			 // Si nÃ©gatif, FPS non limitÃ©s.
-	private boolean					running				= false;																																																																																																																																																																																																																 // Boolean permettant de dire si le jeu
-	// fonctionne ou non.
-	private boolean					pause				= false;
+	public static int nbUps = 1000 / 60;  // Nombre d'UPS du jeu.
+	private int actualFPS, actualUPS; // Variable permettant d'afficher le nombre de FPS.
+	private static int nbFps = 1000 / 60; // Si négatif, FPS non limités.
+	private boolean running = false; // Boolean permettant de dire si le jeu fonctionne ou non.
+	private boolean pause = false; // Permet de mettre le jeu en pause. Ne sera utilisable que depuis le serveur (à terme).
 
-	public boolean					debug				= false;																																																																																																																																																																																																																 // Mode dÃ©bug.
-	private static int				cameraSpeed			= 3;																																																																																																																																																																																																																													 // Vitesse de la camÃ©ra
-	private static boolean			isCameraBlocked		= false;
+	public boolean debug = false; // Mode débug.
+	private static int cameraSpeed = 3; // Vitesse de la caméra
+	private static boolean isCameraBlocked = false;
 
-	private static int				scale				= 5;																																																																																																																																																																																																																													 // Taille des pixels (pixels du jeu).
-	public static int				width				= 250;																																																																																																																																																																																																																													 // Taille de la fenetre (largeur).
-	public static int				height				= width / 16 * 9;																																																																																																																																																																																						 // Taille de la denetre
-	// (hauteur).
-	private int						imageRenderedWidth	= width * scale,
-											imageRenderedHeight = height * scale;
+	private static int scale = 5; // Taille des pixels (pixels du jeu).
+	public static int width = 250; // Taille de la fenetre (largeur).
+	public static int height = width / 16 * 9; // Taille de la fenêtre (hauteur).
+	
+	private int imageRenderedWidth = width * scale, imageRenderedHeight = height * scale; // Taille de rendu de l'image en tampon du jeu.
+	
+	public Dimension size = new Dimension(imageRenderedWidth, imageRenderedHeight); // Taille de la fenetre.
+	public static boolean scorePWAL1;
+	public static final Level MAP = new Level("map", 16); // Création de notre map, de paramêtre son nom et sa taille.
+	
+	public BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); // Image de notre jeu (en tampon).
+	public int[] pixels = ((DataBufferInt) bufferedImage.getRaster().getDataBuffer()).getData(); // Pixels de l'image.
 
-	public Dimension				size				= new Dimension(imageRenderedWidth, imageRenderedHeight);																																																				 // Taille
-	// de
-	// la
-	// fenetre.
-	public static boolean			scorePWAL1;
+	public static Game_Frame gameFrame;	// Fenetre de notre jeu (lancé).
+	public static Screen screen; // Notre ecran de jeu, permettant le rendu (pixel à pixel).
+	private Keyboard keyboard; // Entrées clavier.
+	private Mouse mouse; // Entrée souris.
+	public static SimpleDebugWindow debugWindow; // Fenetre de debug.
+	public static JFrame menuFrame; // Fenêtre étant notre Launcher.
 
-	public static final Level		MAP					= new Level("map", 16);
+	private Thread t;																																																																																																																																																																																																																																																																																																																																																																																 // Thread de notre jeu.
+	public static CharacterList CHARACTER_LIST;																																																																																																																																																																																																																																																																																																																																 // Liste des Champions.
 
-	public BufferedImage			bufferedImage		= new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);																																							 // Image
-	// de
-	// notre
-	// jeu
-	// (en
-	// tempon)
-	public int[]					pixels				= ((DataBufferInt) bufferedImage.getRaster().getDataBuffer()).getData(); // Pixels
-																																					// de
-																																					// l'image.
+	public static boolean isFullScreen;
 
-	public static Game_Frame		gameFrame;																																																																																																																																																																																																																																																																																	 // Fenetre
-	public static Screen			screen;																																																																																																																																																																																																																																																																																														 // Notre ecran de jeu.
-	private Keyboard				keyboard;																																																																																																																																																																																																																																																																																	 // EntrÃ©e clavier.
-	private Mouse					mouse;
-	public static SimpleDebugWindow	debugWindow;																																																																																																																																																																																																																																																																				 // Fenetre de debug.
-	public static JFrame			menuFrame;
-
-	private TestCharacter			champTest;																					/* Temporaire */
-	private Thread					t;																																																																																																																																																																																																																																																																																																											 // Thread de notre jeu.
-	public static CharacterList		CHARACTER_LIST;																																																																																																																																																																																																																																																																				 // Liste des Champions.
-
-	public static boolean			isFullScreen;
-
-	public int						x					= 0,
-											y = 0;																				/* Temporaire */
+	public int x = 0;
+	public int y = 0; /* Temporaire */
 
 	public Conflict_Of_Pixels_Client() { // Objet etant notre jeu.
-		setSize(size); // Cet objet Ã©tant un canvas, on choisis sa taille.
+		setSize(size); // Cet objet étant un canvas, on choisis sa taille.
 		screen = new Screen(width, height); // ... et notre screen.
-		keyboard = new Keyboard();
-		addKeyListener(keyboard);
-		addMouseListener(mouse);
+		keyboard = new Keyboard(); // Création de notre écouteur clavier.
+		mouse = new Mouse(); // Création de notre écouteur souris.
+		addKeyListener(keyboard); // On ajoute notre écouteur clavier au jeu.
+		addMouseListener(mouse); // On ajoute notre écouteur souris au jeu.
 
-		debugWindow = new SimpleDebugWindow();
+		debugWindow = new SimpleDebugWindow(); // Création de notre fenêtre de debug.
 	}
 
 	public static void main(String[] args) { // Methode de demarrage d'un programme en Java.
@@ -101,11 +86,9 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	public synchronized void start() { // Fonction de démarrage du jeu.
 		running = true; // On met la variable running sur vrai.
 
-		CHARACTER_LIST = new CharacterList(); // On instancie notre liste de
-												// champions.
-		t = new Thread(this, "CoP"); // On crÃ©er le Thread du jeu. (pas celui
-									// de l'affichage).
-		t.start(); // On dÃ©marre le jeu.
+		CHARACTER_LIST = new CharacterList(); // On instancie notre liste de champions.
+		t = new Thread(this, "CoP"); // On créer le Thread du jeu. (pas celui de l'affichage).
+		t.start(); // On démarre le jeu.
 
 	}
 
@@ -124,55 +107,45 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 				upsCalc++;
 			}
 			if (currentTime >= startTimeFPS + nbFps || nbFps < 0) { // Si le temps du processeur est supérieur au temps de depart + nbFps ou si on ne limite pas les fps...
-				startTimeFPS = System.currentTimeMillis(); // ... on remet le
-															// temps de depart a
-															// 0 ...
+				startTimeFPS = System.currentTimeMillis(); // ... on remet le temps de depart a 0 ...
 				visualUpdate(); // ... puis on fait une update.
 				fpsCalc++;
 			}
 
-			if (System.currentTimeMillis() - timer > 1000) { // Si le jeu vient
-															// de passer 1
-															// secondes.
+			if (System.currentTimeMillis() - timer > 1000) { // Si le jeu passe 1 seconde.
 				timer += 1000; // On augmente de 1 sec la limite Ã  atteindre.
-				actualFPS = fpsCalc; // On dÃ©finit le nombre actuel de FPS ...
+				actualFPS = fpsCalc; // On définit le nombre actuel de FPS ...
 				actualUPS = upsCalc; // ... et d'UPS.
 				fpsCalc = 0; // On remet le compteur de FPS ...
-				upsCalc = 0; // ... et d'UPS Ã  0.
+				upsCalc = 0; // ... et d'UPS à  0.
 			}
 		}
 	}
 
-	public synchronized void gameUpdate() { // Methode visant l'actualisation du
-											// jeu. Le jeu sera limite a 60ups
-											// (update per second). Pour que
-											// tout le monde joue a la meme
-											// vitesse.
+	public synchronized void gameUpdate() { // Methode visant l'actualisation du jeu. Le jeu sera limite a 60ups (update per second). Pour que tout le monde joue a la meme vitesse.
 
 		/*
-		 * TO-DO : - Utilisation des touches + souris. - Envoie des packets au
+		 * TO-DO : - Utilisation de la souris. - Envoie des packets au
 		 * server. - Lecture des packets du server.
 		 */
 
 		/* Temporaire avant serveur */
 
-		keyboard.update();
-		if (keyboard.keys[KeyEvent.VK_P] && keyboard.canPressP && !pause) pause();
-		else if (keyboard.keys[KeyEvent.VK_P] && keyboard.canPressP && pause) backToTheGame();
-		
-		if (!pause) {
-			if (keyboard.directions[0]) y += cameraSpeed;
-			if (keyboard.directions[1]) y -= cameraSpeed;
-			if (keyboard.directions[2]) x += cameraSpeed;
-			if (keyboard.directions[3]) x -= cameraSpeed;
+		keyboard.update(); // On met à jour le keyboard.
+		if (keyboard.keys[KeyEvent.VK_P] && keyboard.canPressP && !pause) pause(); // Si on appuie sur 'P', que l'on peut mettre/enlever la pause et qu'on est pas déjà en pause, on met la pause.
+		else if (keyboard.keys[KeyEvent.VK_P] && keyboard.canPressP && pause) backToTheGame(); // Si on appuie sur 'P', que l'on peut mettre/enlever la pause et qu'on est déjà en pause, on enlève la pause.
 
-			System.out.println("Pause : " + pause + " - canPressP : " + keyboard.canPressP);
+		if (!pause) { // Si le jeu n'est pas en pause.
+			if (keyboard.directions[0]) y += cameraSpeed; // On déplace la caméra en direction du haut.
+			if (keyboard.directions[1]) y -= cameraSpeed; // On déplace la caméra en direction du bas.
+			if (keyboard.directions[2]) x += cameraSpeed; // On déplace la caméra en direction de la droite.
+			if (keyboard.directions[3]) x -= cameraSpeed; // On déplace la caméra en direction de la gauche.
 
-			debugWindow.setDirectionKeysState(keyboard.directions);
-			debugWindow.setItemsKeysState(keyboard.items);
-			debugWindow.setSpellsKeysState(keyboard.spells);
+			debugWindow.setDirectionKeysState(keyboard.directions); // On actualise l'état des touches de directions dans la fenêtre de debug.
+			debugWindow.setItemsKeysState(keyboard.items); // On actualise l'état des touches des items dans le fenêtre de debug.
+			debugWindow.setSpellsKeysState(keyboard.spells); // On actualise l'état des touches des sorts dans la fenêtre de debug.
 
-			screen.increaseTimer();
+			screen.increaseTimer(); // On incrémente le timer de notre screen, permet d'avoir des animations.
 
 		}
 	}
@@ -194,8 +167,8 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 			}
 		}
 
-		debugWindow.setFPS(actualFPS);
-		debugWindow.setUPS(actualUPS);
+		debugWindow.setFPS(actualFPS); // On actualise les FPS dans la fenêtre de debug.
+		debugWindow.setUPS(actualUPS); // On actualise les UPS dans la fenêtre de debug.
 
 		Graphics g = bs.getDrawGraphics(); // On récupère les graphics de notre canvas.
 		g.setColor(Color.BLACK); // On met la couleur en noire pour ...
@@ -203,69 +176,70 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		g.drawImage(bufferedImage, 0, 0, imageRenderedWidth, imageRenderedHeight, null); // Puis on dessine notre image.
 
 		if (debug) { // Si le debug est activé. On affiche les options de debug. (A modifier plus tard pour avoir plus bel affichage).
-			g.setColor(Color.WHITE); // Fond blanc.
-			g.fillRect(10, 10, 200, 100);
+			g.setColor(Color.WHITE); // Couleur blanche.
+			g.fillRect(10, 10, 200, 100); // Pour dessiner l'arrière plan.
 			g.setColor(Color.BLACK); // Ecriture noire.
 			g.setFont(new Font("Arial Black", Font.BOLD, 20)); // Choix de la police de caractère.
 			g.drawString("FPS : " + actualFPS, 25, 40); // Affichage des FPS.
 			g.drawString("UPS : " + actualUPS, 25, 60); // Affichage des UPS.
 		}
+		// Ajout d'un pointeur indiquant le centre de la fenêtre.
 		g.setColor(Color.BLACK);
-		g.drawLine(getWidth() / 2 - 50, getHeight() / 2, getWidth() / 2 + 50, getHeight() / 2);
-		g.drawLine(getWidth() / 2, getHeight() / 2 - 50, getWidth() / 2, getHeight() / 2 + 50);
-		g.dispose(); // On dÃ©truit notre objet graphique. Pour libÃ©rer la ram
-					// pour la prochaine image.
+		g.drawLine(getWidth() / 2 - 15, getHeight() / 2, getWidth() / 2 + 15, getHeight() / 2);
+		g.drawLine(getWidth() / 2, getHeight() / 2 - 15, getWidth() / 2, getHeight() / 2 + 15);
+		g.dispose(); // On détruit notre objet graphique. Pour libérer la ram pour la prochaine image.
 		bs.show(); // On affiche notre buffered Image.
 	}
 
-	public synchronized void pause() {
-		pause = true;
-		keyboard.canPressP = false;
+	public synchronized void pause() { // Méthode pour mettre en pause le jeu.
+		pause = true; // On dis que le jeu est en pause.
+		keyboard.canPressP = false; // On oblige le relachement de la touche de pause avant de l'enlever.
 	}
 
-	public synchronized void backToTheGame() {
-		pause = false;
-		keyboard.canPressP = false;
+	public synchronized void backToTheGame() { // Méthode pour enlever la pause.
+		pause = false; // On dit que le jeu n'est pas en pause.
+		keyboard.canPressP = false; // On oblige le relancement de la touche de pause avant de la remettre.
 	}
 
-	public synchronized void pauseBeforeChange() {
-		running = false;
-		try {
-			t.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+	public synchronized void pauseBeforeChange() { // Méthode pour mettre le Thread en pause.
+		running = false; // On arrête la boucle principale.
+		try { // On essaie de ...
+			t.join(); // ... arrêter le Thread.
+		} catch (InterruptedException e) { // Si une erreur est levée...
+			e.printStackTrace(); // ... on écrit le rapport d'erreur dans la console.
 		}
 	}
 
-	public synchronized void continueAfterChange() {
-		running = true;
-		t.start();
+	public synchronized void continueAfterChange() { // Méthode pour relance le Thread
+		running = true; // On dit que la boucle principale peut tourner.
+		t.start(); // Et on lance le jeu.
 	}
 
-	public synchronized void stop() {
-		running = false;
-		try {
-			t.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+	public synchronized void stop() { // Méthode pour arrêtre le jeu.
+		running = false; // On arrete la boucle principale du jeu.
+		try { // On essaie ..
+			t.join(); // ... de stoper le Thread contenant notre jeu.
+		} catch (InterruptedException e) { // Si il y a un problème....
+			e.printStackTrace(); // ... on écrit le rapport d'erreur dans la console.
+		} finally { // Dans tous les cas ...
+			System.exit(0); // ... on quite le programme. (Sera remplacée par une fenêtre de confirmation de déconnection.
 		}
-		System.exit(0);
 	}
 
-	public boolean getDebugState() {
+	public boolean getDebugState() { // Méthode pour savoir si le debug est activé.
 		return debug;
 	}
 
-	public void setDebugState(boolean debugState) {
+	public void setDebugState(boolean debugState) { // Méthode pour activer ou non le debug sur la fenetre de jeu.
 		debug = debugState;
 	}
 
-	public void setFpsLimitatiob(int fps) {
+	public void setFpsLimitatiob(int fps) { // Méthode pour changer la limitation de FPS
 		nbFps = 1000 / fps;
 	}
 
-	public synchronized void setImageRenderedSize(int width, int height) {
-		imageRenderedWidth = width;
-		imageRenderedHeight = height;
+	public synchronized void setImageRenderedSize(int width, int height) { // Méthode pour changer la taille à laquelle notre bufferedImage sera affichée.
+		imageRenderedWidth = width; // en largeur.
+		imageRenderedHeight = height; // en hauteur.
 	}
 }

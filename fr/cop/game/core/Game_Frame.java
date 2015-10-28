@@ -48,8 +48,10 @@ public class Game_Frame extends JFrame {
 	
 	public synchronized void toggleFullScreen(){
 		isFullScreen = !isFullScreen;
-		GAME.stop();
-		GAME = new Conflict_Of_Pixels_Client();
+		GAME.pauseBeforeChange();
+		if(isFullScreen)
+		GAME.setImageRenderedSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
+		else GAME.setImageRenderedSize(getSize().width, getSize().height);
 		Game_Frame.instance.dispose();
 		Game_Frame.instance = new Game_Frame(GAME);
 	}

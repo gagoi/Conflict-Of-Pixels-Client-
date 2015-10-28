@@ -39,11 +39,12 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	public static int width = 250; // Taille de la fenetre (largeur).
 	public static int height = width / 16 * 9; // Taille de la denetre
 												// (hauteur).
-	public static Dimension size = new Dimension(width * scale, height * scale); // Taille
+	private int imageRenderedWidth = width*scale, imageRenderedHeight = height*scale;
+
+	public Dimension size = new Dimension(imageRenderedWidth, imageRenderedHeight); // Taille
 																					// de
 																					// la
 																					// fenetre.
-
 	public static boolean scorePWAL1;
 
 	public static final Level MAP = new Level("map", 16);
@@ -227,7 +228,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 											// notre canvas.
 		g.setColor(Color.BLACK); // On met la couleur en noire pour ...
 		g.fillRect(0, 0, getWidth(), getHeight()); // ... vider l'écran.
-		g.drawImage(bufferedImage, 0, 0, gameFrame.getWidth(), gameFrame.getHeight(), null); // Puis
+		g.drawImage(bufferedImage, 0, 0, imageRenderedWidth, imageRenderedHeight, null); // Puis
 																			// on
 																			// dessine
 																			// notre
@@ -265,15 +266,29 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		pause = false;
 		run();
 	}
+
+	public synchronized void pauseBeforeChange() {
+		running = false;
+		try {
+			t.join();
+		} catch (InterruptedException e){
+			e.printStackTrace();
+		}
+	}
+	
+	public synchronized void continueAfterChange(){
+		running = true;
+		t.start();
+	}
 	
 	public synchronized void stop() {
 		running = false;
-		System.exit(0);
 		try {
 			t.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		System.exit(0);
 	}
 
 	public boolean getDebugState() {
@@ -285,5 +300,10 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 	public void setFpsLimitatiob(int fps) {
 		nbFps = 1000 / fps;
+	}
+
+	public synchronized void setImageRenderedSize(int width, int height) {
+		imageRenderedWidth = width;
+		imageRenderedHeight = height;
 	}
 }

@@ -56,11 +56,11 @@ public class SimpleDebugWindow extends JFrame {
 
 		fpsLimitationField.setBounds(220, 5, 100, 35);
 		fpsLimitationField.setText("60");
-		fpsLimitationField.addKeyListener(new KeyAdapter() {
+		fpsLimitationField.addKeyListener(new KeyAdapter()  {
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) changeFpsLimitationButton.doClick();
+				changeFpsLimitationButton.doClick();
 			}
 		});
 
@@ -120,7 +120,7 @@ public class SimpleDebugWindow extends JFrame {
 		toggleAnimationsButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (Game_Frame.GAME.isGameAnimated = !Game_Frame.GAME.isGameAnimated) System.exit(0);
+				 if(Game_Frame.GAME.isGameAnimated = !Game_Frame.GAME.isGameAnimated) System.exit(0);
 
 			}
 		});
@@ -155,16 +155,19 @@ public class SimpleDebugWindow extends JFrame {
 	}
 
 	public void setDirectionKeysState(boolean[] directionsKeysState) {
-		directionsKeyStateLabel.setText("<html>- Direction : Up : " + adaptValuesToColoredString(directionsKeysState[0]) + " | Down : " + adaptValuesToColoredString(directionsKeysState[1]) + " | Left : " + adaptValuesToColoredString(directionsKeysState[2]) + " | Right : " + adaptValuesToColoredString(directionsKeysState[3]) + ".</html>");
+		directionsKeyStateLabel.setText("<html>- Direction : Up : " + adaptValuesToColoredString(directionsKeysState[0]) + " | Down : " + adaptValuesToColoredString(directionsKeysState[1]) + " | Left : "
+				+ adaptValuesToColoredString(directionsKeysState[2]) + " | Right : " + adaptValuesToColoredString(directionsKeysState[3]) + ".</html>");
 	}
 
 	public void setItemsKeysState(boolean[] itemsKeysState) {
 		itemsKeysStateLabel1.setText("<html>- Items : 1 : " + adaptValuesToColoredString(itemsKeysState[0]) + " | 3 : " + adaptValuesToColoredString(itemsKeysState[2]) + " | 5 : " + adaptValuesToColoredString(itemsKeysState[4]) + "</html>");
-		itemsKeysStateLabel2.setText("<html>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2 : " + adaptValuesToColoredString(itemsKeysState[1]) + " | 4 : " + adaptValuesToColoredString(itemsKeysState[3]) + " | 6 : " + adaptValuesToColoredString(itemsKeysState[5]) + "</html>");
+		itemsKeysStateLabel2.setText("<html>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2 : " + adaptValuesToColoredString(itemsKeysState[1]) + " | 4 : " + adaptValuesToColoredString(itemsKeysState[3]) + " | 6 : "
+				+ adaptValuesToColoredString(itemsKeysState[5]) + "</html>");
 	}
 
 	public void setSpellsKeysState(boolean[] spellsKeysState) {
-		spellsKeysStateLabel.setText("<html>- Spells : A : " + adaptValuesToColoredString(spellsKeysState[0]) + " | Z : " + adaptValuesToColoredString(spellsKeysState[1]) + " | E : " + adaptValuesToColoredString(spellsKeysState[2]) + " | R : " + adaptValuesToColoredString(spellsKeysState[3]) + ".</html>");
+		spellsKeysStateLabel.setText("<html>- Spells : A : " + adaptValuesToColoredString(spellsKeysState[0]) + " | Z : " + adaptValuesToColoredString(spellsKeysState[1]) + " | E : " + adaptValuesToColoredString(spellsKeysState[2]) + " | R : "
+				+ adaptValuesToColoredString(spellsKeysState[3]) + ".</html>");
 	}
 
 	public void changePauseStatue() {

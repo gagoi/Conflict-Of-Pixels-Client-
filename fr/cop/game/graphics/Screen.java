@@ -1,5 +1,7 @@
 package fr.cop.game.graphics;
 
+import java.awt.Color;
+
 import fr.cop.game.core.Game_Frame;
 
 public class Screen {
@@ -47,7 +49,8 @@ public class Screen {
 			for (int x = 0; x < width; x++) {
 
 				if (y >= height / 2 - 2 && y <= height / 2 + 2 && x > width / 2 - 20 && x < width / 2 + 20) {
-					pixels[x][y] = 0;
+					System.out.println("Black pixel at : " + x + ";" + y);
+					pixels[x][y] = new Color(255, 0, 0).getRGB();
 				}
 				if (x == width / 2 && y > height / 2 - 20 && y < height / 2 + 20) {
 					pixels[x][y] = 0;

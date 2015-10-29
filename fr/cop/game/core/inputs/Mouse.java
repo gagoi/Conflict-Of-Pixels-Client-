@@ -5,10 +5,10 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 public class Mouse implements MouseListener, MouseMotionListener {
-	public boolean[] clicks = new boolean[2];
+	public boolean[] clicks = new boolean[3];
 	public int[][] positions = new int[2][2];
 	@SuppressWarnings("unused")
-	private boolean outside; // Essais pour empecher la souris de sortir de l'écran du jeu.
+	private boolean outside; // Essais pour empecher la souris de sortir de l'ï¿½cran du jeu.
 	public int[] coord = new int[2];
 
 	public void update() {

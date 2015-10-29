@@ -15,7 +15,7 @@ public class HUD_Statistiques extends MouseAdapter {
 
 	private float scale = 0.1f; // Ratio de taille de l'image.
 	private Image background = new ImageIcon(getClass().getResource("/fr/cop/resources/textures/hud/mapBackground.png")).getImage();
-	private int initialCoordX = 50, initialCoordY = 300, dragZoneSize = 10, clickCoordX = initialCoordX, clickCoordY = initialCoordY;
+	private int initialCoordX = 50, initialCoordY = 300, clickCoordX = initialCoordX, clickCoordY = initialCoordY;
 	private int tempCoordX = initialCoordX, tempCoordY = initialCoordY;
 	private int maxX, maxY;
 	private int width = (int) (background.getWidth(null) * scale);

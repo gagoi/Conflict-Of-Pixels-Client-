@@ -49,7 +49,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 	public static Game_Frame gameFrame;	// Fenetre de notre jeu (lancé).
 	public static Screen screenGAME; // Notre ecran de jeu, permettant le rendu (pixel à pixel).
-	private HUD hud;
+	public HUD hud;
 	private Keyboard keyboard; // Entrées clavier.
 	private Mouse mouse; // Entrée souris.
 	public static SimpleDebugWindow debugWindow; // Fenetre de debug.

@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -27,6 +28,8 @@ public class Game_Frame extends JFrame {
 	public static Game_Frame instance; // Instance de la fen�tre du jeu.
 
 	public static SimpleLog logger = new SimpleLog();
+	
+	public static File gameFolder = new File("C:\\Conflict Of Pixels\\");
 
 	public Game_Frame(Conflict_Of_Pixels_Client gameInstance) { // Objet fen�tre.
 		GAME = gameInstance; // On d�finit la variable GAME.
@@ -51,7 +54,10 @@ public class Game_Frame extends JFrame {
 			public void windowClosing(WindowEvent e) {
 				String objButtons[] = {"Yes", "No"};
 				int answer = JOptionPane.showOptionDialog(instance, "Are you sure ?", "Confirmation", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, objButtons, objButtons[1]);
-				if (answer == 0) System.exit(0);
+				if (answer == 0){
+					System.exit(0);
+					GAME.hud.saveHUD();
+				}
 			}
 		});
 		add(gameInstance, BorderLayout.CENTER);

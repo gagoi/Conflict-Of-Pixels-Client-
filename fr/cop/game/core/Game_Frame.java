@@ -13,19 +13,16 @@ public class Game_Frame extends JFrame {
 	private static int width = 250; // Taille de la fenetre (largeur).
 	private static int height = width / 16 * 9; // Taille de la denetre
 												// (hauteur).
-	private static Dimension size = new Dimension(width * scale, height * scale); // Taille
-	// de
-	// la
-	// fenetre.
+	private static Dimension size = new Dimension(width * scale, height * scale); // Taille de la fenetre.
 
-	private static boolean isFullScreen = false;
-	public static Conflict_Of_Pixels_Client GAME;
+	private static boolean isFullScreen = false; // permet de savoir si on est en plein écran.
+	public static Conflict_Of_Pixels_Client GAME; // Instance du jeu. Accessible depuis partout.
 	
-	public static Game_Frame instance;
+	public static Game_Frame instance; // Instance de la fenêtre du jeu.
 	
-	public Game_Frame(Conflict_Of_Pixels_Client gameInstance) {
-		GAME = gameInstance;
-		instance = this;
+	public Game_Frame(Conflict_Of_Pixels_Client gameInstance) { // Objet fenêtre.
+		GAME = gameInstance; // On définit la variable GAME.
+		instance = this; // On instancie notre instance de fenêtre.
 		setTitle("Conflict Of Pixels");
 		if(isFullScreen) {
 			setExtendedState(JFrame.MAXIMIZED_BOTH);

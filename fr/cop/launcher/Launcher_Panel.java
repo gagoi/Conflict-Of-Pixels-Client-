@@ -40,37 +40,27 @@ public class Launcher_Panel extends JPanel {
 		Laucher_Play_Button pb = new Laucher_Play_Button(512, 360, 100, new ImageIcon(getClass().getResource("/fr/cop/resources/menus/menu_round.png")));
 		pb.setBounds(0, 0, getWidth(), getHeight());
 
-		// On crï¿½ï¿½ un bouton de menu, avec un pilygon comme base, prenant en
-		// parametre nos coordonnï¿½es prï¿½cedentes. On y met un text, et un arrier
-		// plan. Puis on dï¿½finit les bords du boutons.
+		// On créée un bouton de menu, avec un polygon comme base, prenant en  paramètre nos coordonnées précedentes. On y met un texte, et un arrière-plan. Puis on définit les bords du boutons.
 		Launcher_Parts_Button v0 = new Launcher_Parts_Button(new Polygon(x, y[0], x.length), "Profil", new ImageIcon(getClass().getResource("/fr/cop/resources/menus/menu_haut_2.png")), pb);
 		v0.setBounds(0, 0, getWidth(), getHeight());
-		// On crï¿½ï¿½ un bouton de menu, avec un pilygon comme base, prenant en
-		// parametre nos coordonnï¿½es prï¿½cedentes. On y met un text, et un arrier
-		// plan. Puis on dï¿½finit les bords du boutons.
-
+		
+		// On créée un bouton de menu, avec un polygon comme base, prenant en  paramètre nos coordonnées précedentes. On y met un texte, et un arrière-plan. Puis on définit les bords du boutons.
 		Launcher_Parts_Button v1 = new Launcher_Parts_Button(new Polygon(x, y[1], x.length), "Shop", new ImageIcon(getClass().getResource("/fr/cop/resources/menus/menu_haut_1.png")), pb);
 		v1.setBounds(0, 0, getWidth(), getHeight());
-		// On crï¿½ï¿½ un bouton de menu, avec un pilygon comme base, prenant en
-		// parametre nos coordonnï¿½es prï¿½cedentes. On y met un text, et un arrier
-		// plan. Puis on dï¿½finit les bords du boutons.
-
+		
+		// On créée un bouton de menu, avec un polygon comme base, prenant en  paramètre nos coordonnées précedentes. On y met un texte, et un arrière-plan. Puis on définit les bords du boutons.
 		Launcher_Parts_Button v2 = new Launcher_Parts_Button(new Polygon(x, y[2], x.length), "News", new ImageIcon(getClass().getResource("/fr/cop/resources/menus/menu_middle.png")), pb);
 		v2.setBounds(0, 0, getWidth(), getHeight());
-		// On crï¿½ï¿½ un bouton de menu, avec un pilygon comme base, prenant en
-		// parametre nos coordonnï¿½es prï¿½cedentes. On y met un text, et un arrier
-		// plan. Puis on dï¿½finit les bords du boutons.
-
+		
+		// On créée un bouton de menu, avec un polygon comme base, prenant en  paramètre nos coordonnées précedentes. On y met un texte, et un arrière-plan. Puis on définit les bords du boutons.
 		Launcher_Parts_Button v3 = new Launcher_Parts_Button(new Polygon(x, y[3], x.length), "Friends", new ImageIcon(getClass().getResource("/fr/cop/resources/menus/menu_bas_1.png")), pb);
 		v3.setBounds(0, 0, getWidth(), getHeight());
-		// On crï¿½ï¿½ un bouton de menu, avec un pilygon comme base, prenant en
-		// parametre nos coordonnï¿½es prï¿½cedentes. On y met un text, et un arrier
-		// plan. Puis on dï¿½finit les bords du boutons.
-
+		
+		// On créée un bouton de menu, avec un polygon comme base, prenant en  paramètre nos coordonnées précedentes. On y met un texte, et un arrière-plan. Puis on définit les bords du boutons.
 		Launcher_Parts_Button v4 = new Launcher_Parts_Button(new Polygon(x, y[4], x.length), "Options", new ImageIcon(getClass().getResource("/fr/cop/resources/menus/menu_bas_2.png")), pb);
 		v4.setBounds(0, 0, getWidth(), getHeight());
 
-		// On ajoute une action ï¿½ notre bouton play.
+		// On ajoute une action à notre bouton play.
 		pb.addActionListener(new ActionListener() {
 
 			@Override
@@ -81,13 +71,11 @@ public class Launcher_Panel extends JPanel {
 			}
 		});
 
-		// On crï¿½ï¿½ un paneau pour nos details de menus (ex : news). Puis on lui
-		// mets des bords.
+		// On créée un paneau pour nos details de menus (ex : news). Puis on lui mets des bords.
 		Launcher_Details_Panel detailPanel = new Launcher_Details_Panel();
 		detailPanel.setBounds(50, 108, getWidth(), getHeight() - 200);
 
-		// On crï¿½ï¿½ un paneau pour notre barre de profil. Puis on lui
-		// mets des bords.
+		// On créée un paneau pour notre barre de profil. Puis on lui  mets des bords.
 		Launcher_Profile_Bar_Panel profilBar = new Launcher_Profile_Bar_Panel();
 		profilBar.setBounds(0, 0, getWidth(), getHeight());
 
@@ -120,23 +108,25 @@ public class Launcher_Panel extends JPanel {
 			}
 		});
 
-		// On ajoute tout ï¿½ notre paneau de menu.
+		// On ajoute tout nos composants à notre paneau de menu.
 		add(v0);
 		add(v1);
 		add(v2);
 		add(v3);
 		add(v4);
-		add(pb);
 		add(profilBar);
 		add(detailPanel);
 		add(versionLabel);
 		add(twitterButton);
 		add(facebookButton);
+
+		add(pb);
+		setComponentZOrder(pb, 0); // On met le bouton de jeu au premier plan.
 	}
 
 	@Override
-	public void paint(Graphics g) {
-		g.drawImage(background.getImage(), 0, 0, null);
-		super.paint(g);
+	public void paint(Graphics g) { // On redéfinit la fonction paint() du JPanel.
+		g.drawImage(background.getImage(), 0, 0, null); // Et on dessine notre arrière plan.
+		super.paint(g); // On dessine ensuite tous les composants.
 	}
 }

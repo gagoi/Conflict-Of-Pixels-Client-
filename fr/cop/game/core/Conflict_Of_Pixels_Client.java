@@ -32,7 +32,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private static int cameraSpeed = 3; // Vitesse de la caméra
 	private static boolean isCameraBlocked = false;
 
-	private static int scale = 5; // Taille des pixels (pixels du jeu).
+	public static int scale = 5; // Taille des pixels (pixels du jeu).
 	public static int width = 250; // Taille de la fenetre (largeur).
 	public static int height = width / 16 * 9; // Taille de la fenêtre (hauteur).
 	
@@ -40,13 +40,13 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	
 	public Dimension size = new Dimension(imageRenderedWidth, imageRenderedHeight); // Taille de la fenetre.
 	public static boolean scorePWAL1;
-	public static final Level MAP = new Level("map", 16); // Création de notre map, de paramêtre son nom et sa taille.
+	public final Level MAP = new Level("map", 16); // Création de notre map, de paramêtre son nom et sa taille.
 	
 	public BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); // Image de notre jeu (en tampon).
 	public int[] pixels = ((DataBufferInt) bufferedImage.getRaster().getDataBuffer()).getData(); // Pixels de l'image.
 
 	public static Game_Frame gameFrame;	// Fenetre de notre jeu (lancé).
-	public static Screen screen; // Notre ecran de jeu, permettant le rendu (pixel à pixel).
+	public static Screen screenGAME, screenHUD; // Notre ecran de jeu, permettant le rendu (pixel à pixel).
 	private Keyboard keyboard; // Entrées clavier.
 	private Mouse mouse; // Entrée souris.
 	public static SimpleDebugWindow debugWindow; // Fenetre de debug.
@@ -62,7 +62,8 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 	public Conflict_Of_Pixels_Client() { // Objet etant notre jeu.
 		setSize(size); // Cet objet étant un canvas, on choisis sa taille.
-		screen = new Screen(width, height); // ... et notre screen.
+		screenGAME = new Screen(width, height); // ... et notre screen.
+		screenHUD = new Screen(imageRenderedWidth, imageRenderedHeight);
 		keyboard = new Keyboard(); // Création de notre écouteur clavier.
 		mouse = new Mouse(); // Création de notre écouteur souris.
 		addKeyListener(keyboard); // On ajoute notre écouteur clavier au jeu.
@@ -145,7 +146,8 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 			debugWindow.setItemsKeysState(keyboard.items); // On actualise l'état des touches des items dans le fenêtre de debug.
 			debugWindow.setSpellsKeysState(keyboard.spells); // On actualise l'état des touches des sorts dans la fenêtre de debug.
 
-			screen.increaseTimer(); // On incrémente le timer de notre screen, permet d'avoir des animations.
+			screenGAME.increaseTimer(); // On incrémente le timer de notre screen, permet d'avoir des animations.
+			screenHUD.increaseTimer(); // On incrémente le timer de notre screen, permet d'avoir des animations.
 
 		}
 	}
@@ -157,13 +159,16 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 			return; // Et on ne dessine rien, pour ne pas crash.
 		}
 
-		screen.clear(); // On vide l'écran actuel.
-		screen.render(x, y); // On fait le rendu du jeu.
-
+		screenGAME.clear(0); // On vide l'écran actuel.
+		screenHUD.clear(-1);
+		screenGAME.render(x, y); // On fait le rendu du jeu.
+		screenHUD.renderHUD(); // On fait le rendu du HUD.
+		
 		// On transforme tous les pixels rendus en pixels affichés.
-		for (int x = 0; x < screen.pixels.length; x++) {
-			for (int y = 0; y < screen.pixels[x].length; y++) {
-				pixels[x + y * width] = screen.pixels[x][y];
+		for (int x = 0; x < screenGAME.pixels.length; x++) {
+			for (int y = 0; y < screenGAME.pixels[x].length; y++) {
+				pixels[x + y * width] = screenGAME.pixels[x][y];
+				if(screenHUD.pixels[x][y] != -1) pixels[x+y*width] = screenHUD.pixels[x][y];
 			}
 		}
 
@@ -183,10 +188,6 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 			g.drawString("FPS : " + actualFPS, 25, 40); // Affichage des FPS.
 			g.drawString("UPS : " + actualUPS, 25, 60); // Affichage des UPS.
 		}
-		// Ajout d'un pointeur indiquant le centre de la fenêtre.
-		g.setColor(Color.BLACK);
-		g.drawLine(getWidth() / 2 - 15, getHeight() / 2, getWidth() / 2 + 15, getHeight() / 2);
-		g.drawLine(getWidth() / 2, getHeight() / 2 - 15, getWidth() / 2, getHeight() / 2 + 15);
 		g.dispose(); // On détruit notre objet graphique. Pour libérer la ram pour la prochaine image.
 		bs.show(); // On affiche notre buffered Image.
 	}

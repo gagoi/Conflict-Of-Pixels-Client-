@@ -17,6 +17,7 @@ import fr.cop.game.core.helpful.logger.SimpleDebugWindow;
 import fr.cop.game.core.inputs.Keyboard;
 import fr.cop.game.core.inputs.Mouse;
 import fr.cop.game.graphics.Screen;
+import fr.cop.game.graphics.hud.HUD;
 import fr.cop.launcher.Launcher_Panel;
 
 public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
@@ -26,7 +27,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private int actualFPS, actualUPS; // Variable permettant d'afficher le nombre de FPS.
 	private static int nbFps = 1000 / 60; // Si négatif, FPS non limités.
 	private boolean running = false; // Boolean permettant de dire si le jeu fonctionne ou non.
-	private boolean pause = false; // Permet de mettre le jeu en pause. Ne sera utilisable que depuis le serveur (à terme).
+	public boolean isGamePaused = false; // Permet de mettre le jeu en pause. Ne sera utilisable que depuis le serveur (à terme).
 
 	public boolean debug = false; // Mode débug.
 	private static int cameraSpeed = 3; // Vitesse de la caméra
@@ -35,18 +36,20 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	public static int scale = 5; // Taille des pixels (pixels du jeu).
 	public static int width = 250; // Taille de la fenetre (largeur).
 	public static int height = width / 16 * 9; // Taille de la fenêtre (hauteur).
-	
+
 	private int imageRenderedWidth = width * scale, imageRenderedHeight = height * scale; // Taille de rendu de l'image en tampon du jeu.
-	
+
 	public Dimension size = new Dimension(imageRenderedWidth, imageRenderedHeight); // Taille de la fenetre.
 	public static boolean scorePWAL1;
 	public final Level MAP = new Level("map", 16); // Création de notre map, de paramêtre son nom et sa taille.
-	
+
 	public BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); // Image de notre jeu (en tampon).
+
 	public int[] pixels = ((DataBufferInt) bufferedImage.getRaster().getDataBuffer()).getData(); // Pixels de l'image.
 
 	public static Game_Frame gameFrame;	// Fenetre de notre jeu (lancé).
-	public static Screen screenGAME, screenHUD; // Notre ecran de jeu, permettant le rendu (pixel à pixel).
+	public static Screen screenGAME; // Notre ecran de jeu, permettant le rendu (pixel à pixel).
+	private HUD hud;
 	private Keyboard keyboard; // Entrées clavier.
 	private Mouse mouse; // Entrée souris.
 	public static SimpleDebugWindow debugWindow; // Fenetre de debug.
@@ -56,6 +59,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	public static CharacterList CHARACTER_LIST;																																																																																																																																																																																																																																																																																																																																 // Liste des Champions.
 
 	public static boolean isFullScreen;
+	public boolean isGameAnimated = false;
 
 	public int x = 0;
 	public int y = 0; /* Temporaire */
@@ -63,12 +67,14 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	public Conflict_Of_Pixels_Client() { // Objet etant notre jeu.
 		setSize(size); // Cet objet étant un canvas, on choisis sa taille.
 		screenGAME = new Screen(width, height); // ... et notre screen.
-		screenHUD = new Screen(imageRenderedWidth, imageRenderedHeight);
+		hud = new HUD(imageRenderedWidth, imageRenderedHeight);
 		keyboard = new Keyboard(); // Création de notre écouteur clavier.
 		mouse = new Mouse(); // Création de notre écouteur souris.
 		addKeyListener(keyboard); // On ajoute notre écouteur clavier au jeu.
 		addMouseListener(mouse); // On ajoute notre écouteur souris au jeu.
-
+		
+		hud.addMouseListeners(this);
+		
 		debugWindow = new SimpleDebugWindow(); // Création de notre fenêtre de debug.
 	}
 
@@ -100,6 +106,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		long startTimeUPS = System.currentTimeMillis(); // Temps de depart du programme, utilise pour les UPS.
 		long startTimeFPS = System.currentTimeMillis(); // Temps de depart du programme, utilise pour les FPS.
 		int fpsCalc = 0, upsCalc = 0; // Pour compter FPS et UPS.
+		debugWindow.changePauseStatue(); // On affiche l'état de la pause dans la fenêtre de debug.
 		while (running) { // Boucle principale de notre programme.
 			long currentTime = System.currentTimeMillis(); // Temps en millisecondes.
 			if (currentTime >= startTimeUPS + nbUps) { // Si le temps du processeur est supérieur au temps de depart + nbUps...
@@ -133,10 +140,10 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		/* Temporaire avant serveur */
 
 		keyboard.update(); // On met à jour le keyboard.
-		if (keyboard.keys[KeyEvent.VK_P] && keyboard.canPressP && !pause) pause(); // Si on appuie sur 'P', que l'on peut mettre/enlever la pause et qu'on est pas déjà en pause, on met la pause.
-		else if (keyboard.keys[KeyEvent.VK_P] && keyboard.canPressP && pause) backToTheGame(); // Si on appuie sur 'P', que l'on peut mettre/enlever la pause et qu'on est déjà en pause, on enlève la pause.
+		if (keyboard.keys[KeyEvent.VK_P] && keyboard.canPressP && !isGamePaused) pause(); // Si on appuie sur 'P', que l'on peut mettre/enlever la pause et qu'on est pas déjà en pause, on met la pause.
+		else if (keyboard.keys[KeyEvent.VK_P] && keyboard.canPressP && isGamePaused) backToTheGame(); // Si on appuie sur 'P', que l'on peut mettre/enlever la pause et qu'on est déjà en pause, on enlève la pause.
 
-		if (!pause) { // Si le jeu n'est pas en pause.
+		if (!isGamePaused) { // Si le jeu n'est pas en pause.
 			if (keyboard.directions[0]) y += cameraSpeed; // On déplace la caméra en direction du haut.
 			if (keyboard.directions[1]) y -= cameraSpeed; // On déplace la caméra en direction du bas.
 			if (keyboard.directions[2]) x += cameraSpeed; // On déplace la caméra en direction de la droite.
@@ -147,7 +154,6 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 			debugWindow.setSpellsKeysState(keyboard.spells); // On actualise l'état des touches des sorts dans la fenêtre de debug.
 
 			screenGAME.increaseTimer(); // On incrémente le timer de notre screen, permet d'avoir des animations.
-			screenHUD.increaseTimer(); // On incrémente le timer de notre screen, permet d'avoir des animations.
 
 		}
 	}
@@ -160,15 +166,15 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		}
 
 		screenGAME.clear(0); // On vide l'écran actuel.
-		screenHUD.clear(-1);
 		screenGAME.render(x, y); // On fait le rendu du jeu.
-		screenHUD.renderHUD(); // On fait le rendu du HUD.
-		
+
 		// On transforme tous les pixels rendus en pixels affichés.
 		for (int x = 0; x < screenGAME.pixels.length; x++) {
 			for (int y = 0; y < screenGAME.pixels[x].length; y++) {
-				pixels[x + y * width] = screenGAME.pixels[x][y];
-				if(screenHUD.pixels[x][y] != -1) pixels[x+y*width] = screenHUD.pixels[x][y];
+				try {
+					pixels[x + y * width] = screenGAME.pixels[x][y];
+				} catch (Exception e) {
+				}
 			}
 		}
 
@@ -179,6 +185,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		g.setColor(Color.BLACK); // On met la couleur en noire pour ...
 		g.fillRect(0, 0, getWidth(), getHeight()); // ... vider l'écran.
 		g.drawImage(bufferedImage, 0, 0, imageRenderedWidth, imageRenderedHeight, null); // Puis on dessine notre image.
+		hud.refreshGraphics(g, imageRenderedWidth, imageRenderedHeight);
 
 		if (debug) { // Si le debug est activé. On affiche les options de debug. (A modifier plus tard pour avoir plus bel affichage).
 			g.setColor(Color.WHITE); // Couleur blanche.
@@ -193,13 +200,15 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	}
 
 	public synchronized void pause() { // Méthode pour mettre en pause le jeu.
-		pause = true; // On dis que le jeu est en pause.
+		isGamePaused = true; // On dis que le jeu est en pause.
 		keyboard.canPressP = false; // On oblige le relachement de la touche de pause avant de l'enlever.
+		debugWindow.changePauseStatue(); // On affiche l'état de la pause dans la fenêtre de debug.
 	}
 
 	public synchronized void backToTheGame() { // Méthode pour enlever la pause.
-		pause = false; // On dit que le jeu n'est pas en pause.
+		isGamePaused = false; // On dit que le jeu n'est pas en pause.
 		keyboard.canPressP = false; // On oblige le relancement de la touche de pause avant de la remettre.
+		debugWindow.changePauseStatue();// On affiche l'état de la pause dans la fenêtre de debug.
 	}
 
 	public synchronized void pauseBeforeChange() { // Méthode pour mettre le Thread en pause.
@@ -218,13 +227,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 	public synchronized void stop() { // Méthode pour arrêtre le jeu.
 		running = false; // On arrete la boucle principale du jeu.
-		try { // On essaie ..
-			t.join(); // ... de stoper le Thread contenant notre jeu.
-		} catch (InterruptedException e) { // Si il y a un problème....
-			e.printStackTrace(); // ... on écrit le rapport d'erreur dans la console.
-		} finally { // Dans tous les cas ...
-			System.exit(0); // ... on quite le programme. (Sera remplacée par une fenêtre de confirmation de déconnection.
-		}
+		System.exit(0);
 	}
 
 	public boolean getDebugState() { // Méthode pour savoir si le debug est activé.

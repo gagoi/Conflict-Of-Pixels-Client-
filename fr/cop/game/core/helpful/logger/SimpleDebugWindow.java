@@ -19,21 +19,23 @@ import fr.cop.game.core.Game_Frame;
 @SuppressWarnings("serial")
 public class SimpleDebugWindow extends JFrame {
 
-	private JLabel		fpsLabel					= new JLabel("FPS : ..fps.");
-	private JLabel		upsLabel					= new JLabel("UPS : ..ups.");
-	private JLabel		directionsKeyStateLabel		= new JLabel("Up : ... | Down : ... | Left : ... | Right ...");
-	private JLabel		itemsKeysStateLabel1		= new JLabel("Items : 1 : ... | 3 : ... | 5 : ...");
-	private JLabel		itemsKeysStateLabel2		= new JLabel("                2 : ... | 4 : ... | 6 : ...");
-	private JLabel		spellsKeysStateLabel		= new JLabel("Spells : A : ... | Z : ... | E : ... | R ...");
+	private JLabel fpsLabel = new JLabel("- FPS : ..fps.");
+	private JLabel upsLabel = new JLabel("- UPS : ..ups.");
+	private JLabel directionsKeyStateLabel = new JLabel("- Up : ... | Down : ... | Left : ... | Right ...");
+	private JLabel itemsKeysStateLabel1 = new JLabel("- Items : 1 : ... | 3 : ... | 5 : ...");
+	private JLabel itemsKeysStateLabel2 = new JLabel("                  2 : ... | 4 : ... | 6 : ...");
+	private JLabel spellsKeysStateLabel = new JLabel("- Spells : A : ... | Z : ... | E : ... | R ...");
+	private JLabel isGamePausedLabel = new JLabel("- Pause : ...");
 
-	private JButton		debugModeButton				= new JButton("Turn on debug mod.");
-	private JButton		stopButton					= new JButton("Exit game.");
-	private JButton		changeFpsLimitationButton	= new JButton("Change FPS limitation.");
-	private JButton		toggleFullScreenButton		= new JButton("Toggle FullScreen.");
+	private JButton debugModeButton = new JButton("Turn on debug mod.");
+	private JButton stopButton = new JButton("Exit game.");
+	private JButton changeFpsLimitationButton = new JButton("Change FPS limitation.");
+	private JButton toggleFullScreenButton = new JButton("Toggle FullScreen.");
+	private JButton toggleAnimationsButton = new JButton("Toggle Animations");
 
-	private JTextField	fpsLimitationField			= new JTextField();
+	private JTextField fpsLimitationField = new JTextField();
 
-	private ImageIcon	icon;
+	private ImageIcon icon;
 
 	public SimpleDebugWindow() {
 		setTitle("Cop Debug");
@@ -49,6 +51,7 @@ public class SimpleDebugWindow extends JFrame {
 		itemsKeysStateLabel1.setBounds(10, 140, 500, 30);
 		itemsKeysStateLabel2.setBounds(10, 160, 500, 30);
 		spellsKeysStateLabel.setBounds(10, 200, 500, 30);
+		isGamePausedLabel.setBounds(10, 240, 500, 30);
 
 		fpsLimitationField.setBounds(220, 5, 100, 35);
 		fpsLimitationField.setText("60");
@@ -124,6 +127,15 @@ public class SimpleDebugWindow extends JFrame {
 			}
 		});
 
+		toggleAnimationsButton.setBounds(330, 50, 150, 40);
+		toggleAnimationsButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Game_Frame.GAME.isGameAnimated = !Game_Frame.GAME.isGameAnimated;
+
+			}
+		});
+
 		add(fpsLabel);
 		add(upsLabel);
 
@@ -131,12 +143,13 @@ public class SimpleDebugWindow extends JFrame {
 		add(itemsKeysStateLabel1);
 		add(itemsKeysStateLabel2);
 		add(spellsKeysStateLabel);
-		add(fpsLabel);
+		add(isGamePausedLabel);
 
 		add(debugModeButton);
 		add(stopButton);
 		add(changeFpsLimitationButton);
 		add(toggleFullScreenButton);
+		add(toggleAnimationsButton);
 
 		add(fpsLimitationField);
 
@@ -167,6 +180,10 @@ public class SimpleDebugWindow extends JFrame {
 	public void setSpellsKeysState(boolean[] spellsKeysState) {
 		spellsKeysStateLabel.setText("<html>- Spells : A : " + adaptValuesToColoredString(spellsKeysState[0]) + " | Z : " + adaptValuesToColoredString(spellsKeysState[1]) + " | E : " + adaptValuesToColoredString(spellsKeysState[2]) + " | R : "
 				+ adaptValuesToColoredString(spellsKeysState[3]) + ".</html>");
+	}
+
+	public void changePauseStatue() {
+		isGamePausedLabel.setText("<html>- Pause : " + adaptValuesToColoredString(Game_Frame.GAME.isGamePaused) + "</html>");
 	}
 
 	public String adaptValuesToColoredString(boolean value) {

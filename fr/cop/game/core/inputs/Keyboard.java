@@ -18,7 +18,7 @@ public class Keyboard extends KeyAdapter {
 	
 	public boolean pwal;
 	private JFrame pwalFrame;
-	public boolean canPressP;
+	public boolean canPressP = true;
 
 	public void update() {
 		spells[0] = keys[KeyEvent.VK_A];

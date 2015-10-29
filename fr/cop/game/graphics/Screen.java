@@ -1,7 +1,5 @@
 package fr.cop.game.graphics;
 
-import java.awt.Color;
-
 import fr.cop.game.core.Game_Frame;
 
 public class Screen {
@@ -35,25 +33,10 @@ public class Screen {
 				int xp = x + xOffset; // On applique le décalage en ordonnée.
 				if (xp < 0 || xp >= renderedMapSize) continue; // Si on sort de la fenêtre, on arrête le rendu. ==> Optimisation.
 				try { // On essaie de :
-					pixels[xp][yp] = Game_Frame.GAME.MAP.getSpriteAt(x, y, (internalTimer / 2) % 16, true).getPixelValue(x % 16, y % 16); // faire le rendu de la map.
+					pixels[xp][yp] = Game_Frame.GAME.MAP.getSpriteAt(x, y, (internalTimer / 2) % 16, Game_Frame.GAME.isGameAnimated).getPixelValue(x % 16, y % 16); // faire le rendu de la map.
 
 				} catch (Exception e) {// Si il y a une erreur...
 					// On fait rien... xDDDD
-				}
-			}
-		}
-	}
-
-	public void renderHUD() {
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) {
-
-				if (y >= height / 2 - 2 && y <= height / 2 + 2 && x > width / 2 - 20 && x < width / 2 + 20) {
-					System.out.println("Black pixel at : " + x + ";" + y);
-					pixels[x][y] = new Color(255, 0, 0).getRGB();
-				}
-				if (x == width / 2 && y > height / 2 - 20 && y < height / 2 + 20) {
-					pixels[x][y] = 0;
 				}
 			}
 		}

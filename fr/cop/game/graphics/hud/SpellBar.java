@@ -1,4 +1,4 @@
-package fr.cop.game.hud;
+package fr.cop.game.graphics.hud;
 
 import java.awt.Color;
 

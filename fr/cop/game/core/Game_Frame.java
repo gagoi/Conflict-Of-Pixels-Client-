@@ -55,8 +55,8 @@ public class Game_Frame extends JFrame {
 				String objButtons[] = {"Yes", "No"};
 				int answer = JOptionPane.showOptionDialog(instance, "Are you sure ?", "Confirmation", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, objButtons, objButtons[1]);
 				if (answer == 0){
-					System.exit(0);
 					GAME.hud.saveHUD();
+					System.exit(0);
 				}
 			}
 		});

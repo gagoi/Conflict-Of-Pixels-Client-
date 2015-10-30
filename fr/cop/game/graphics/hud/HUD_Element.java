@@ -24,7 +24,7 @@ public class HUD_Element extends MouseAdapter {
 	private String hudElementName;
 
 	public HUD_Element(String imageName, String hudElementName) {
-		background = new ImageIcon(getClass().getResource("/fr/cop/resources/textures/hud/" + imageName + ".png")).getImage();
+		background = new ImageIcon(getClass().getResource( imageName + ".png")).getImage();
 		width = background.getWidth(null);
 		height = background.getHeight(null);
 		this.hudElementName = hudElementName;

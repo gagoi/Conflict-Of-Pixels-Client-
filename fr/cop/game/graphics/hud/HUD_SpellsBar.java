@@ -2,21 +2,18 @@ package fr.cop.game.graphics.hud;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.MouseEvent;
-
-import javax.swing.ImageIcon;
 
 public class HUD_SpellsBar extends HUD_Element {
 
-	private Image[] spells = new Image[4];
+	private HUD_Spell[] spells = new HUD_Spell[4];
 
 	public HUD_SpellsBar() {
-		super("spellsBarBackground", "HUD_SpellsBar");
-		for (int i = 0; i < spells.length; i++) {
-			spells[i] = new ImageIcon(getClass().getResource("/fr/cop/resources/images/characters/Test/spellIcon/" + i + ".png")).getImage();
-			spells[i] = spells[i].getScaledInstance((int) (spells[i].getWidth(null) * 12 * this.getScale()), (int) (spells[i].getHeight(null) * 12 * this.getScale()), Image.SCALE_SMOOTH);
-		}
+		super("/fr/cop/resources/textures/hud/spellsBarBackground", "HUD_SpellsBar");
+		spells[0] = new HUD_Spell(0, this);
+		spells[1] = new HUD_Spell(1, this);
+		spells[2] = new HUD_Spell(2, this);
+		spells[3] = new HUD_Spell(3, this);
 	}
 
 	@Override
@@ -25,10 +22,11 @@ public class HUD_SpellsBar extends HUD_Element {
 
 		g.setColor(Color.BLUE);
 		g.fillRect(getPosX() + 10, getPosY() + 10, getScaledWidth() - 20, getScaledHeight() - 20);
-		for (int i = 0; i < spells.length; i++) {
-			g.drawImage(spells[i],(int) (getPosX() + ((getScaledWidth()-spells[i].getWidth(null))/2) + i*spells[i].getWidth(null)*1.1f - (2*spells[i].getWidth(null))) , getPosY() + ((getScaledHeight()-spells[i].getHeight(null))/2), null);
-		}
 
+		spells[0].refresh(g);
+		spells[1].refresh(g);
+		spells[2].refresh(g);
+		spells[3].refresh(g);
 	}
 
 	@Override

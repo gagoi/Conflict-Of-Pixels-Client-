@@ -1,5 +1,6 @@
 package fr.cop.game.graphics.hud;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 
@@ -24,6 +25,8 @@ public class HUD_Spell extends HUD_Element {
 	@Override
 	public void refresh(Graphics g) {
 		super.refresh(g);
+		g.setColor(Color.BLUE);
+		g.fillRect(getPosX(), getPosY(), 100, 100);
 	}
 	
 	@Override

@@ -18,12 +18,13 @@ import fr.cop.game.core.inputs.Keyboard;
 import fr.cop.game.core.inputs.Mouse;
 import fr.cop.game.graphics.Screen;
 import fr.cop.game.graphics.hud.HUD;
+import fr.cop.game.graphics.inGameOptions.Frame;
 import fr.cop.launcher.Launcher_Panel;
 
 public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
-	private static final long serialVersionUID = 1L;																																																																																																																																																																																																																																																															 // Convention java.
+	private static final long serialVersionUID = 1L; // Convention java.
 
-	public static int nbUps = 1000 / 60;  // Nombre d'UPS du jeu.
+	public static int nbUps = 1000 / 60; // Nombre d'UPS du jeu.
 	private int actualFPS, actualUPS; // Variable permettant d'afficher le nombre de FPS.
 	private static int nbFps = 1000 / 60; // Si n�gatif, FPS non limit�s.
 	private boolean running = false; // Boolean permettant de dire si le jeu fonctionne ou non.
@@ -47,16 +48,17 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 	public int[] pixels = ((DataBufferInt) bufferedImage.getRaster().getDataBuffer()).getData(); // Pixels de l'image.
 
-	public static Game_Frame gameFrame;	// Fenetre de notre jeu (lanc�).
+	public static Game_Frame gameFrame; // Fenetre de notre jeu (lanc�).
 	public static Screen screenGAME; // Notre ecran de jeu, permettant le rendu (pixel � pixel).
 	public HUD hud;
 	private Keyboard keyboard; // Entr�es clavier.
 	private Mouse mouse; // Entr�e souris.
 	public static SimpleDebugWindow debugWindow; // Fenetre de debug.
 	public static JFrame menuFrame; // Fen�tre �tant notre Launcher.
+	public Frame optionFrame = new Frame();
 
-	private Thread t;																																																																																																																																																																																																																																																																																																																																																																																 // Thread de notre jeu.
-	public static CharacterList CHARACTER_LIST;																																																																																																																																																																																																																																																																																																																																 // Liste des Champions.
+	private Thread t; // Thread de notre jeu.
+	public static CharacterList CHARACTER_LIST; // Liste des Champions.
 
 	public static boolean isFullScreen;
 	public boolean isGameAnimated = false;
@@ -72,9 +74,10 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		mouse = new Mouse(); // Cr�ation de notre �couteur souris.
 		addKeyListener(keyboard); // On ajoute notre �couteur clavier au jeu.
 		addMouseListener(mouse); // On ajoute notre �couteur souris au jeu.
-		
+
 		hud.addMouseListeners(this);
-		
+		optionFrame.addMouseListeners(this);
+
 		debugWindow = new SimpleDebugWindow(); // Cr�ation de notre fen�tre de debug.
 	}
 
@@ -154,6 +157,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 			debugWindow.setSpellsKeysState(keyboard.spells); // On actualise l'�tat des touches des sorts dans la fen�tre de debug.
 
 			screenGAME.increaseTimer(); // On incr�mente le timer de notre screen, permet d'avoir des animations.
+			optionFrame.increaseTimer();
 
 		}
 	}
@@ -186,6 +190,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		g.fillRect(0, 0, getWidth(), getHeight()); // ... vider l'�cran.
 		g.drawImage(bufferedImage, 0, 0, imageRenderedWidth, imageRenderedHeight, null); // Puis on dessine notre image.
 		hud.refreshGraphics(g, imageRenderedWidth, imageRenderedHeight);
+		if (optionFrame.isVisible()) optionFrame.refresh(g);
 
 		if (debug) { // Si le debug est activ�. On affiche les options de debug. (A modifier plus tard pour avoir plus bel affichage).
 			g.setColor(Color.WHITE); // Couleur blanche.

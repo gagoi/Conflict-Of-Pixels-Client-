@@ -13,9 +13,6 @@ public class HUD_Spell extends HUD_Element {
 		super("/fr/cop/resources/images/characters/Test/spellIcon/" + id, "HUD_Spell_" + id, 1f);
 		this.id = id;
 		this.spellsBar = spellsBar;
-//		background = background.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
-		System.out.println("/fr/cop/resources/images/characters/Test/spellIcon/" + id);
-		System.out.println(background.getWidth(null) + "-" + background.getWidth(null));
 	}
 	
 	@Override
@@ -38,5 +35,17 @@ public class HUD_Spell extends HUD_Element {
 	@Override
 	public int getPosY() {
 		return spellsBar.getPosY() + ((spellsBar.getScaledHeight() - background.getHeight(null)) / 2);
+	}
+	
+	@Override
+	
+	
+	public int getScaledWidth() {
+		return (int) (spellsBar.getScaledHeight()/2.5);
+	}
+	
+	@Override
+	public int getScaledHeight() {
+		return getScaledWidth();
 	}
 }

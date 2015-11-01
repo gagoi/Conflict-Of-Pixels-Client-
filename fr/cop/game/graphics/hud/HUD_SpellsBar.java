@@ -20,9 +20,6 @@ public class HUD_SpellsBar extends HUD_Element {
 	public void refresh(Graphics g) {
 		super.refresh(g);
 
-		g.setColor(Color.BLUE);
-		g.fillRect(getPosX() + 10, getPosY() + 10, getScaledWidth() - 20, getScaledHeight() - 20);
-
 		spells[0].refresh(g);
 		spells[1].refresh(g);
 		spells[2].refresh(g);

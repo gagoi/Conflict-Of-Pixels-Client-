@@ -7,10 +7,15 @@ import java.awt.event.MouseEvent;
 public class HUD_Spell extends HUD_Element {
 
 	private HUD_SpellsBar spellsBar;
+	private int id;
 
 	public HUD_Spell(int id, HUD_SpellsBar spellsBar) {
-		super("/fr/cop/resources/images/characters/Test/spellIcon/" + id, "HUD_Spell_" + id);
+		super("/fr/cop/resources/images/characters/Test/spellIcon/" + id, "HUD_Spell_" + id, 1f);
+		this.id = id;
 		this.spellsBar = spellsBar;
+//		background = background.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+		System.out.println("/fr/cop/resources/images/characters/Test/spellIcon/" + id);
+		System.out.println(background.getWidth(null) + "-" + background.getWidth(null));
 	}
 	
 	@Override
@@ -18,22 +23,16 @@ public class HUD_Spell extends HUD_Element {
 	}
 	
 	@Override
-	public void setScale(float scale) {
-		super.setScale(scale*15);
-	}
-	
-	@Override
 	public void refresh(Graphics g) {
-		super.refresh(g);
-		g.setColor(Color.BLUE);
-		g.fillRect(getPosX(), getPosY(), 100, 100);
+		g.drawImage(background, getPosX(), getPosY(),getScaledWidth(), getScaledHeight(), null);
+		g.setColor(Color.BLACK);
+		g.drawRect(getPosX(), getPosY(), getScaledWidth(), getScaledHeight());
 	}
 	
 	@Override
 	public int getPosX() {
-		int middlePos = spellsBar.getPosX()+(spellsBar.getScaledWidth()/2);
-		return 400;
-//		return middlePos;
+		int pos = (int) (spellsBar.getPosX()+(spellsBar.getScaledWidth()/2)-(1.5*getScaledWidth()/2)-2*getScaledWidth()+id*(getScaledWidth()/2+getScaledWidth()));
+		return pos;
 	}
 	
 	@Override

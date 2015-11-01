@@ -24,9 +24,17 @@ public class HUD_Element extends MouseAdapter {
 	private String hudElementName;
 
 	public HUD_Element(String imageName, String hudElementName) {
-		background = new ImageIcon(getClass().getResource( imageName + ".png")).getImage();
+		background = new ImageIcon(getClass().getResource(imageName + ".png")).getImage();
 		width = background.getWidth(null);
 		height = background.getHeight(null);
+		this.hudElementName = hudElementName;
+	}
+
+	public HUD_Element(String imageName, String hudElementName, float scale) {
+		background = new ImageIcon(getClass().getResource(imageName + ".png")).getImage();
+		width = background.getWidth(null);
+		height = background.getHeight(null);
+		setScale(scale);
 		this.hudElementName = hudElementName;
 	}
 
@@ -51,7 +59,7 @@ public class HUD_Element extends MouseAdapter {
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		if (clickCoordX > initialCoordX && clickCoordX < initialCoordX + getScaledWidth() && clickCoordY > initialCoordY && clickCoordY < initialCoordY +getScaledHeight()) {
+		if (clickCoordX > initialCoordX && clickCoordX < initialCoordX + getScaledWidth() && clickCoordY > initialCoordY && clickCoordY < initialCoordY + getScaledHeight()) {
 			Game_Frame.logger.logTxt("Mouse Listener <" + hudElementName + ":Drag>", "Click at (" + e.getX() + ";" + e.getY() + ").");
 			tempCoordX = e.getX() - (clickCoordX - initialCoordX);
 			tempCoordY = e.getY() - (clickCoordY - initialCoordY);
@@ -60,11 +68,15 @@ public class HUD_Element extends MouseAdapter {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		Game_Frame.logger.logTxt("Mouse Listener <" + hudElementName + ":Release>", "Unclick at (" + e.getX() + ";" + e.getY() + ").");
+		clickCoordX = e.getX();
+		clickCoordY = e.getY();
+		if (clickCoordX > initialCoordX && clickCoordX < initialCoordX + getScaledWidth() && clickCoordY > initialCoordY && clickCoordY < initialCoordY + getScaledHeight()) {
+			Game_Frame.logger.logTxt("Mouse Listener <" + hudElementName + ":Release>", "Unclick at (" + e.getX() + ";" + e.getY() + ").");
 
-		if (tempCoordX != initialCoordX || tempCoordY != initialCoordY) {
-			initialCoordX = tempCoordX;
-			initialCoordY = tempCoordY;
+			if (tempCoordX != initialCoordX || tempCoordY != initialCoordY) {
+				initialCoordX = tempCoordX;
+				initialCoordY = tempCoordY;
+			}
 		}
 	}
 

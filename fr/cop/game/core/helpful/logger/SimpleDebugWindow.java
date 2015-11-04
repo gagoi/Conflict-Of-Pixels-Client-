@@ -56,11 +56,11 @@ public class SimpleDebugWindow extends JFrame {
 
 		fpsLimitationField.setBounds(220, 5, 100, 35);
 		fpsLimitationField.setText("60");
-		fpsLimitationField.addKeyListener(new KeyAdapter()  {
+		fpsLimitationField.addKeyListener(new KeyAdapter() {
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-				changeFpsLimitationButton.doClick();
+				if (e.getKeyChar() == KeyEvent.VK_ENTER) changeFpsLimitationButton.doClick();
 			}
 		});
 
@@ -120,7 +120,7 @@ public class SimpleDebugWindow extends JFrame {
 		toggleAnimationsButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				 if(Game_Frame.GAME.isGameAnimated = !Game_Frame.GAME.isGameAnimated) System.exit(0);
+				if (Game_Frame.GAME.isGameAnimated = !Game_Frame.GAME.isGameAnimated) System.exit(0);
 
 			}
 		});

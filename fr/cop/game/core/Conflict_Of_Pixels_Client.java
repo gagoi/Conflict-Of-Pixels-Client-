@@ -20,6 +20,7 @@ import fr.cop.game.graphics.Screen;
 import fr.cop.game.graphics.hud.HUD;
 import fr.cop.game.graphics.inGameOptions.Frame;
 import fr.cop.launcher.Launcher_Panel;
+import fr.cop.server.Profil;
 
 public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L; // Convention java.
@@ -65,6 +66,8 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 	public int x = 0;
 	public int y = 0; /* Temporaire */
+	
+	public static Profil testProfil;
 
 	public Conflict_Of_Pixels_Client() { // Objet etant notre jeu.
 		setSize(size); // Cet objet �tant un canvas, on choisis sa taille.
@@ -82,7 +85,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	}
 
 	public static void main(String[] args) { // Methode de demarrage d'un programme en Java.
-
+		testProfil = new Profil();
 		menuFrame = new JFrame(); // On instancie notre fenetre de launcher
 		menuFrame.add(new Launcher_Panel()); // On lui ajoute un nouveau paneau de menu.
 		menuFrame.setTitle("Menu CoP... Test"); // On met son titre.
@@ -90,12 +93,10 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		menuFrame.setResizable(false); // On empeche le redimensionnement de la fenetre.
 		menuFrame.setVisible(true); // On l'affiche.
 		menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // On ferme le programme lorsque la fentre est ferm�e.
-
 	}
 
 	public synchronized void start() { // Fonction de d�marrage du jeu.
 		running = true; // On met la variable running sur vrai.
-
 		CHARACTER_LIST = new CharacterList(); // On instancie notre liste de champions.
 		t = new Thread(this, "CoP"); // On cr�er le Thread du jeu. (pas celui de l'affichage).
 		t.start(); // On d�marre le jeu.

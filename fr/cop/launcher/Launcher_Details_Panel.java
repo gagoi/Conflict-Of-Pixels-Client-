@@ -11,16 +11,22 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import fr.cop.game.core.Conflict_Of_Pixels_Client;
+import fr.cop.server.Profil;
+
 @SuppressWarnings("serial")
 public class Launcher_Details_Panel extends JPanel {
 
 	String file;
-	JLabel label;
+	JLabel label, label2;
 	ImageIcon background;
+	private Profil profil;
 
 	public Launcher_Details_Panel() {
 		super();
-		label = new JLabel("PWAL");
+		profil = Conflict_Of_Pixels_Client.testProfil;
+		//------------------NEWS------------------
+		label = new JLabel();
 		background = new ImageIcon(getClass().getResource("/fr/cop/resources/menus/menu_detailed_panel_background.png"));
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(new URL("https://raw.githubusercontent.com/gagoi/Conflict-Of-Pixels-Client-/master/fr/cop/resources/changelog.txt").openConnection().getInputStream()));
@@ -38,7 +44,15 @@ public class Launcher_Details_Panel extends JPanel {
 		label.setVerticalAlignment(JLabel.TOP);
 		label.setBounds(720, 0, 500, 1000);
 		add(label);
+		
+		// -----------------Option---------------------
+		label2 = new JLabel(profil.getFormattedKDA() + "");
+		label2.setForeground(Color.WHITE);
+		label2.setBounds(720, 00, 500, 30);
+		add(label2);
+		
 		setOpaque(false);
+		setDisplay(4);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -46,4 +60,17 @@ public class Launcher_Details_Panel extends JPanel {
 		g.drawImage(background.getImage(), 530, 0, null);
 	}
 
+	public void setDisplay(int code){
+		switch (code) {
+			case 0:
+				label2.setVisible(true);
+				label.setVisible(false);
+				break;
+			case 4:
+				label2.setVisible(false);
+				label.setVisible(true);
+				
+				break;
+		}
+	}
 }

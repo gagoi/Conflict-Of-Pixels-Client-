@@ -12,14 +12,12 @@ public class SimpleLog {
 	private FileOutputStream logFileOut;
 
 	public SimpleLog() {
-		if (!Game_Frame.gameFolder.exists()) Game_Frame.gameFolder.mkdirs();
-		if (!logFile.exists()) try {
-			logFile.createNewFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		
+//		if (!Game_Frame.gameFolder.exists()) Game_Frame.gameFolder.mkdirs();
+//		if (!logFile.exists()) try {
+//			logFile.createNewFile();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}	
 	}
 
 	public void logTxt(String tag, String message) {

@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import fr.cop.game.core.helpful.logger.SimpleLog;
+import fr.cop.server.Profil;
 
 public class Game_Frame extends JFrame {
 	private static final long serialVersionUID = 5397342146506493113L;
@@ -30,6 +31,8 @@ public class Game_Frame extends JFrame {
 	public static SimpleLog logger = new SimpleLog();
 	
 	public static File gameFolder = new File("C:\\Conflict Of Pixels\\");
+	
+
 
 	public Game_Frame(Conflict_Of_Pixels_Client gameInstance) { // Objet fen�tre.
 		GAME = gameInstance; // On d�finit la variable GAME.

@@ -120,7 +120,7 @@ public class SimpleDebugWindow extends JFrame {
 		toggleAnimationsButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (Game_Frame.GAME.isGameAnimated = !Game_Frame.GAME.isGameAnimated) System.exit(0);
+				Game_Frame.GAME.isGameAnimated = !Game_Frame.GAME.isGameAnimated;
 
 			}
 		});

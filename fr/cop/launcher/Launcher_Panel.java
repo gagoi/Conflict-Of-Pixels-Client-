@@ -35,6 +35,11 @@ public class Launcher_Panel extends JPanel {
 		setLayout(null); // On supprime le layout manager, afin de placï¿½ nos
 							// ï¿½lï¿½ments sur le bon pixel.
 
+
+		// On créée un paneau pour nos details de menus (ex : news). Puis on lui mets des bords.
+		Launcher_Details_Panel detailPanel = new Launcher_Details_Panel();
+		detailPanel.setBounds(50, 108, getWidth(), getHeight() - 200);
+		
 		// On crï¿½ï¿½ un bouton play, avec sa position, son diametre et son arriere
 		// plan. Puis on dï¿½finis les bords du boutons.
 		Laucher_Play_Button pb = new Laucher_Play_Button(512, 360, 100, new ImageIcon(getClass().getResource("/fr/cop/resources/menus/menu_round.png")));
@@ -59,7 +64,16 @@ public class Launcher_Panel extends JPanel {
 		// On créée un bouton de menu, avec un polygon comme base, prenant en  paramètre nos coordonnées précedentes. On y met un texte, et un arrière-plan. Puis on définit les bords du boutons.
 		Launcher_Parts_Button v4 = new Launcher_Parts_Button(new Polygon(x, y[4], x.length), "Options", new ImageIcon(getClass().getResource("/fr/cop/resources/menus/menu_bas_2.png")), pb);
 		v4.setBounds(0, 0, getWidth(), getHeight());
-
+		v4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				detailPanel.setDisplay(0);
+				v1.setVisible(false);
+				repaint();
+			}
+		});
+		
 		// On ajoute une action à notre bouton play.
 		pb.addActionListener(new ActionListener() {
 
@@ -71,9 +85,6 @@ public class Launcher_Panel extends JPanel {
 			}
 		});
 
-		// On créée un paneau pour nos details de menus (ex : news). Puis on lui mets des bords.
-		Launcher_Details_Panel detailPanel = new Launcher_Details_Panel();
-		detailPanel.setBounds(50, 108, getWidth(), getHeight() - 200);
 
 		// On créée un paneau pour notre barre de profil. Puis on lui  mets des bords.
 		Launcher_Profile_Bar_Panel profilBar = new Launcher_Profile_Bar_Panel();

@@ -2,7 +2,6 @@ package fr.cop.game.core.helpful.logger;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 
 import fr.cop.game.core.Game_Frame;
 

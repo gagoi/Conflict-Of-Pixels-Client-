@@ -12,7 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import fr.cop.game.core.helpful.logger.SimpleLog;
-import fr.cop.server.Profil;
 
 public class Game_Frame extends JFrame {
 	private static final long serialVersionUID = 5397342146506493113L;

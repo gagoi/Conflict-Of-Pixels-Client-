@@ -11,8 +11,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import fr.cop.common.Profil;
 import fr.cop.game.core.Conflict_Of_Pixels_Client;
-import fr.cop.server.Profil;
 
 @SuppressWarnings("serial")
 public class Launcher_Details_Panel extends JPanel {

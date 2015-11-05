@@ -12,7 +12,8 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
-import fr.cop.game.core.characters.CharacterList;
+import fr.cop.common.Profil;
+import fr.cop.common.entities.champions.CharacterList;
 import fr.cop.game.core.helpful.logger.SimpleDebugWindow;
 import fr.cop.game.core.inputs.Keyboard;
 import fr.cop.game.core.inputs.Mouse;
@@ -20,7 +21,6 @@ import fr.cop.game.graphics.Screen;
 import fr.cop.game.graphics.hud.HUD;
 import fr.cop.game.graphics.inGameOptions.Frame;
 import fr.cop.launcher.Launcher_Panel;
-import fr.cop.server.Profil;
 
 public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L; // Convention java.

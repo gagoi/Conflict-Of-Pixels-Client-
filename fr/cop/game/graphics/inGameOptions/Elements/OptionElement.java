@@ -1,4 +1,4 @@
-package fr.cop.game.graphics.inGameOptions;
+package fr.cop.game.graphics.inGameOptions.Elements;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -7,7 +7,7 @@ import java.io.InputStream;
 
 public class OptionElement {
 
-	private int posX, posY;
+	private int posX, posY, width, height;
 	private String name;
 	static int internalTimer;
 	public static Font f;
@@ -47,6 +47,14 @@ public class OptionElement {
 	}
 	public void setPosY(int posY) {
 		this.posY = posY;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
 	}
 
 }

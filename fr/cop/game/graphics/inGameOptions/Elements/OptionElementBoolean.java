@@ -1,4 +1,4 @@
-package fr.cop.game.graphics.inGameOptions;
+package fr.cop.game.graphics.inGameOptions.Elements;
 
 import java.awt.Graphics;
 import java.awt.Image;

@@ -159,7 +159,6 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 			debugWindow.setSpellsKeysState(keyboard.spells); // On actualise l'�tat des touches des sorts dans la fen�tre de debug.
 
 			screenGAME.increaseTimer(); // On incr�mente le timer de notre screen, permet d'avoir des animations.
-			optionFrame.increaseTimer();
 
 		}
 	}

@@ -34,12 +34,10 @@ public class HUD_Spell extends HUD_Element {
 	
 	@Override
 	public int getPosY() {
-		return spellsBar.getPosY() + ((spellsBar.getScaledHeight() - background.getHeight(null)) / 2);
+		return spellsBar.getPosY() + (spellsBar.getScaledHeight()- getScaledWidth())/ 2;
 	}
 	
 	@Override
-	
-	
 	public int getScaledWidth() {
 		return (int) (spellsBar.getScaledHeight()/2.5);
 	}

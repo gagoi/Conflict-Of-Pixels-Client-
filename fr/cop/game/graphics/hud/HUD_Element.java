@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.font.TextMeasurer;
 import java.util.Properties;
 
 import javax.swing.ImageIcon;
@@ -71,7 +70,6 @@ public class HUD_Element extends MouseAdapter {
 	public void mouseReleased(MouseEvent e) {
 		if (clickCoordX > initialCoordX && clickCoordX < initialCoordX + getScaledWidth() && clickCoordY > initialCoordY && clickCoordY < initialCoordY + getScaledHeight()) {
 			Game_Frame.logger.logTxt("Mouse Listener <" + hudElementName + ":Release>", "Unclick at (" + e.getX() + ";" + e.getY() + ").");
-
 			if (tempCoordX != initialCoordX || tempCoordY != initialCoordY) {
 				initialCoordX = tempCoordX;
 				initialCoordY = tempCoordY;

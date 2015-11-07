@@ -18,15 +18,14 @@ public class HUD_SpellsBar extends HUD_Element {
 	@Override
 	public void refresh(Graphics g) {
 		super.refresh(g);
-
 		spells[0].refresh(g);
 		spells[1].refresh(g);
 		spells[2].refresh(g);
 		spells[3].refresh(g);
 	}
 
-	@Override
-	public void mousePressed(MouseEvent e) {
-		super.mousePressed(e);
-	}
+//	@Override
+//	public void mousePressed(MouseEvent e) {
+//		super.mousePressed(e);
+//	}
 }

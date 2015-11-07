@@ -1,5 +1,9 @@
 package fr.cop.game.graphics;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
+
 public class Sprite {
 	final int SIZE;
 	private int x, y;
@@ -56,6 +60,15 @@ public class Sprite {
 
 	public void setCode(char code) {
 		this.code = code;
+	}
+	
+	public Image getImage(){
+		BufferedImage bf = new BufferedImage(SIZE, SIZE, BufferedImage.TYPE_INT_ARGB);
+		int[] imgPixels = ((DataBufferInt) bf.getRaster().getDataBuffer()).getData();
+		for (int i = 0; i < imgPixels.length; i++) {
+			imgPixels[i] = pixels[i];
+		}
+		return bf;
 	}
 
 }

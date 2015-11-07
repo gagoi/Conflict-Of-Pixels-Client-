@@ -13,6 +13,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import fr.cop.common.Profil;
+import fr.cop.common.Stats;
 import fr.cop.common.entities.champions.CharacterList;
 import fr.cop.game.core.helpful.logger.SimpleDebugWindow;
 import fr.cop.game.core.inputs.Keyboard;

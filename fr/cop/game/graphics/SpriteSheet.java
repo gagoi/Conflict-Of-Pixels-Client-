@@ -10,7 +10,7 @@ public class SpriteSheet {
 	final int SIZE;
 	public int[] pixels;
 	
-	
+	public static SpriteSheet iconsSheet = new SpriteSheet("iconsStatsHUD.png", 256);
 	public static SpriteSheet testSheet = new SpriteSheet("spritesTest.png", 256);
 	public static SpriteSheet animatedSheet = new SpriteSheet("spritesAnimated.png", 256);
 

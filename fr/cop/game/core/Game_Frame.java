@@ -20,7 +20,7 @@ public class Game_Frame extends JFrame {
 	private static int width = 250; // Taille de la fenetre (largeur).
 	private static int height = width / 16 * 9; // Taille de la denetre
 												// (hauteur).
-	private static Dimension size = new Dimension(width * scale, height * scale); // Taille de la fenetre.
+	public static Dimension size = new Dimension(width * scale, height * scale); // Taille de la fenetre.
 
 	private static boolean isFullScreen = false; // permet de savoir si on est en plein �cran.
 	public static Conflict_Of_Pixels_Client GAME; // Instance du jeu. Accessible depuis partout.

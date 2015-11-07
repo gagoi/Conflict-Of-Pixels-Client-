@@ -40,7 +40,7 @@ public class HUD_Element extends MouseAdapter {
 
 	public HUD_Element(String hudElementName, int width, int height) { // Troisième constructeur, prenant en paramètre un nom, et une taille.
 		// On met tous les paramètres dans une variable d'insance.
-		this.width = width; 
+		this.width = width;
 		this.height = height;
 		this.hudElementName = hudElementName;
 	}
@@ -123,5 +123,11 @@ public class HUD_Element extends MouseAdapter {
 
 	public int getScaledHeight() { // Permet de récupérer la taille de l'élément après avoir été redimmensionné.
 		return (int) (height * getScale());
+	}
+
+	public void setUpDefaultProperties(Properties p, float scale, int posX, int posY) {
+		p.setProperty(hudElementName + "_scale", "" + scale);
+		p.setProperty(hudElementName + "_coord_x", "" + posX);
+		p.setProperty(hudElementName + "_coord_y", "" + posY);
 	}
 }

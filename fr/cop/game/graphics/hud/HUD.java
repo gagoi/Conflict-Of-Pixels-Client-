@@ -32,6 +32,11 @@ public class HUD {
 			loadHUD(); // ... de charger le HUD depuis les préférences de l'utilisateur.
 		} catch (Exception e) { // En cas d'erreur...
 			saveHUD(); // On créer les fichier par défaut.
+			try {
+				loadHUD();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
 	}
 
@@ -39,7 +44,7 @@ public class HUD {
 		Game_Frame.logger.logTxt("HUD - Loader", "Start loading...");
 		hudProp.load(new FileInputStream(propHudPropFile)); // On lit le fichier de propriétés.
 		map.readProps(hudProp); // On permet à chaque partie du HUD de lire les infos dont il a besoin dans le fichier.
-		stats.readProps(hudProp); 
+		stats.readProps(hudProp);
 		spellsBar.readProps(hudProp);
 		Game_Frame.logger.logTxt("HUD - Loader", "Finish loading...");
 	}
@@ -57,9 +62,8 @@ public class HUD {
 			Game_Frame.logger.logErr("HUD - Saving", "Error during file creation, please send this error to developers.");
 			e.printStackTrace(); // On écrit l'erreur dans la console.
 		}
-
 		// On permet à chauqe partie du HUD d'écrire les propriétés dont il a besoin.
-		map.storeProps(hudProp); 
+		map.storeProps(hudProp);
 		stats.storeProps(hudProp);
 		spellsBar.storeProps(hudProp);
 

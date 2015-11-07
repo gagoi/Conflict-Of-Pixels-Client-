@@ -2,6 +2,8 @@ package fr.cop.game.graphics.hud;
 
 import java.awt.Graphics;
 
+import fr.cop.game.core.Game_Frame;
+
 public class HUD_SpellsBar extends HUD_Element {
 
 	private HUD_Spell[] spells = new HUD_Spell[4]; // Tableau contenant nos sorts.
@@ -12,6 +14,8 @@ public class HUD_SpellsBar extends HUD_Element {
 		spells[1] = new HUD_Spell(1, this); // On définit le bouton Z.
 		spells[2] = new HUD_Spell(2, this); // On définit le bouton E.
 		spells[3] = new HUD_Spell(3, this); // On définit le bouton R.
+		setScale(0.5f);
+		setCoords((int) (Game_Frame.size.width/2-getScaledWidth()/2), Game_Frame.size.height-getScaledHeight());
 	}
 
 	@Override

@@ -65,6 +65,7 @@ public class OptionElementList extends OptionElement implements MouseListener {
 
 	@Override
 	public int getWidth() {
+		
 		return 200;
 	}
 

@@ -9,11 +9,12 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 
 import fr.cop.common.Profil;
-import fr.cop.common.Stats;
+import fr.cop.common.entities.Entity;
 import fr.cop.common.entities.champions.CharacterList;
 import fr.cop.game.core.helpful.logger.SimpleDebugWindow;
 import fr.cop.game.core.inputs.Keyboard;
@@ -21,6 +22,7 @@ import fr.cop.game.core.inputs.Mouse;
 import fr.cop.game.graphics.Screen;
 import fr.cop.game.graphics.hud.HUD;
 import fr.cop.game.graphics.inGameOptions.Frame;
+import fr.cop.games.entities.EntityTest;
 import fr.cop.launcher.Launcher_Panel;
 
 public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
@@ -61,6 +63,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 	private Thread t; // Thread de notre jeu.
 	public static CharacterList CHARACTER_LIST; // Liste des Champions.
+	public Vector<Entity> entities = new Vector<Entity>();
 
 	public static boolean isFullScreen;
 	public boolean isGameAnimated = false;
@@ -100,6 +103,8 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		running = true; // On met la variable running sur vrai.
 		CHARACTER_LIST = new CharacterList(); // On instancie notre liste de champions.
 		t = new Thread(this, "CoP"); // On cr�er le Thread du jeu. (pas celui de l'affichage).
+		entities.add(new EntityTest());
+		
 		t.start(); // On d�marre le jeu.
 
 	}
@@ -190,6 +195,9 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		g.setColor(Color.BLACK); // On met la couleur en noire pour ...
 		g.fillRect(0, 0, getWidth(), getHeight()); // ... vider l'�cran.
 		g.drawImage(bufferedImage, 0, 0, imageRenderedWidth, imageRenderedHeight, null); // Puis on dessine notre image.
+
+		
+		
 		hud.refreshGraphics(g, imageRenderedWidth, imageRenderedHeight);
 		if (optionFrame.isVisible()) optionFrame.refresh(g);
 

@@ -3,7 +3,9 @@ package fr.cop.game.core;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Vector;
 
+import fr.cop.common.entities.Entity;
 import fr.cop.game.graphics.Sprite;
 import fr.cop.game.graphics.Sprites;
 
@@ -12,6 +14,7 @@ public class Level {
 	private final String PATH; // Chemin d'accès au fichier de la map (déclaré final car ne sera pas changé).
 	private final int SIZE; // Taille de la map (déclaré final car ne sera pas changé).
 	private String map; // Contenu de la map (suite de char).
+	private Vector<Entity> entities = new Vector<Entity>();
 
 	public Level(String path, int size) { // Objet Level ===> map
 		SIZE = size; // On instancie la taille.

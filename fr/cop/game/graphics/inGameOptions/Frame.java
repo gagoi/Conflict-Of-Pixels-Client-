@@ -10,7 +10,7 @@ import fr.cop.game.graphics.inGameOptions.Elements.Tab;
 public class Frame {
 
 	public ArrayList<Tab> tabs = new ArrayList<Tab>();
-	private boolean isVisible = true;
+	private boolean isVisible = false;
 
 	public Frame() {
 		tabs.add(new Tab("Video", 0, 0, new OptionTab("Video", 200, 0)));

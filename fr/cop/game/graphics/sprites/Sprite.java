@@ -71,4 +71,8 @@ public class Sprite {
 		return bf;
 	}
 
+	public int getSize() {
+		return SIZE;
+	}
+
 }

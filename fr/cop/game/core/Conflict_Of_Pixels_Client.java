@@ -46,7 +46,6 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 	public Dimension size = new Dimension(imageRenderedWidth, imageRenderedHeight); // Taille de la fenetre.
 	public static boolean scorePWAL1;
-	public final Level MAP = new Level("map", 50); // Cr�ation de notre map, de param�tre son nom et sa taille.
 
 	public BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); // Image de notre jeu (en tampon).
 

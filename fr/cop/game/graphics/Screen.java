@@ -1,6 +1,5 @@
 package fr.cop.game.graphics;
 
-import fr.cop.common.entities.Entity;
 import fr.cop.game.core.Game_Frame;
 
 public class Screen {
@@ -26,7 +25,7 @@ public class Screen {
 	}
 
 	public void render(int xOffset, int yOffset) { // Méthode de rendu.
-		int renderedMapSize = Game_Frame.GAME.MAP.getSize() * 16; // Taille de la map Après avoir été rendue (chaque tile vaut 16 pixels).
+		int renderedMapSize = Game_Frame.GAME.serverGame.getMap().getSize() * 16; // Taille de la map Après avoir été rendue (chaque tile vaut 16 pixels).
 		for (int y = 0; y < renderedMapSize; y++) { // Pour chaque pixel en hauteur.
 			int yp = y + yOffset; // On applique le décalage en abscisse.
 			if (yp < 0 || yp >= renderedMapSize) continue; // Si on sort de la fenêtre, on arrete le rendu. ==> Optimisation.
@@ -34,7 +33,10 @@ public class Screen {
 				int xp = x + xOffset; // On applique le décalage en ordonnée.
 				if (xp < 0 || xp >= renderedMapSize) continue; // Si on sort de la fenêtre, on arrête le rendu. ==> Optimisation.
 				try { // On essaie de :
-					pixels[xp][yp] = Game_Frame.GAME.MAP.getSpriteAt(x, y, (internalTimer / 2) % 16, Game_Frame.GAME.isGameAnimated).getPixelValue(x % 16, y % 16); // faire le rendu de la map.
+					if(Game_Frame.GAME.isGameAnimated)
+						pixels[xp][yp] = Sprites.getAnimatedSprite(Game_Frame.GAME.serverGame.getMap().getSpriteCodeAt(x, y), (internalTimer/2)%16).getPixelValue(x%16, y%16);
+					else 
+						Sprites.getSprite(Game_Frame.GAME.serverGame.getMap().getSpriteCodeAt(x, y)).getPixelValue(x%16, y%16);// faire le rendu de la map.
 				} catch (Exception e) {// Si il y a une erreur...
 					// On fait rien... xDDDD
 				}

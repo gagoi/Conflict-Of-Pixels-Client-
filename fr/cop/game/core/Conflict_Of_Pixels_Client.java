@@ -13,16 +13,16 @@ import java.util.Vector;
 
 import javax.swing.JFrame;
 
+import fr.cop.common.Game;
 import fr.cop.common.Profil;
 import fr.cop.common.entities.Entity;
-import fr.cop.common.entities.champions.CharacterList;
+import fr.cop.common.entities.champions.Champion;
 import fr.cop.game.core.helpful.logger.SimpleDebugWindow;
 import fr.cop.game.core.inputs.Keyboard;
 import fr.cop.game.core.inputs.Mouse;
 import fr.cop.game.graphics.Screen;
 import fr.cop.game.graphics.hud.HUD;
 import fr.cop.game.graphics.inGameOptions.Frame;
-import fr.cop.games.entities.EntityTest;
 import fr.cop.launcher.Launcher_Panel;
 
 public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
@@ -62,7 +62,6 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	public Frame optionFrame = new Frame();
 
 	private Thread t; // Thread de notre jeu.
-	public static CharacterList CHARACTER_LIST; // Liste des Champions.
 	public Vector<Entity> entities = new Vector<Entity>();
 
 	public static boolean isFullScreen;
@@ -72,6 +71,9 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	public int y = 0; /* Temporaire */
 	
 	public static Profil testProfil;
+	public Game serverGame;
+	private String serverIP = "localhost";
+	private Champion[] tempChamps = new Champion[10];
 
 	public Conflict_Of_Pixels_Client() { // Objet etant notre jeu.
 		setSize(size); // Cet objet �tant un canvas, on choisis sa taille.
@@ -86,7 +88,14 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		optionFrame.addMouseListeners(this);
 
 		debugWindow = new SimpleDebugWindow(); // Cr�ation de notre fen�tre de debug.
+		serverGame = new Game(){
+			@Override
+			public void getInformation(){
+				this.setChampions(tempChamps);
+			}
+		};
 	}
+	
 
 	public static void main(String[] args) { // Methode de demarrage d'un programme en Java.
 		testProfil = new Profil();
@@ -101,9 +110,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 	public synchronized void start() { // Fonction de d�marrage du jeu.
 		running = true; // On met la variable running sur vrai.
-		CHARACTER_LIST = new CharacterList(); // On instancie notre liste de champions.
 		t = new Thread(this, "CoP"); // On cr�er le Thread du jeu. (pas celui de l'affichage).
-		entities.add(new EntityTest());
 		
 		t.start(); // On d�marre le jeu.
 

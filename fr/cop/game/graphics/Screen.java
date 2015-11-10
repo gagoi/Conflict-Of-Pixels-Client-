@@ -35,10 +35,6 @@ public class Screen {
 				if (xp < 0 || xp >= renderedMapSize) continue; // Si on sort de la fenêtre, on arrête le rendu. ==> Optimisation.
 				try { // On essaie de :
 					pixels[xp][yp] = Game_Frame.GAME.MAP.getSpriteAt(x, y, (internalTimer / 2) % 16, Game_Frame.GAME.isGameAnimated).getPixelValue(x % 16, y % 16); // faire le rendu de la map.
-					for (Entity entity : Game_Frame.GAME.entities) {
-						if(entity.mustBeDraw());
-						pixels[xp][yp] = entity.getSprite()[(x%16)+(y%16)*16];
-					}
 				} catch (Exception e) {// Si il y a une erreur...
 					// On fait rien... xDDDD
 				}

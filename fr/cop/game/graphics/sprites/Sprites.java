@@ -1,4 +1,4 @@
-package fr.cop.game.graphics;
+package fr.cop.game.graphics.sprites;
 
 public class Sprites {
 
@@ -32,4 +32,19 @@ public class Sprites {
 		}
 		return getSprite(code); // Si la boucle se termine, c'est que l'on n'a pas trouvé de sprite animé. On cherche donc un sprite non-animé pour le remplacer.
 	}
+	
+	public static Sprite getSpriteFromID(String id) { // Méthode permettant de savoir quel Sprite correspond à un code donné.
+		for (int i = 0; i < sprites.length; i++) { // On parcourt le tableau contenant tous les Sprites (non animés) ...
+			if (sprites[i].getId() == id) return sprites[i]; // ... si on trouve le bon sprite, on le renvoie.
+		}
+		return debug; // Si la boucle s'est finie sans renvoyer de sprite, on utilise le sprite de debug.
+	}
+
+	public static Sprite getAnimatedSpriteFromID(String id, int time) { // Méthode permettant de savoir quel Sprite correspond à un code donné.
+		for (int i = 0; i < animatedSprites.length; i++) { // On parcourt tous les sprites animés...
+			if (animatedSprites[i].getId() == id) return animatedSprites[i].getSprite(time % animatedSprites[i].getNbImage()); // ... si on trouvez le bon sprite, on renvoie un sprite du sprite animé en fonction du temps.
+		}
+		return getSpriteFromID(id); // Si la boucle se termine, c'est que l'on n'a pas trouvé de sprite animé. On cherche donc un sprite non-animé pour le remplacer.
+	}
+	
 }

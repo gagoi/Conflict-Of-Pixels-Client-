@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import fr.cop.common.Stats;
 import fr.cop.game.core.Game_Frame;
-import fr.cop.game.graphics.Sprites;
+import fr.cop.game.graphics.sprites.Sprites;
 
 public class HUD_Statistiques extends HUD_Element {
 

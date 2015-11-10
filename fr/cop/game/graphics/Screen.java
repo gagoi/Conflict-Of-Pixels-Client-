@@ -1,6 +1,7 @@
 package fr.cop.game.graphics;
 
 import fr.cop.game.core.Game_Frame;
+import fr.cop.game.graphics.sprites.Sprites;
 
 public class Screen {
 

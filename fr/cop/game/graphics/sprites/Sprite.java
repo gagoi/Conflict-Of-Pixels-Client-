@@ -1,4 +1,4 @@
-package fr.cop.game.graphics;
+package fr.cop.game.graphics.sprites;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;

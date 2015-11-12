@@ -4,6 +4,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import fr.cop.game.core.Game_Frame;
+
 public class Mouse implements MouseListener, MouseMotionListener {
 	public boolean[] clicks = new boolean[3];
 	public int[][] positions = new int[2][2];
@@ -20,6 +22,7 @@ public class Mouse implements MouseListener, MouseMotionListener {
 		clicks[e.getButton()] = true;
 		positions[e.getButton()][0] = e.getX();
 		positions[e.getButton()][1] = e.getY();
+		Game_Frame.GAME.serverGame.requestMove(Game_Frame.GAME.serverGame.getChampion(0), convertToServerPosX(e.getX()), convertToServerPosY(e.getY()));
 	}
 
 	@Override
@@ -47,13 +50,17 @@ public class Mouse implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
+	}
+	
+	public int convertToServerPosX(int renderX){
+		return ((renderX-Game_Frame.GAME.x)*Game_Frame.GAME.serverGame.getMap().gridSize)/Game_Frame.size.width;
+	}
+	public int convertToServerPosY(int renderY){
+		return ((renderY-Game_Frame.GAME.y)*Game_Frame.GAME.serverGame.getMap().gridSize)/Game_Frame.size.height;
 	}
 
 }

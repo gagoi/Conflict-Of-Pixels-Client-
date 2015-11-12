@@ -41,16 +41,15 @@ public class Screen {
 					if (Game_Frame.GAME.isGameAnimated) pixels[xp][yp] = Sprites.getAnimatedSprite(Game_Frame.GAME.serverGame.getMap().getSpriteCodeAt(x, y), (internalTimer / 2) % 16).getPixelValue(x % 16, y % 16);
 					else pixels[xp][yp] = Sprites.getSprite(Game_Frame.GAME.serverGame.getMap().getSpriteCodeAt(x, y)).getPixelValue(x % 16, y % 16);// faire le rendu de la map.
 
-					for (int i = 0; i < Game_Frame.GAME.serverGame.getChampionsNumber(); i++) {
-						Champion c = Game_Frame.GAME.serverGame.getChampion(i);
-						Sprite s = Sprites.getSpriteFromID(c.getSpriteInformation());
-						if (c.getRenderPosX((int) Game_Frame.GAME.size.getWidth(), Game_Frame.GAME.serverGame.getMap().getSize()) == x && c.getRenderPosY((int) Game_Frame.GAME.size.getWidth(), Game_Frame.GAME.serverGame.getMap().getSize()) == y) {
-							for (int j = 0; j < 16; j++) {
-								for (int j2 = 0; j2 < 16; j2++) {
-									pixels[xp + j][yp + j2] = s.getPixelValue(j % 16, j2 % 16);
-								}
+					Champion c = Game_Frame.GAME.serverGame.getChampion(0);
+					Sprite s = Sprites.getSpriteFromID(c.getSpriteInformation());
+					if (c.getRenderPosX((int) Game_Frame.GAME.size.getWidth(), Game_Frame.GAME.serverGame.getMap().gridSize) == x && c.getRenderPosY((int) Game_Frame.GAME.size.getWidth(), Game_Frame.GAME.serverGame.getMap().gridSize) == y) {
+						for (int j = 0; j < 16; j++) {
+							for (int j2 = 0; j2 < 16; j2++) {
+								pixels[xp + j][yp + j2] = s.getPixelValue(j % 16, j2 % 16);
 							}
 						}
+
 					}
 					if (!Game_Frame.GAME.serverGame.getSpells().isEmpty()) {
 						for (Spell_Base spell : Game_Frame.GAME.serverGame.getSpells()) {
@@ -74,10 +73,10 @@ public class Screen {
 		internalTimer++; // On incrémente le timer de 1.
 		if (internalTimer > 16 * 20) internalTimer = 0; // Si le timer dépasse les 320 actualisations, on le remet à 0 (Faire varier le 20 pour changer la vitesse d'animation).
 	}
-	
+
 	@Override
 	public String toString() {
-		return " - Base : [Width=" + width + " | Height=" + height + "] \r          - Upscaled : [Width=" + Game_Frame.size.width + " | Height=" + Game_Frame.size.height +"]";
+		return " - Base : [Width=" + width + " | Height=" + height + "] \r          - Upscaled : [Width=" + Game_Frame.size.width + " | Height=" + Game_Frame.size.height + "]";
 	}
 
 }

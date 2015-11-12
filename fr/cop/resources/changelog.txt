@@ -2,12 +2,13 @@
 	<body>
 		<center><h1>News</h1></center>
 		<ul>
-			<span style="font-size:22px; text-decoration:underline; color:#80BFF;"><h1><li>Alpha 0.0.0.2 : (16/10/15)</h1></li></span>
+			<span style="font-size:22px; text-decoration:underline; color:#80BFF;"><h1><li>Alpha 0.0.0.2 : (12/11/15)</h1></li></span>
 			<ul>
-				<li> Test</li>
-				<li> Test 2</li>
-				<li> Optimisation de l'interface</li>
-				<li> Mise à jour de l'interface</li>
+				<li> Meilleur gestion du projet, afin de simplfier le lien entre client et serveur.</li>
+				<li> Changement de map, pour une map plus grande, mais non définitive.</li>
+				<li> HUD presque terminé, les éléments en lien avec le graphisme sont en cours de création.</li>
+				<li> Le menu option est en cours de création.</li>
+				<li> L'ajout de contenu commence avec la création d'un champion de test. </li>
 			</ul>
 			<br>
 			<span style="font-size:22px; text-decoration:underline; color:red;"><li>Alpha 0.0.0.1 : (15/10/15)</li></span>

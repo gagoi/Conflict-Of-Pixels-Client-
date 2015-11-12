@@ -88,10 +88,10 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 		debugWindow = new SimpleDebugWindow(); // Cr�ation de notre fen�tre de debug.
 		serverGame = new Game() {
-			@Override
-			public void getInformation() {
-				this.setChampions(tempChamps);
-			}
+//			@Override
+//			public void getInformation() {
+//				this.setChampions(tempChamps);
+//			}
 		};
 	}
 
@@ -168,17 +168,9 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 			debugWindow.setItemsKeysState(keyboard.items); // On actualise l'�tat des touches des items dans le fen�tre de debug.
 			debugWindow.setSpellsKeysState(keyboard.spells); // On actualise l'�tat des touches des sorts dans la fen�tre de debug.
 
-			serverGame.getChampion(0).setPosX(serverGame.getChampion(0).getPosX() + 1);
-			if (serverGame.getChampion(0).getPosX() > 100) serverGame.getChampion(0).setPosX(0);
-			serverGame.getChampion(1).setPosY(serverGame.getChampion(1).getPosY() + 1);
-			if (serverGame.getChampion(1).getPosY() > 200) serverGame.getChampion(1).setPosY(0);
-			
-
-			serverGame.getChampion(2).setPosX(serverGame.getChampion(2).getPosX() + 1);
-			if (serverGame.getChampion(2).getPosX() > 200) serverGame.getChampion(2).setPosX(0);
-			serverGame.getChampion(2).setPosY(serverGame.getChampion(2).getPosY() + 1);
-			if (serverGame.getChampion(2).getPosY() > 200) serverGame.getChampion(2).setPosY(0);
-
+			serverGame.getChampion(0).setPosX(serverGame.getChampion(0).getServerPosX() + 1);
+			if (serverGame.getChampion(0).getServerPosX() > 100) serverGame.getChampion(0).setPosX(0);
+		
 			screenGAME.increaseTimer(); // On incr�mente le timer de notre screen, permet d'avoir des animations.
 
 		}

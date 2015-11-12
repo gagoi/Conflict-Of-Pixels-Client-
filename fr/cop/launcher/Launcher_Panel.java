@@ -81,7 +81,7 @@ public class Launcher_Panel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// On ferme le launcher, et on lance le jeu.
 				Conflict_Of_Pixels_Client.menuFrame.dispose();
-				Conflict_Of_Pixels_Client.gameFrame = new Game_Frame(new Conflict_Of_Pixels_Client());
+				Conflict_Of_Pixels_Client.gameFrame = new Game_Frame();
 			}
 		});
 

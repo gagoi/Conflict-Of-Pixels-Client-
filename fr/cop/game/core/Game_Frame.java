@@ -33,8 +33,8 @@ public class Game_Frame extends JFrame {
 	
 
 
-	public Game_Frame(Conflict_Of_Pixels_Client gameInstance) { // Objet fen�tre.
-		GAME = gameInstance; // On d�finit la variable GAME.
+	public Game_Frame() { // Objet fen�tre.
+		GAME = new Conflict_Of_Pixels_Client(); // On d�finit la variable GAME.
 		instance = this; // On instancie notre instance de fen�tre.
 		setTitle("Conflict Of Pixels");
 		if (isFullScreen) {
@@ -50,7 +50,7 @@ public class Game_Frame extends JFrame {
 			setLocationRelativeTo(null);
 		}
 		setResizable(false);
-		gameInstance.setBounds(0, 0, getWidth(), getHeight());
+		GAME.setBounds(0, 0, getWidth(), getHeight());
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -62,11 +62,11 @@ public class Game_Frame extends JFrame {
 				}
 			}
 		});
-		add(gameInstance, BorderLayout.CENTER);
+		add(GAME, BorderLayout.CENTER);
 		setIconImage(new ImageIcon(getClass().getResource("/fr/cop/resources/images/gameLogo.jpg")).getImage());
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		gameInstance.start();
+		GAME.start();
 	}
 
 	public synchronized void toggleFullScreen() {
@@ -75,6 +75,6 @@ public class Game_Frame extends JFrame {
 		if (isFullScreen) GAME.setImageRenderedSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
 		else GAME.setImageRenderedSize(getSize().width, getSize().height);
 		Game_Frame.instance.dispose();
-		Game_Frame.instance = new Game_Frame(GAME);
+		Game_Frame.instance = new Game_Frame();
 	}
 }

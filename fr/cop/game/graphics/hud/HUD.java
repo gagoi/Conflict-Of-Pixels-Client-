@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import fr.cop.common.Game;
 import fr.cop.game.core.Game_Frame;
 
 public class HUD {
@@ -19,7 +20,7 @@ public class HUD {
 	private HUD_SpellsBar spellsBar; // - la barre de sorts.
 	private int width, height; // Taille de la fenetre.
 	Properties hudProp = new Properties(); // Propriétés, permettant de facilement sayvegarder les préférences de l'utilisateur (en ce qui concerne le HUD)
-	File propHudPropFile = new File(Game_Frame.gameFolder.getPath() + "\\config\\hud.properties"); // Fichiers de propriétes.
+	File propHudPropFile = new File(Game.gameFolder.getPath() + "\\config\\hud.properties"); // Fichiers de propriétes.
 
 	public HUD(int w, int h) { // Objet HUD
 		map = new HUD_map(); // On instancie la map
@@ -51,10 +52,6 @@ public class HUD {
 
 	public void saveHUD() { // Méthode pour sauvegarder les informations sur le HUD.
 		Game_Frame.logger.logTxt("HUD - Saving", "Start saving...");
-		if (!propHudPropFile.getParentFile().exists()) { // Si le dossier n'existe pas...
-			propHudPropFile.getParentFile().mkdirs(); // On le construit.
-			Game_Frame.logger.logTxt("HUD - Saving", "Folder error ! Create it.");
-		}
 		if (!propHudPropFile.exists()) try { // Si le fichier n'existe pas...
 			propHudPropFile.createNewFile(); // on le créer.
 			Game_Frame.logger.logTxt("HUD - Saving", "File error ! Create it.");

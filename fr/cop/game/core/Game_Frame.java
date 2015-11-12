@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -29,7 +28,6 @@ public class Game_Frame extends JFrame {
 
 	public static SimpleLog logger;
 	
-	public static File gameFolder = new File("C:\\Conflict Of Pixels\\");
 	
 
 

@@ -23,7 +23,9 @@ import fr.cop.game.core.inputs.Mouse;
 import fr.cop.game.graphics.Screen;
 import fr.cop.game.graphics.hud.HUD;
 import fr.cop.game.graphics.inGameOptions.Frame;
+import fr.cop.launcher.LauncherV2;
 import fr.cop.launcher.Launcher_Panel;
+import javafx.application.Application;
 
 public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L; // Convention java.
@@ -97,13 +99,16 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 	public static void main(String[] args) { // Methode de demarrage d'un programme en Java.
 		testProfil = new Profil();
-		menuFrame = new JFrame(); // On instancie notre fenetre de launcher
-		menuFrame.add(new Launcher_Panel()); // On lui ajoute un nouveau paneau de menu.
-		menuFrame.setTitle("Menu CoP... Test"); // On met son titre.
-		menuFrame.setSize(1280, 720); // On choisit sa taille.
-		menuFrame.setResizable(false); // On empeche le redimensionnement de la fenetre.
-		menuFrame.setVisible(true); // On l'affiche.
-		menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // On ferme le programme lorsque la fentre est ferm�e.
+		
+		LauncherV2.launch(LauncherV2.class, args);		
+		
+//		menuFrame = new JFrame(); // On instancie notre fenetre de launcher
+//		menuFrame.add(new Launcher_Panel()); // On lui ajoute un nouveau paneau de menu.
+//		menuFrame.setTitle("Menu CoP... Test"); // On met son titre.
+//		menuFrame.setSize(1280, 720); // On choisit sa taille.
+//		menuFrame.setResizable(false); // On empeche le redimensionnement de la fenetre.
+//		menuFrame.setVisible(true); // On l'affiche.
+//		menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // On ferme le programme lorsque la fentre est ferm�e.
 	}
 
 	public synchronized void start() { // Fonction de d�marrage du jeu.

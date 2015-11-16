@@ -23,8 +23,8 @@ import fr.cop.game.core.inputs.Mouse;
 import fr.cop.game.graphics.Screen;
 import fr.cop.game.graphics.hud.HUD;
 import fr.cop.game.graphics.inGameOptions.Frame;
-import fr.cop.launcher.LauncherV2;
-import fr.cop.launcher.Launcher_Panel;
+import fr.cop.launcherFX.LauncherV2;
+import fr.cop.launcherSwing.Launcher_Panel;
 import javafx.application.Application;
 
 public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {

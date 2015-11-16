@@ -1,4 +1,4 @@
-package fr.cop.launcher;
+package fr.cop.launcherSwing;
 
 import java.awt.Color;
 import java.awt.Graphics;

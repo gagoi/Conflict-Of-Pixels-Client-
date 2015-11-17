@@ -79,6 +79,10 @@ public class LauncherV2 extends Application {
 
 		primaryStage.setScene(newsScene);
 		primaryStage.sizeToScene();
+		primaryStage.centerOnScreen();
+		primaryStage.setResizable(false);
+		primaryStage.setTitle("Conflict Of Pixels Launcher");
+		primaryStage.getIcons().add(new Image(LauncherV2.class.getResource("/fr/cop/resources/icons/icon.png").toExternalForm(), 512, 181, false, true));
 		primaryStage.show();
 	}
 

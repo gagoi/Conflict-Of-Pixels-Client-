@@ -34,7 +34,7 @@ public class ProfilBar extends StackPane {
 		setMargin(xpBar, new Insets(5, 0, 20, 0));
 		xpBar.setBackground(new Background(new BackgroundFill(Color.DARKRED, CornerRadii.EMPTY, new Insets(0))));
 		xpBar.setPrefSize(430, 15);
-		xpBar.setTooltip(new Tooltip(prof.getXpAmmountInLevel() + "/" + prof.getNextLevelNeededXp() + " xp"));
+		xpBar.setTooltip(new Tooltip(prof.getXpAmmount() + "/" + (int) prof.getNextLevelNeededXp() + " xp"));
 
 		Image icon = new Image(LauncherV2.class.getResource("/fr/cop/resources/icons/" + prof.getIcon() + ".png").toExternalForm(), 50, 50, false, true);
 		ImageView iconView = new ImageView(icon);

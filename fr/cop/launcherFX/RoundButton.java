@@ -10,33 +10,26 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 
-public class ButtonMenu extends Button {
+public class RoundButton extends Button {
 
-	Polygon p;
 	Circle c;
 
-	public ButtonMenu(Pos textPos, Polygon p, Font f, Image img) {
-		super();
-		this.p = p;
+	public RoundButton(String text, Font f) {
+		super(text);
+		Circle c = new Circle(100);
+		getChildren().add(c);
+		Image img = new Image(LauncherV2.class.getResource("/fr/cop/resources/launcher/images/roundBg.png").toExternalForm(), 200, 200, false, true);
 		setBackground(new Background(new BackgroundImage(img, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
-		setAlignment(textPos);
-		getChildren().add(p);
+		setAlignment(Pos.CENTER);
 		setPrefSize(img.getWidth(), img.getHeight());
+		setFont(Font.font("Zekton Rg", 60));
 		setTextFill(Color.YELLOW);
-		setFont(f);
-	}
-
-	public ButtonMenu(String text, Pos textPos, Polygon p, Font f, Image img) {
-		this(textPos, p, f, img);
-		setText(text);
 	}
 
 	@Override
 	public boolean contains(double localX, double localY) {
-		return p.contains(localX, localY);
+		return c.contains(localX, localY);
 	}
-
 }

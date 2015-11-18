@@ -1,7 +1,7 @@
 <html>	
 	<body>
 		<center><h1>News</h1></center>
-		<ul>\n
+		<ul>\r\n
 			<span style="font-size:22px; text-decoration:underline; color:#80BFF;"><h1><li>Alpha 0.0.0.2 : (12/11/15)</h1></li></span>
 			<ul>
 				<li> Meilleur gestion du projet, afin de simplfier le lien entre client et serveur.</li>

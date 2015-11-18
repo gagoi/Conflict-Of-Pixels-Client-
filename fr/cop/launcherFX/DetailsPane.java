@@ -39,7 +39,7 @@ public class DetailsPane extends StackPane {
 						if (file == null) file = line;
 						else file += line;
 					}
-//					tv.setText(file);
+					tv.setText(file);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

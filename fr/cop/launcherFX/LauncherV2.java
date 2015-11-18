@@ -1,5 +1,6 @@
 package fr.cop.launcherFX;
 
+import fr.cop.common.Profil;
 import fr.cop.game.core.Conflict_Of_Pixels_Client;
 import fr.cop.game.core.Game_Frame;
 import javafx.application.Application;
@@ -86,6 +87,20 @@ public class LauncherV2 extends Application {
 		primaryStage.setTitle("Conflict Of Pixels Launcher");
 		primaryStage.getIcons().add(new Image(LauncherV2.class.getResource("/fr/cop/resources/icons/icon.png").toExternalForm(), 512, 181, false, true));
 		primaryStage.show();
+	}
+	
+	public static void main(String[] args) { // Methode de demarrage d'un programme en Java.
+		Conflict_Of_Pixels_Client.testProfil = new Profil();
+		
+		LauncherV2.launch(LauncherV2.class, args);		
+		
+//		menuFrame = new JFrame(); // On instancie notre fenetre de launcher
+//		menuFrame.add(new Launcher_Panel()); // On lui ajoute un nouveau paneau de menu.
+//		menuFrame.setTitle("Menu CoP... Test"); // On met son titre.
+//		menuFrame.setSize(1280, 720); // On choisit sa taille.
+//		menuFrame.setResizable(false); // On empeche le redimensionnement de la fenetre.
+//		menuFrame.setVisible(true); // On l'affiche.
+//		menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // On ferme le programme lorsque la fentre est ferm�e.
 	}
 
 }

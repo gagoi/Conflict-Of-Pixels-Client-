@@ -1,27 +1,22 @@
 package fr.cop.launcherFX;
 
-import fr.cop.common.Profil;
 import fr.cop.game.core.Conflict_Of_Pixels_Client;
 import fr.cop.game.core.Game_Frame;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class LauncherV2 extends Application {
+public class LauncherV2 extends Stage {
 
 	static Font f;
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public LauncherV2() {
 		try {
 			f = Font.loadFont(LauncherV2.class.getResourceAsStream("/fr/cop/resources/menus/fonts/zekton_rg.ttf"), 40);
 		} catch (Exception e) {
@@ -69,8 +64,7 @@ public class LauncherV2 extends Application {
 			@Override
 			public void handle(Event event) {
 				try {
-					stop();
-					primaryStage.hide();
+					hide();
 					Conflict_Of_Pixels_Client.gameFrame = new Game_Frame();
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -80,27 +74,12 @@ public class LauncherV2 extends Application {
 		});
 		root.getChildren().addAll(b0, b1, b2, b3, b4, details, bCenter, profilBar);
 
-		primaryStage.setScene(newsScene);
-		primaryStage.sizeToScene();
-		primaryStage.centerOnScreen();
-		primaryStage.setResizable(false);
-		primaryStage.setTitle("Conflict Of Pixels Launcher");
-		primaryStage.getIcons().add(new Image(LauncherV2.class.getResource("/fr/cop/resources/icons/icon.png").toExternalForm(), 512, 181, false, true));
-		primaryStage.show();
+		setScene(newsScene);
+		sizeToScene();
+		centerOnScreen();
+		setResizable(false);
+		setTitle("Conflict Of Pixels Launcher");
+		getIcons().add(new Image(LauncherV2.class.getResource("/fr/cop/resources/icons/icon.png").toExternalForm(), 512, 181, false, true));
+		show();
 	}
-	
-	public static void main(String[] args) { // Methode de demarrage d'un programme en Java.
-		Conflict_Of_Pixels_Client.testProfil = new Profil();
-		
-		LauncherV2.launch(LauncherV2.class, args);		
-		
-//		menuFrame = new JFrame(); // On instancie notre fenetre de launcher
-//		menuFrame.add(new Launcher_Panel()); // On lui ajoute un nouveau paneau de menu.
-//		menuFrame.setTitle("Menu CoP... Test"); // On met son titre.
-//		menuFrame.setSize(1280, 720); // On choisit sa taille.
-//		menuFrame.setResizable(false); // On empeche le redimensionnement de la fenetre.
-//		menuFrame.setVisible(true); // On l'affiche.
-//		menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // On ferme le programme lorsque la fentre est ferm�e.
-	}
-
 }

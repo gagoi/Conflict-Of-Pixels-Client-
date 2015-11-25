@@ -32,7 +32,7 @@ public class Game_Frame extends JFrame {
 
 
 	public Game_Frame() { // Objet fen�tre.
-		logger = new SimpleLog();
+		logger = new SimpleLog("C:\\Conflict Of Pixels\\");
 		GAME = new Conflict_Of_Pixels_Client(); // On d�finit la variable GAME.
 		instance = this; // On instancie notre instance de fen�tre.
 		setTitle("Conflict Of Pixels");

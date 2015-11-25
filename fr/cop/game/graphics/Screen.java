@@ -43,7 +43,7 @@ public class Screen {
 
 					Champion c = Game_Frame.GAME.serverGame.getChampion(0);
 					Sprite s = Sprites.getSpriteFromID(c.getSpriteInformation());
-					if (c.getRenderPosX((int) Game_Frame.GAME.size.getWidth(), Game_Frame.GAME.serverGame.getMap().gridSize) == x && c.getRenderPosY((int) Game_Frame.GAME.size.getWidth(), Game_Frame.GAME.serverGame.getMap().gridSize) == y) {
+					if (((c.getServerPosX()-4*xOffset)/width)*Game_Frame.GAME.gameFrame.getWidth() == x &&((c.getServerPosY()-4*yOffset)/height)*Game_Frame.GAME.gameFrame.getHeight() == y ) {
 						for (int j = 0; j < 16; j++) {
 							for (int j2 = 0; j2 < 16; j2++) {
 								pixels[xp + j][yp + j2] = s.getPixelValue(j % 16, j2 % 16);

@@ -56,11 +56,12 @@ public class Mouse implements MouseListener, MouseMotionListener {
 	public void mouseMoved(MouseEvent e) {
 	}
 	
-	public int convertToServerPosX(int renderX){
-		return ((renderX-Game_Frame.GAME.x)*Game_Frame.GAME.serverGame.getMap().gridSize)/Game_Frame.size.width;
+	public int convertToServerPosX(int renderX) {
+		return (((renderX * Game_Frame.GAME.width * Game_Frame.GAME.scale) / Game_Frame.size.width) + 4 * Game_Frame.GAME.x);
 	}
-	public int convertToServerPosY(int renderY){
-		return ((renderY-Game_Frame.GAME.y)*Game_Frame.GAME.serverGame.getMap().gridSize)/Game_Frame.size.height;
+
+	public int convertToServerPosY(int renderY) {
+		return (((renderY * Game_Frame.GAME.height * Game_Frame.GAME.scale) / Game_Frame.size.height) + 4 * Game_Frame.GAME.y);
 	}
 
 }

@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.io.File;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -89,7 +90,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		optionFrame.addMouseListeners(this);
 
 		debugWindow = new SimpleDebugWindow(); // Cr�ation de notre fen�tre de debug.
-		serverGame = new Game() {
+		serverGame = new Game("C:\\Conflict Of Pixels\\", Game.TYPE_CLIENT) {
 //			@Override
 //			public void getInformation() {
 //				this.setChampions(tempChamps);

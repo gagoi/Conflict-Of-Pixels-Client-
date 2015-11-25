@@ -31,6 +31,7 @@ public class Screen {
 
 	public void render(int xOffset, int yOffset) { // Méthode de rendu.
 		int renderedMapSize = Game_Frame.GAME.serverGame.getMap().getSize() * 16; // Taille de la map Après avoir été rendue (chaque tile vaut 16 pixels).
+
 		for (int y = 0; y < renderedMapSize; y++) { // Pour chaque pixel en hauteur.
 			int yp = y + yOffset; // On applique le décalage en abscisse.
 			if (yp < 0 || yp >= renderedMapSize) continue; // Si on sort de la fenêtre, on arrete le rendu. ==> Optimisation.
@@ -41,31 +42,29 @@ public class Screen {
 					if (Game_Frame.GAME.isGameAnimated) pixels[xp][yp] = Sprites.getAnimatedSprite(Game_Frame.GAME.serverGame.getMap().getSpriteCodeAt(x, y), (internalTimer / 2) % 16).getPixelValue(x % 16, y % 16);
 					else pixels[xp][yp] = Sprites.getSprite(Game_Frame.GAME.serverGame.getMap().getSpriteCodeAt(x, y)).getPixelValue(x % 16, y % 16);// faire le rendu de la map.
 
-					Champion c = Game_Frame.GAME.serverGame.getChampion(0);
-					Sprite s = Sprites.getSpriteFromID(c.getSpriteInformation());
-					if (((c.getServerPosX()-4*xOffset)/width)*Game_Frame.GAME.gameFrame.getWidth() == x &&((c.getServerPosY()-4*yOffset)/height)*Game_Frame.GAME.gameFrame.getHeight() == y ) {
-						for (int j = 0; j < 16; j++) {
-							for (int j2 = 0; j2 < 16; j2++) {
-								pixels[xp + j][yp + j2] = s.getPixelValue(j % 16, j2 % 16);
-							}
-						}
-
-					}
-					if (!Game_Frame.GAME.serverGame.getSpells().isEmpty()) {
-						for (Spell_Base spell : Game_Frame.GAME.serverGame.getSpells()) {
-							if (spell.getRenderPosX((int) Game_Frame.GAME.size.getWidth(), Game_Frame.GAME.serverGame.getMap().getSize()) == x
-									&& spell.getRenderPosY((int) Game_Frame.GAME.size.getWidth(), Game_Frame.GAME.serverGame.getMap().getSize()) == y) {
-								Sprite spellSprite = Sprites.getSpriteFromID(spell.getSpriteInformation());
-								for (int j = 0; j < spellSprite.pixels.length; j++) {
-									pixels[xp + j % spellSprite.getSize()][yp + j / spellSprite.getSize()] = spellSprite.getPixelValue((j % spellSprite.getSize()) % 16, (j / spellSprite.getSize()) % 16);
-								}
-							}
-						}
-					}
 				} catch (Exception e) {// Si il y a une erreur...
 					// On fait rien... xDDDD
 				}
 			}
+		}
+		try {
+			Champion c = Game_Frame.GAME.serverGame.getChampion(0);
+			Sprite s = Sprites.getSpriteFromID(c.getSpriteInformation());
+			int testX0 = c.getServerPosX();
+			int testX1 = testX0 - 4 * xOffset;
+			int testX2 = testX1 * Game_Frame.GAME.gameFrame.size().width;
+			int testX3 = testX2 / width;
+
+			int cy = ((c.getServerPosY() - 4 * yOffset) / (Game_Frame.GAME.height * Game_Frame.GAME.scale)) * Game_Frame.GAME.gameFrame.getHeight();
+
+			System.out.println(testX3 + "--" + cy);
+			for (int j = 0; j < 16; j++) {
+				for (int j2 = 0; j2 < 16; j2++) {
+					pixels[testX3 + j][cy + j2] = s.getPixelValue(j % 16, j2 % 16);
+				}
+			}
+		} catch (Exception e) {
+
 		}
 	}
 

@@ -47,25 +47,18 @@ public class Screen {
 				}
 			}
 		}
-		try {
-			Champion c = Game_Frame.GAME.serverGame.getChampion(0);
-			Sprite s = Sprites.getSpriteFromID(c.getSpriteInformation());
-			int testX0 = c.getServerPosX();
-			int testX1 = testX0 - 4 * xOffset;
-			int testX2 = testX1 * Game_Frame.GAME.gameFrame.size().width;
-			int testX3 = testX2 / width;
-
-			int cy = ((c.getServerPosY() - 4 * yOffset) / (Game_Frame.GAME.height * Game_Frame.GAME.scale)) * Game_Frame.GAME.gameFrame.getHeight();
-
-			System.out.println(testX3 + "--" + cy);
-			for (int j = 0; j < 16; j++) {
-				for (int j2 = 0; j2 < 16; j2++) {
-					pixels[testX3 + j][cy + j2] = s.getPixelValue(j % 16, j2 % 16);
-				}
-			}
-		} catch (Exception e) {
-
-		}
+//		try {
+//			Champion c = Game_Frame.GAME.serverGame.getChampion(0);
+//			Sprite s = Sprites.getSpriteFromID(c.getSpriteInformation());
+//
+//			for (int j = 0; j < 16; j++) {
+//				for (int j2 = 0; j2 < 16; j2++) {
+//					pixels[c.getServerPosX()/4 + j][c.getServerPosY()/4 + j2] = s.getPixelValue(j % 16, j2 % 16);
+//				}
+//			}
+//		} catch (Exception e) {
+//
+//		}
 	}
 
 	public void increaseTimer() { // Méthode pour incrémenter le timer utilisé pour les animations.

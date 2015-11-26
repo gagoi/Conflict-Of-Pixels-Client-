@@ -9,7 +9,6 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.io.File;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -24,9 +23,8 @@ import fr.cop.game.core.inputs.Mouse;
 import fr.cop.game.graphics.Screen;
 import fr.cop.game.graphics.hud.HUD;
 import fr.cop.game.graphics.inGameOptions.Frame;
-import fr.cop.launcherFX.LauncherV2;
-import fr.cop.launcherSwing.Launcher_Panel;
-import javafx.application.Application;
+import fr.cop.game.graphics.sprites.Sprite;
+import fr.cop.game.graphics.sprites.Sprites;
 
 public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L; // Convention java.
@@ -91,14 +89,12 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 		debugWindow = new SimpleDebugWindow(); // Cr�ation de notre fen�tre de debug.
 		serverGame = new Game("C:\\Conflict Of Pixels\\", Game.TYPE_CLIENT) {
-//			@Override
-//			public void getInformation() {
-//				this.setChampions(tempChamps);
-//			}
+			//			@Override
+			//			public void getInformation() {
+			//				this.setChampions(tempChamps);
+			//			}
 		};
 	}
-
-	
 
 	public synchronized void start() { // Fonction de d�marrage du jeu.
 		running = true; // On met la variable running sur vrai.
@@ -194,6 +190,12 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		g.setColor(Color.BLACK); // On met la couleur en noire pour ...
 		g.fillRect(0, 0, getWidth(), getHeight()); // ... vider l'�cran.
 		g.drawImage(bufferedImage, 0, 0, imageRenderedWidth, imageRenderedHeight, null); // Puis on dessine notre image.
+
+		Champion c = Game_Frame.GAME.serverGame.getChampion(0);
+		Sprite s = Sprites.getSpriteFromID(c.getSpriteInformation());
+		int cx = (c.getServerPosX()/4 - x);
+		int cy = (c.getServerPosX()/4 - y);
+		g.drawImage(s.getImage(), cx, cy, 64, 64, null);
 
 		hud.refreshGraphics(g, imageRenderedWidth, imageRenderedHeight);
 		if (optionFrame.isVisible()) optionFrame.refresh(g);

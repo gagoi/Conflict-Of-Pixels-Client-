@@ -193,8 +193,8 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 		Champion c = Game_Frame.GAME.serverGame.getChampion(0);
 		Sprite s = Sprites.getSpriteFromID(c.getSpriteInformation());
-		int cx = (c.getServerPosX()/4 - x);
-		int cy = (c.getServerPosX()/4 - y);
+		int cx = ((c.getServerPosX() + 4 * x)/width)*gameFrame.getWidth();
+		int cy = ((c.getServerPosX() + 4 * y)/height)*gameFrame.getHeight();
 		g.drawImage(s.getImage(), cx, cy, 64, 64, null);
 
 		hud.refreshGraphics(g, imageRenderedWidth, imageRenderedHeight);

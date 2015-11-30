@@ -1,7 +1,10 @@
 package fr.cop.login;
 
 import fr.cop.common.Profil;
+import fr.cop.common.commands.Param;
 import fr.cop.game.core.Conflict_Of_Pixels_Client;
+import fr.cop.game.core.Game_Frame;
+import fr.cop.game.serverConnection.ServerListener;
 import fr.cop.launcherFX.LauncherV2;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -16,11 +19,11 @@ import javafx.stage.Stage;
 
 public class LoginApp extends Application {
 
-	private static String progArgs[];
 	private LauncherV2 launcher;
 	
 	@Override
 	public void start(Stage primaryStage) {
+		Game_Frame.serverListener = new ServerListener(Game_Frame.serverIP);
 		Button btnConnect = new Button();
 		Label lblID = new Label("Pseudo :");
 		Label lblPW = new Label("Mot de passe :");
@@ -30,8 +33,7 @@ public class LoginApp extends Application {
 		btnConnect.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				Conflict_Of_Pixels_Client.testProfil = new Profil();
-				Conflict_Of_Pixels_Client.testProfil.setNickname(tfID.getText());
+				Game_Frame.serverListener.getSender().send("client:request_connection " + tfID.getText() + tfPW.getText());
 				launcher = new LauncherV2();
 				primaryStage.close();
 				launcher.show();
@@ -55,8 +57,12 @@ public class LoginApp extends Application {
 	}
 
 	public static void main(String[] args) {
-		progArgs = args;
-		Conflict_Of_Pixels_Client.testProfil = new Profil();
 		launch(args);
+	}
+
+	public static void connect(String UUID) {
+		Game_Frame.connectedProfil = new Profil(UUID);
+		Game_Frame.connectedProfil.setNickname(UUID);
+		
 	}
 }

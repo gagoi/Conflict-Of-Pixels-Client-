@@ -2,6 +2,7 @@ package fr.cop.launcherFX;
 
 import fr.cop.common.Profil;
 import fr.cop.game.core.Conflict_Of_Pixels_Client;
+import fr.cop.game.core.Game_Frame;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ProgressBar;
@@ -22,7 +23,7 @@ import javafx.scene.text.Text;
 
 public class ProfilBar extends StackPane {
 
-	Profil prof = Conflict_Of_Pixels_Client.testProfil;
+	Profil prof = Game_Frame.connectedProfil;
 
 	public ProfilBar() {
 		Image bg = new Image(LauncherV2.class.getResource("/fr/cop/resources/launcher/images/profilBarBg.png").toExternalForm(), 650, 150 * 2 / 3, false, true);

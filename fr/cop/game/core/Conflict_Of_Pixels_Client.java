@@ -69,10 +69,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 
 	public int x = 0;
 	public int y = 0; /* Temporaire */
-
-	public static Profil testProfil;
 	public Game serverGame;
-	private String serverIP = "localhost";
 	private Champion[] tempChamps = new Champion[10];
 
 	public Conflict_Of_Pixels_Client() { // Objet etant notre jeu.

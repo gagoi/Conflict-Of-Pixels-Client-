@@ -10,7 +10,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import fr.cop.common.Profil;
 import fr.cop.common.logger.SimpleLog;
+import fr.cop.game.serverConnection.ServerListener;
 
 public class Game_Frame extends JFrame {
 	private static final long serialVersionUID = 5397342146506493113L;
@@ -26,13 +28,18 @@ public class Game_Frame extends JFrame {
 
 	public static Game_Frame instance; // Instance de la fen�tre du jeu.
 
-	public static SimpleLog logger;
+
+
+	public static SimpleLog logger= new SimpleLog("C:\\Conflict Of Pixels\\");
+	public static String serverIP = "localhost";
+	public static ServerListener serverListener;
+
+	public static Profil connectedProfil;
 	
 	
 
 
-	public Game_Frame() { // Objet fen�tre.
-		logger = new SimpleLog("C:\\Conflict Of Pixels\\");
+	public Game_Frame() { // Objet fen�tre.$
 		GAME = new Conflict_Of_Pixels_Client(); // On d�finit la variable GAME.
 		instance = this; // On instancie notre instance de fen�tre.
 		setTitle("Conflict Of Pixels");

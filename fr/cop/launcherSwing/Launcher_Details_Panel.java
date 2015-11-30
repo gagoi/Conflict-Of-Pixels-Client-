@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 import fr.cop.common.Profil;
 import fr.cop.game.core.Conflict_Of_Pixels_Client;
+import fr.cop.game.core.Game_Frame;
 
 @SuppressWarnings("serial")
 public class Launcher_Details_Panel extends JPanel {
@@ -24,7 +25,7 @@ public class Launcher_Details_Panel extends JPanel {
 
 	public Launcher_Details_Panel() {
 		super();
-		profil = Conflict_Of_Pixels_Client.testProfil;
+		profil = Game_Frame.connectedProfil;
 		//------------------NEWS------------------
 		label = new JLabel();
 		background = new ImageIcon(getClass().getResource("/fr/cop/resources/menus/menu_detailed_panel_background.png"));

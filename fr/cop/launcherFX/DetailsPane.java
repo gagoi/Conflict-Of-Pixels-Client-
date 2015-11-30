@@ -5,10 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-import javax.swing.text.html.HTML;
-import javax.swing.text.html.HTMLDocument;
-import javax.swing.text.html.HTMLEditorKit;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;

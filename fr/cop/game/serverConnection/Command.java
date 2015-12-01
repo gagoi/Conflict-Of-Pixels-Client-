@@ -13,7 +13,7 @@ public class Command {
 		new Command("client:connect ", Param.PLAYER_ID) {
 			public void use() {
 				super.use();
-				LoginApp.connect(this.getParams()[0].getValue());
+				LoginApp.app.connect(this.getParams()[0].getValue());
 		};
 	},
 

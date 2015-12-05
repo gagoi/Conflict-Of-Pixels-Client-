@@ -1,7 +1,7 @@
 package fr.cop.game.serverConnection;
 
 import fr.cop.common.Game;
-import fr.cop.common.commands.Param;
+import fr.cop.common.Param;
 import fr.cop.login.LoginApp;
 
 public class Command {

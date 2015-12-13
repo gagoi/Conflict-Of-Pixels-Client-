@@ -1,29 +1,32 @@
 package fr.cop.game.serverConnection;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
+import fr.cop.common.Game;
 import fr.cop.game.core.Game_Frame;
+import fr.cop.game.serverConnection.commands.CommandsList;
+import fr.cop.game.serverConnection.commands.MainCommand;
 
-public class ServerListener {
-	private Socket s;
+public class ServerListener implements Runnable {
+	private Socket socket;
 	private String ip;
 	private int port = 163;
 	private boolean op = true;
-	private Sender sender;
 	private boolean isConnected;
 
 	public ServerListener(String ip) {
 		this.ip = ip;
 		try {
-			this.s = new Socket(ip, port);
-			sender = new Sender(new OutputStreamWriter(s.getOutputStream()));
-			new fr.cop.game.serverConnection.CommandsThread(new BufferedReader(new InputStreamReader(s.getInputStream())));
+			socket = new Socket(ip, port);
+			Thread t = new Thread(this, "Server Listener");
 			isConnected = true;
-			Game_Frame.logger.logTxt("<ServerListener:Start>", "Listener created, with ip : " + ip);
+			Game_Frame.logger.logTxt("<ServerListener:Start>", "Listener created, with ip : " + ip + ":" + socket.getPort());
+			t.start();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -41,11 +44,40 @@ public class ServerListener {
 		return op;
 	}
 
-	public Sender getSender() {
-		return this.sender;
-	}
-
 	public boolean isConnected() {
 		return isConnected;
+	}
+
+	@Override
+	public void run() {
+		try {
+			String commande = "";
+			BufferedReader bf = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			System.out.println("TEST");
+			while ((commande = bf.readLine()) != null) {
+				System.out.println(commande);
+				boolean isGood = false;
+				for (MainCommand command : CommandsList.getCommands()) {
+					if (command.verifyValidity(commande)) {
+						command.action();
+						isGood = true;
+					}
+				}
+				if (!isGood) System.out.println("Mauvaise commande");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void send(String command) {
+		try {
+			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+			bw.write(command + "\n");
+			bw.flush();
+			Game_Frame.logger.logTxt("<Sender:Send>", command);
+		} catch (IOException e) {
+			Game.logger.logTxt("<Sender:Error>", "Client non connecté....");
+		}
 	}
 }

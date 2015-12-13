@@ -17,7 +17,9 @@ import javafx.stage.Stage;
 
 public class LoginApp extends Application {
 
-	private LauncherV2 launcher; Stage stage; public static LoginApp app;
+	private LauncherV2 launcher;
+	Stage stage;
+	public static LoginApp app;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -28,13 +30,16 @@ public class LoginApp extends Application {
 			Button btnConnect = new Button();
 			Label lblID = new Label("Pseudo :");
 			Label lblPW = new Label("Mot de passe :");
+			Label lblUUID = new Label("UUID :");
 			TextField tfID = new TextField();
+			TextField tfUUID = new TextField();
 			TextField tfPW = new TextField();
 			btnConnect.setText("Connect");
 			btnConnect.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
-					Game_Frame.serverListener.getSender().send("client:request_connection " + tfID.getText() + tfPW.getText());
+					if (tfUUID.getText() != null && tfUUID.getText().length() == 16 && tfID.getText() != null && tfPW.getText() != null)
+						Game_Frame.serverListener.send("client:request_connection " + tfUUID.getText() + " " + tfID.getText() + " " + tfPW.getText());
 				}
 			});
 
@@ -42,11 +47,13 @@ public class LoginApp extends Application {
 			root.setAlignment(Pos.CENTER);
 			root.setHgap(2.0f);
 			root.setVgap(5.0f);
-			root.add(lblID, 0, 0);
-			root.add(tfID, 1, 0);
-			root.add(lblPW, 0, 1);
-			root.add(tfPW, 1, 1);
-			root.add(btnConnect, 0, 2);
+			root.add(lblUUID, 0, 0);
+			root.add(tfUUID, 1, 0);
+			root.add(lblID, 0, 1);
+			root.add(tfID, 1, 1);
+			root.add(lblPW, 0, 2);
+			root.add(tfPW, 1, 2);
+			root.add(btnConnect, 0, 3);
 
 			primaryStage.setScene(new Scene(root));
 			primaryStage.setResizable(false);
@@ -62,9 +69,9 @@ public class LoginApp extends Application {
 		launch(args);
 	}
 
-	public void connect(String UUID) {
+	public void connect(String UUID, String ID) {
 		Game_Frame.connectedProfil = new Profil(UUID);
-		Game_Frame.connectedProfil.setNickname(UUID);
+		Game_Frame.connectedProfil.setNickname(ID);
 		launcher = new LauncherV2();
 		stage.close();
 		launcher.show();

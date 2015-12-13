@@ -31,7 +31,7 @@ public class Game_Frame extends JFrame {
 
 
 	public static SimpleLog logger= new SimpleLog("C:\\Conflict Of Pixels\\");
-	public static String serverIP = "localhost";
+	public static String serverIP = "192.168.1.82";
 	public static ServerListener serverListener;
 
 	public static Profil connectedProfil;

@@ -51,23 +51,20 @@ public class ServerListener implements Runnable {
 	@Override
 	public void run() {
 		try {
-			String commande = "";
 			BufferedReader bf = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			System.out.println("TEST");
-			while ((commande = bf.readLine()) != null) {
-				System.out.println(commande);
-				boolean isGood = false;
+			String input = "";
+			while ((input = bf.readLine()) != null) {
+				Game.logger.logTxt("<INPUT>", input);
 				for (MainCommand command : CommandsList.getCommands()) {
-					if (command.verifyValidity(commande)) {
+					if (command.verifyValidity(input)) {
 						command.action();
-						isGood = true;
+						break;
 					}
 				}
-				if (!isGood) System.out.println("Mauvaise commande");
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			Game.logger.logErr("<SERVER:ERROR>", "Disconnected");
+		} 
 	}
 
 	public void send(String command) {

@@ -10,6 +10,6 @@ public class Connect extends MainCommand{
 	@Override
 	public void action() {
 		System.out.println("connect");
-		LoginApp.app.connect(getParams()[0].toString(), getParams()[1].toString());
+		LoginApp.app.connect("UUID", "Pseudo");
 	}
 }

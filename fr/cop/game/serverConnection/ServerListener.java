@@ -22,7 +22,7 @@ public class ServerListener implements Runnable {
 	public ServerListener(String ip) {
 		this.ip = ip;
 		try {
-			socket = new Socket(ip, port);
+			socket = new Socket(ip, 163);
 			Thread t = new Thread(this, "Server Listener");
 			isConnected = true;
 			Game_Frame.logger.logTxt("<ServerListener:Start>", "Listener created, with ip : " + ip + ":" + socket.getPort());
@@ -53,8 +53,9 @@ public class ServerListener implements Runnable {
 		try {
 			BufferedReader bf = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			String input = "";
+			
 			while ((input = bf.readLine()) != null) {
-				Game.logger.logTxt("<INPUT>", input);
+				Game_Frame.logger.logTxt("<INPUT>", input);
 				for (MainCommand command : CommandsList.getCommands()) {
 					if (command.verifyValidity(input)) {
 						command.action();
@@ -68,13 +69,15 @@ public class ServerListener implements Runnable {
 	}
 
 	public void send(String command) {
+		System.out.println("Try Sending to send : " + command);
+	
 		try {
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 			bw.write(command + "\n");
 			bw.flush();
 			Game_Frame.logger.logTxt("<Sender:Send>", command);
 		} catch (IOException e) {
-			Game.logger.logTxt("<Sender:Error>", "Client non connecté....");
+			Game.logger.logTxt("<Sender:Error>", "Serveur non connecté....");
 		}
 	}
 }

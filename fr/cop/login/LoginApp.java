@@ -19,13 +19,14 @@ public class LoginApp extends Application {
 
 	private LauncherV2 launcher;
 	Stage stage;
+	boolean isConnected;
 	public static LoginApp app;
 
 	@Override
 	public void start(Stage primaryStage) {
 		Game_Frame.serverListener = new ServerListener(Game_Frame.serverIP);
+		app = this;
 		if (Game_Frame.serverListener.isConnected()) {
-			app = this;
 			stage = primaryStage;
 			Button btnConnect = new Button();
 			Label lblID = new Label("Pseudo :");
@@ -59,6 +60,15 @@ public class LoginApp extends Application {
 			primaryStage.setResizable(false);
 			primaryStage.setTitle("Conflict of Pixels : Login");
 			primaryStage.show();
+			
+			while(!isConnected){
+				
+			}
+
+			launcher = new LauncherV2();
+			stage.close();
+			launcher.show();
+			
 		} else {
 			Game_Frame.logger.logErr("<Connection !>", "Error, can not reach server....");
 			System.exit(0);
@@ -72,9 +82,6 @@ public class LoginApp extends Application {
 	public void connect(String UUID, String ID) {
 		Game_Frame.connectedProfil = new Profil(UUID);
 		Game_Frame.connectedProfil.setNickname(ID);
-		launcher = new LauncherV2();
-		stage.close();
-		launcher.show();
-
+		isConnected = true;
 	}
 }

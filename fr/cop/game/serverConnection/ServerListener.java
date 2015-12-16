@@ -58,7 +58,7 @@ public class ServerListener implements Runnable {
 				Game_Frame.logger.logTxt("<INPUT>", input);
 				for (MainCommand command : CommandsList.getCommands()) {
 					if (command.verifyValidity(input)) {
-						command.action();
+						command.action(input.split(" "));
 						break;
 					}
 				}

@@ -30,7 +30,7 @@ public class MainCommand {
 		this.params = params;
 	}
 	
-	public void action() {
+	public void action(String[] splitedInput) {
 
 	}
 

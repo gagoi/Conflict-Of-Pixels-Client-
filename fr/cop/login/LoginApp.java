@@ -1,5 +1,7 @@
 package fr.cop.login;
 
+import javax.swing.JOptionPane;
+
 import fr.cop.common.Profil;
 import fr.cop.game.core.Game_Frame;
 import fr.cop.game.serverConnection.ServerListener;
@@ -14,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class LoginApp extends Application {
 
@@ -24,55 +27,70 @@ public class LoginApp extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		Game_Frame.serverListener = new ServerListener(Game_Frame.serverIP);
 		app = this;
-		if (Game_Frame.serverListener.isConnected()) {
-			stage = primaryStage;
-			Button btnConnect = new Button();
-			Label lblID = new Label("Pseudo :");
-			Label lblPW = new Label("Mot de passe :");
-			Label lblUUID = new Label("UUID :");
-			TextField tfID = new TextField();
-			TextField tfUUID = new TextField();
-			TextField tfPW = new TextField();
-			btnConnect.setText("Connect");
-			btnConnect.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent event) {
-					if (tfUUID.getText() != null && tfUUID.getText().length() == 16 && tfID.getText() != null && tfPW.getText() != null)
-						Game_Frame.serverListener.send("client:request_connection " + tfUUID.getText() + " " + tfID.getText() + " " + tfPW.getText());
+		//		stage = primaryStage;
+		Button btnConnect = new Button();
+		Label lblID = new Label("Pseudo :");
+		Label lblPW = new Label("Mot de passe :");
+		Label lblUUID = new Label("UUID :");
+		Label lblIP = new Label("IP :");
+		TextField tfID = new TextField();
+		TextField tfUUID = new TextField();
+		TextField tfPW = new TextField();
+		TextField tfIP = new TextField();
+
+		btnConnect.setText("Connect");
+		btnConnect.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				if (verifyIp(tfIP.getText()) && tfUUID.getText() != null && tfUUID.getText().length() == 16 && tfID.getText() != null && tfPW.getText() != null) {
+					Game_Frame.serverListener = new ServerListener(tfIP.getText());
+					Game_Frame.serverListener.send("client:request_connection " + tfUUID.getText() + " " + tfID.getText() + " " + tfPW.getText());
+
+					while (!isConnected) {
+						if (!Game_Frame.serverListener.isConnected()) {
+							JOptionPane.showMessageDialog(null, "Le serveur ne répond pas.", "Erreur", JOptionPane.ERROR_MESSAGE);
+							break;
+						}
+
+						launcher = new LauncherV2();
+						stage.close();
+						launcher.show();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Une des cases n'est pas renseigner correctement.", "Erreur", JOptionPane.ERROR_MESSAGE);
 				}
-			});
-
-			GridPane root = new GridPane();
-			root.setAlignment(Pos.CENTER);
-			root.setHgap(2.0f);
-			root.setVgap(5.0f);
-			root.add(lblUUID, 0, 0);
-			root.add(tfUUID, 1, 0);
-			root.add(lblID, 0, 1);
-			root.add(tfID, 1, 1);
-			root.add(lblPW, 0, 2);
-			root.add(tfPW, 1, 2);
-			root.add(btnConnect, 0, 3);
-
-			primaryStage.setScene(new Scene(root));
-			primaryStage.setResizable(false);
-			primaryStage.setTitle("Conflict of Pixels : Login");
-			primaryStage.show();
-			
-			while(!isConnected){
-				
 			}
+		});
 
-			launcher = new LauncherV2();
-			stage.close();
-			launcher.show();
-			
-		} else {
-			Game_Frame.logger.logErr("<Connection !>", "Error, can not reach server....");
-			System.exit(0);
-		}
+		GridPane root = new GridPane();
+		root.setAlignment(Pos.CENTER);
+		root.setHgap(2.0f);
+		root.setVgap(5.0f);
+		root.add(lblUUID, 0, 0);
+		root.add(tfUUID, 1, 0);
+		root.add(lblID, 0, 1);
+		root.add(tfID, 1, 1);
+		root.add(lblPW, 0, 2);
+		root.add(tfPW, 1, 2);
+		root.add(lblIP, 0, 3);
+		root.add(tfIP, 1, 3);
+		root.add(btnConnect, 0, 4);
+
+		primaryStage.setScene(new Scene(root));
+		primaryStage.setResizable(false);
+		primaryStage.setTitle("Conflict of Pixels : Login");
+		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+
+			@Override
+			public void handle(WindowEvent event) {
+				System.out.println("Deconnection");
+				System.exit(0);
+
+			}
+		});
+		primaryStage.show();
+
 	}
 
 	public static void main(String[] args) {
@@ -84,4 +102,30 @@ public class LoginApp extends Application {
 		Game_Frame.connectedProfil.setNickname(ID);
 		isConnected = true;
 	}
+
+	private boolean verifyIp(String txt) {
+		System.out.println(txt);
+		String[] t = txt.split(".");
+		System.out.println(t.length);
+		for (int i = 0; i < t.length; i++) {
+			System.out.println(t[i]);
+		}
+		if (t != null && t.length == 4) {
+			for (int i = 0; i < t.length; i++) {
+				try {
+					if (Integer.parseInt(t[i]) > 254 || Integer.parseInt(t[i]) < 0) {
+						System.out.println("Int error");
+						return false;
+					}
+				} catch (Exception e) {
+					System.out.println("Parser error");
+					return false;
+				}
+			}
+			return true;
+		}
+		System.out.println("length error");
+		return false;
+	}
+
 }

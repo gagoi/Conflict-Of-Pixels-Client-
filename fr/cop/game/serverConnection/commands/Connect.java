@@ -1,15 +1,16 @@
 package fr.cop.game.serverConnection.commands;
 
+import fr.cop.common.Profil;
+import fr.cop.game.core.Game_Frame;
 import fr.cop.game.serverConnection.commands.params.MainParamList;
-import fr.cop.login.LoginApp;
 
 public class Connect extends MainCommand{
 	public Connect() {
 		super(MainCommand.TYPE_CLIENT, "connect", MainParamList.PLAYER_UUID);	}
 
 	@Override
-	public void action() {
+	public void action(String[] splitedInput) {
 		System.out.println("connect");
-		LoginApp.app.connect("UUID", "Pseudo");
+		Game_Frame.connectedProfil = new Profil(splitedInput[0]);
 	}
 }

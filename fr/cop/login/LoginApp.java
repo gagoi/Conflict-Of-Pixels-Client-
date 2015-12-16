@@ -1,5 +1,7 @@
 package fr.cop.login;
 
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 import fr.cop.common.Profil;
@@ -54,8 +56,9 @@ public class LoginApp extends Application {
 						}
 
 						launcher = new LauncherV2();
-						stage.close();
+						primaryStage.close();
 						launcher.show();
+						break;
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Une des cases n'est pas renseigner correctement.", "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -104,27 +107,27 @@ public class LoginApp extends Application {
 	}
 
 	private boolean verifyIp(String txt) {
-		System.out.println(txt);
-		String[] t = txt.split(".");
-		System.out.println(t.length);
-		for (int i = 0; i < t.length; i++) {
-			System.out.println(t[i]);
+		txt = txt.concat(".");
+		ArrayList<String> t = new ArrayList<>();
+		String act = "";
+		for (int i = 0; i < txt.length(); i++) {
+			if (txt.charAt(i) == '.') {
+				t.add(act);
+				act = "";
+			} else act = act + txt.charAt(i);
 		}
-		if (t != null && t.length == 4) {
-			for (int i = 0; i < t.length; i++) {
+		if (t != null && t.size() == 4) {
+			for (int i = 0; i < t.size(); i++) {
 				try {
-					if (Integer.parseInt(t[i]) > 254 || Integer.parseInt(t[i]) < 0) {
-						System.out.println("Int error");
+					if (Integer.parseInt(t.get(i)) > 254 || Integer.parseInt(t.get(i)) < 0) {
 						return false;
 					}
 				} catch (Exception e) {
-					System.out.println("Parser error");
 					return false;
 				}
 			}
 			return true;
 		}
-		System.out.println("length error");
 		return false;
 	}
 

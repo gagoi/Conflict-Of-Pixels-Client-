@@ -69,15 +69,13 @@ public class ServerListener implements Runnable {
 	}
 
 	public void send(String command) {
-		System.out.println("Try Sending to send : " + command);
-	
 		try {
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 			bw.write(command + "\n");
 			bw.flush();
-			Game_Frame.logger.logTxt("<Sender:Send>", command);
+			Game_Frame.logger.logTxt("<SERVER:Send>", command);
 		} catch (IOException e) {
-			Game.logger.logTxt("<Sender:Error>", "Serveur non connecté....");
+			Game.logger.logTxt("<SERVER:ERROR>", "Serveur non connecté....");
 		}
 	}
 }

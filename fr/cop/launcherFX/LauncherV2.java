@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class LauncherV2 extends Stage {
 
@@ -80,6 +81,14 @@ public class LauncherV2 extends Stage {
 		setResizable(false);
 		setTitle("Conflict Of Pixels Launcher");
 		getIcons().add(new Image(LauncherV2.class.getResource("/fr/cop/resources/icons/icon.png").toExternalForm(), 512, 181, false, true));
+		setOnCloseRequest(new EventHandler<WindowEvent>() {
+			
+			@Override
+			public void handle(WindowEvent event) {
+				System.out.println("Deconnection");
+				System.exit(0);
+			}
+		});
 		show();
 	}
 }

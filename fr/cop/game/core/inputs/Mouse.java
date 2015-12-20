@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import fr.cop.game.core.Conflict_Of_Pixels_Client;
 import fr.cop.game.core.Game_Frame;
 
 public class Mouse implements MouseListener, MouseMotionListener {
@@ -57,11 +58,11 @@ public class Mouse implements MouseListener, MouseMotionListener {
 	}
 	
 	public int convertToServerPosX(int renderX) {
-		return (((renderX * Game_Frame.GAME.width * Game_Frame.GAME.scale) / Game_Frame.size.width) + 4 * Game_Frame.GAME.x);
+		return (((renderX * Conflict_Of_Pixels_Client.width * Conflict_Of_Pixels_Client.scale) / Game_Frame.size.width) + 4 * Game_Frame.GAME.x);
 	}
 
 	public int convertToServerPosY(int renderY) {
-		return (((renderY * Game_Frame.GAME.height * Game_Frame.GAME.scale) / Game_Frame.size.height) + 4 * Game_Frame.GAME.y);
+		return (((renderY * Conflict_Of_Pixels_Client.height * Conflict_Of_Pixels_Client.scale) / Game_Frame.size.height) + 4 * Game_Frame.GAME.y);
 	}
 
 }

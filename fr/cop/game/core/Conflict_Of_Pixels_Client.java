@@ -14,7 +14,6 @@ import java.util.Vector;
 import javax.swing.JFrame;
 
 import fr.cop.common.Game;
-import fr.cop.common.Profil;
 import fr.cop.common.entities.Entity;
 import fr.cop.common.entities.champions.Champion;
 import fr.cop.game.core.helpful.logger.SimpleDebugWindow;

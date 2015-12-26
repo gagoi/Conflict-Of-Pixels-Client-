@@ -22,7 +22,7 @@ public class ServerListener implements Runnable {
 	public ServerListener(String ip) {
 		this.ip = ip;
 		try {
-			socket = new Socket(ip, 163);
+			socket = new Socket(ip, port);
 			Thread t = new Thread(this, "Server Listener");
 			isConnected = true;
 			Game_Frame.logger.logTxt("<ServerListener:Start>", "Listener created, with ip : " + ip + ":" + socket.getPort());

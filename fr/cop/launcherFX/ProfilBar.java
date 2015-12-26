@@ -1,7 +1,6 @@
 package fr.cop.launcherFX;
 
 import fr.cop.common.Profil;
-import fr.cop.game.core.Conflict_Of_Pixels_Client;
 import fr.cop.game.core.Game_Frame;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

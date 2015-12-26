@@ -41,6 +41,11 @@ public class HUD_Statistiques extends HUD_Element {
 		g.drawImage(Sprites.physical_damage_icon.getImage(), getPosX() + 5, getPosY() + 10, null);
 		g.drawImage(Sprites.magical_damage_icon.getImage(), getPosX() + getScaledWidth() / 2 - 5, getPosY() + 10, null);
 		g.drawImage(Sprites.physical_resistance_icon.getImage(), getPosX() + 5, getPosY() + 40, null);
+		g.drawImage(Sprites.magical_resistance_icon.getImage(), getPosX()  + getScaledWidth() / 2 - 5, getPosY() + 40, null);
+		g.drawImage(Sprites.physical_penetration_icon.getImage(), getPosX() + 5, getPosY() + 80, null);
+		g.drawImage(Sprites.magical_penetration_icon.getImage(), getPosX()  + getScaledWidth() / 2 - 5, getPosY() + 80, null);
+		g.drawImage(Sprites.cooldown_reduction_icon.getImage(), getPosX() + 5, getPosY() + 120, null);
+		g.drawImage(Sprites.move_speed_icon.getImage(), getPosX()  + getScaledWidth() / 2 - 5, getPosY() + 120, null);
 
 		g.drawString(statsToDisplay.get(0), getPosX() + 25, getPosY() + 25);
 		g.drawString(statsToDisplay.get(1), getPosX() + getScaledWidth() / 2 + 20, getPosY() + 25);

@@ -1,9 +1,6 @@
 package fr.cop.game.graphics;
 
-import fr.cop.common.entities.champions.Champion;
-import fr.cop.common.entities.spells.Spell_Base;
 import fr.cop.game.core.Game_Frame;
-import fr.cop.game.graphics.sprites.Sprite;
 import fr.cop.game.graphics.sprites.Sprites;
 
 public class Screen {

@@ -15,9 +15,28 @@ public class Sprites {
 	public static Sprite physical_damage_icon = new Sprite(16, 0, 0, SpriteSheet.iconsSheet);
 	public static Sprite magical_damage_icon = new Sprite(16, 1, 0, SpriteSheet.iconsSheet);
 	public static Sprite physical_resistance_icon = new Sprite(16, 2, 0, SpriteSheet.iconsSheet);
+	public static Sprite magical_resistance_icon = new Sprite(16, 3, 0, SpriteSheet.iconsSheet);
+	public static Sprite physical_penetration_icon = new Sprite(16, 4, 0, SpriteSheet.iconsSheet);
+	public static Sprite magical_penetration_icon = new Sprite(16, 5, 0, SpriteSheet.iconsSheet);
+	public static Sprite cooldown_reduction_icon = new Sprite(16, 6, 0, SpriteSheet.iconsSheet);
+	public static Sprite move_speed_icon = new Sprite(16, 7, 0, SpriteSheet.iconsSheet);
 
 	public static Sprite[] sprites = {grass, tree, top_tree, bot_tree, debug}; // Tableau contenant tous les sprites non animés.
 	public static AnimatedSprite[] animatedSprites = {grass_animated, water_animated}; // Tableau contenant tous les sprites animés.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public static Sprite getSprite(char code) { // Méthode permettant de savoir quel Sprite correspond à un code donné.
 		for (int i = 0; i < sprites.length; i++) { // On parcourt le tableau contenant tous les Sprites (non animés) ...

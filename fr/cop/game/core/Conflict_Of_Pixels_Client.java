@@ -38,8 +38,8 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private static int cameraSpeed = 3; // Vitesse de la cam�ra
 	private static boolean isCameraBlocked = false;
 
-	public static int scale = 5; // Taille des pixels (pixels du jeu).
-	public static int width = 250; // Taille de la fenetre (largeur).
+	public static int scale = 4; // Taille des pixels (pixels du jeu).
+	public static int width = 350; // Taille de la fenetre (largeur).
 	public static int height = width / 16 * 9; // Taille de la fen�tre (hauteur).
 
 	private int imageRenderedWidth = width * scale, imageRenderedHeight = height * scale; // Taille de rendu de l'image en tampon du jeu.

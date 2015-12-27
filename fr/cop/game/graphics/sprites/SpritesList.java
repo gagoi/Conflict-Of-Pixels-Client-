@@ -7,7 +7,7 @@ public class SpritesList {
 	 * Feuilles de sprites
 	 * ------------------------------------------------------------------------
 	 */
-	public static BaseSheet iconsSheet = new BaseSheet("icons_sheet.png", 9, 1); // Feuille contenant les icons du HUD.
+	public static BaseSheet iconsSheet = new BaseSheet("icons_sheet.png", 9, 2); // Feuille contenant les icons du HUD.
 	public static BaseSheet mapSheet = new BaseSheet("map_sheet.png", 16); // Feuille contenant les textures fixes de la map.
 	public static BaseSheet animatedMapSheet = new BaseSheet("animated_map_sheet.png", 17, 2); // Feuille contenant les textures animées de la map.
 

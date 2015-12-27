@@ -22,8 +22,8 @@ import fr.cop.game.core.inputs.Mouse;
 import fr.cop.game.graphics.Screen;
 import fr.cop.game.graphics.hud.HUD;
 import fr.cop.game.graphics.inGameOptions.Frame;
-import fr.cop.game.graphics.sprites.Sprite;
-import fr.cop.game.graphics.sprites.Sprites;
+import fr.cop.game.graphics.sprites.BaseSprite;
+import fr.cop.game.graphics.sprites.SpritesList;
 
 public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L; // Convention java.
@@ -188,10 +188,14 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		g.drawImage(bufferedImage, 0, 0, imageRenderedWidth, imageRenderedHeight, null); // Puis on dessine notre image.
 
 		Champion c = Game_Frame.GAME.serverGame.getChampion(0);
-		Sprite s = Sprites.getSpriteFromID(c.getSpriteInformation());
-		int cx = ((c.getServerPosX() + 4 * x)/width)*gameFrame.getWidth();
-		int cy = ((c.getServerPosX() + 4 * y)/height)*gameFrame.getHeight();
-		g.drawImage(s.getImage(), cx, cy, 64, 64, null);
+		BaseSprite s = SpritesList.getSpriteFromID(c.getSpriteInformation());
+		float cx = c.getServerPosX();
+		int cy = 0;
+		g.drawImage(s.getImage(), (int)cx, cy, 64, 64, null);
+		g.setFont(new Font("Arial Black", Font.BOLD, 20)); // Choix de la police de caract�re.
+		g.setColor(Color.BLUE);
+		g.drawString("x:" + cx + "(" + c.getServerPosX() + ")", 100, 40);
+		g.drawString("y:" + cy, 100, 60);
 
 		hud.refreshGraphics(g, imageRenderedWidth, imageRenderedHeight);
 		if (optionFrame.isVisible()) optionFrame.refresh(g);

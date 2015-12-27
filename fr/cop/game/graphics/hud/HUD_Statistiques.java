@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import fr.cop.common.Stats;
 import fr.cop.game.core.Game_Frame;
-import fr.cop.game.graphics.sprites.Sprites;
+import fr.cop.game.graphics.sprites.SpritesList;
 
 public class HUD_Statistiques extends HUD_Element {
 
@@ -47,15 +47,15 @@ public class HUD_Statistiques extends HUD_Element {
 		g.fillRect(getPosX(), getPosY(), getScaledWidth(), getScaledHeight());
 		g.setColor(Color.BLACK);
 
-		g.drawImage(Sprites.physical_damage_icon.getImage(), getPosX() + 5, getPosY() + 10, null);
-		g.drawImage(Sprites.magical_damage_icon.getImage(), getPosX() + getScaledWidth() / 2 - 5, getPosY() + 10, null);
-		g.drawImage(Sprites.physical_resistance_icon.getImage(), getPosX() + 5, getPosY() + 40, null);
-		g.drawImage(Sprites.magical_resistance_icon.getImage(), getPosX() + getScaledWidth() / 2 - 5, getPosY() + 40, null);
-		g.drawImage(Sprites.physical_penetration_icon.getImage(), getPosX() + 5, getPosY() + 80, null);
-		g.drawImage(Sprites.magical_penetration_icon.getImage(), getPosX() + getScaledWidth() / 2 - 5, getPosY() + 80, null);
-		g.drawImage(Sprites.cooldown_reduction_icon.getImage(), getPosX() + 5, getPosY() + 120, null);
-		g.drawImage(Sprites.move_speed_icon.getImage(), getPosX() + getScaledWidth() / 2 - 5, getPosY() + 120, null);
-		g.drawImage(Sprites.attack_speed_icon.getImage(), getPosX() + 5, getPosY() + 160, null);
+		g.drawImage(SpritesList.physical_damage_icon.getImage(), getPosX() + 5, getPosY() + 10, null);
+		g.drawImage(SpritesList.magical_damage_icon.getImage(), getPosX() + getScaledWidth() / 2 - 5, getPosY() + 10, null);
+		g.drawImage(SpritesList.physical_resistance_icon.getImage(), getPosX() + 5, getPosY() + 40, null);
+		g.drawImage(SpritesList.magical_resistance_icon.getImage(), getPosX() + getScaledWidth() / 2 - 5, getPosY() + 40, null);
+		g.drawImage(SpritesList.physical_penetration_icon.getImage(), getPosX() + 5, getPosY() + 80, null);
+		g.drawImage(SpritesList.magical_penetration_icon.getImage(), getPosX() + getScaledWidth() / 2 - 5, getPosY() + 80, null);
+		g.drawImage(SpritesList.cooldown_reduction_icon.getImage(), getPosX() + 5, getPosY() + 120, null);
+		g.drawImage(SpritesList.move_speed_icon.getImage(), getPosX() + getScaledWidth() / 2 - 5, getPosY() + 120, null);
+		g.drawImage(SpritesList.attack_speed_icon.getImage(), getPosX() + 5, getPosY() + 160, null);
 		
 		
 		g.drawString(statsToDisplay.get(0), getPosX() + 25, getPosY() + 25);

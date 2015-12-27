@@ -1,7 +1,7 @@
 package fr.cop.game.graphics;
 
 import fr.cop.game.core.Game_Frame;
-import fr.cop.game.graphics.sprites.Sprites;
+import fr.cop.game.graphics.sprites.SpritesList;
 
 public class Screen {
 
@@ -36,8 +36,8 @@ public class Screen {
 				int xp = x + xOffset; // On applique le décalage en ordonnée.
 				if (xp < 0 || xp >= renderedMapSize) continue; // Si on sort de la fenêtre, on arrête le rendu. ==> Optimisation.
 				try { // On essaie de :
-					if (Game_Frame.GAME.isGameAnimated) pixels[xp][yp] = Sprites.getAnimatedSprite(Game_Frame.GAME.serverGame.getMap().getSpriteCodeAt(x, y), (internalTimer / 2) % 16).getPixelValue(x % 16, y % 16);
-					else pixels[xp][yp] = Sprites.getSprite(Game_Frame.GAME.serverGame.getMap().getSpriteCodeAt(x, y)).getPixelValue(x % 16, y % 16);// faire le rendu de la map.
+					if (Game_Frame.GAME.isGameAnimated) pixels[xp][yp] = SpritesList.getAnimatedSprite(Game_Frame.GAME.serverGame.getMap().getSpriteCodeAt(x, y), (internalTimer / 2) % 16).getPixelAt(x % 16, y % 16);
+					else pixels[xp][yp] = SpritesList.getSprite(Game_Frame.GAME.serverGame.getMap().getSpriteCodeAt(x, y)).getPixelAt(x % 16, y % 16);// faire le rendu de la map.
 
 				} catch (Exception e) {// Si il y a une erreur...
 					// On fait rien... xDDDD

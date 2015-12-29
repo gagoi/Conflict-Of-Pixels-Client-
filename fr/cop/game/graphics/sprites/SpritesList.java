@@ -50,6 +50,21 @@ public class SpritesList {
 	
 	
 	
+	
+	
+	/*
+	 * ------------------------------------------------------------------------
+	 * Sprites des champions.
+	 * ------------------------------------------------------------------------
+	 */
+	
+	public static final ChampionSprite champion_Test_0x000001 = new ChampionSprite("Test_0x000001.png");
+	
+	
+	
+	
+	
+	
 	public static BaseSprite getSprite(char code) { // Méthode permettant de savoir quel Sprite correspond à un code donné.
 		for (int i = 0; i < map_sprites.length; i++) { // On parcourt le tableau contenant tous les Sprites (non animés) ...
 			if (map_sprites[i].getCode() == code) return map_sprites[i]; // ... si on trouve le bon sprite, on le renvoie.
@@ -77,4 +92,8 @@ public class SpritesList {
 		}
 		return getSpriteFromID(id); // Si la boucle se termine, c'est que l'on n'a pas trouvé de sprite animé. On cherche donc un sprite non-animé pour le remplacer.
 	}
+	
+//	public static BaseSprite getChampionSprite(){
+//		
+//	}
 }

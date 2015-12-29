@@ -48,6 +48,7 @@ public class BaseSheet {
 
 	private void loadImageFile() {
 		try { // On essaie de : 
+			System.out.println(getClass().getResource("/fr/cop/resources/textures/" + path));
 			BufferedImage img = ImageIO.read(getClass().getResource("/fr/cop/resources/textures/" + path)); // Chargement de l'image.
 			BufferedImage a  = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 			a.setData(img.getRaster());

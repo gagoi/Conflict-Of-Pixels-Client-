@@ -15,7 +15,7 @@ import fr.cop.game.serverConnection.commands.MainCommand;
 public class ServerListener implements Runnable {
 	private Socket socket;
 	private String ip;
-	private int port = 163;
+	private int port = 1630;
 	private boolean op = true;
 	private boolean isConnected;
 
@@ -75,7 +75,7 @@ public class ServerListener implements Runnable {
 			bw.flush();
 			Game_Frame.logger.logTxt("<SERVER:Send>", command);
 		} catch (IOException e) {
-			Game.logger.logTxt("<SERVER:ERROR>", "Serveur non connecté....");
+			Game.logger.logTxt("<SERVER:ERROR>", "Serveur non connectï¿½....");
 		}
 	}
 }

@@ -132,4 +132,8 @@ public class BaseSprite {
 		return code;
 	}
 
+	public BaseSprite getScaledInstance(int width, int height) {
+		return new BaseSprite(x, y, width, height, id, sheet);
+	}
+
 }

@@ -8,8 +8,8 @@ import fr.cop.game.core.Conflict_Of_Pixels_Client;
 import fr.cop.game.core.Game_Frame;
 
 public class Mouse implements MouseListener, MouseMotionListener {
-	public boolean[] clicks = new boolean[3];
-	public int[][] positions = new int[2][2];
+	public boolean[] clicks = new boolean[4];
+	public int[][] positions = new int[4][2];
 	@SuppressWarnings("unused")
 	private boolean outside; // Essais pour empecher la souris de sortir de l'�cran du jeu.
 	public int[] coord = new int[2];

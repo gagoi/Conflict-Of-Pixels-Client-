@@ -1,10 +1,12 @@
 package fr.cop.game.graphics.sprites;
 
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+
+import fr.cop.common.Game;
+import fr.cop.game.core.Game_Frame;
 
 public class BaseSheet {
 	private final String path; // Chemin de l'image.
@@ -47,14 +49,11 @@ public class BaseSheet {
 	}
 
 	private void loadImageFile() {
-		try { // On essaie de : 
-			System.out.println("/fr/cop/resources/textures/" + path);
-			BufferedImage img = ImageIO.read(getClass().getResource("/fr/cop/resources/textures/" + path)); // Chargement de l'image.
-			BufferedImage a  = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_ARGB);
-			a.setData(img.getRaster());
-			a.getRGB(0, 0, width, height, pixels, 0, width);
-		} catch (IOException e) { // En cas d'échec : 
-			e.printStackTrace(); // On affiche une erreur.
+		try {
+			BufferedImage img = ImageIO.read(getClass().getResource("/fr/cop/resources/textures/" + path));
+			img.getRGB(0, 0, width, height, pixels, 0, width);
+		} catch (Exception e) {
+			Game_Frame.logger.logErr("<BaseSheet:" + path + ">", "Error while loading...");
 		}
 	}
 

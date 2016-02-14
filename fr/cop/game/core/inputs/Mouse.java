@@ -23,7 +23,7 @@ public class Mouse implements MouseListener, MouseMotionListener {
 		clicks[e.getButton()] = true;
 		positions[e.getButton()][0] = e.getX();
 		positions[e.getButton()][1] = e.getY();
-		Game_Frame.GAME.serverGame.requestMove(Game_Frame.GAME.serverGame.getChampion(0), convertToServerPosX(e.getX()), convertToServerPosY(e.getY()));
+//		Game_Frame.GAME.serverGame.requestMove(Game_Frame.GAME.serverGame.getChampion(0), convertToServerPosX(e.getX()), convertToServerPosY(e.getY()));
 	}
 
 	@Override

@@ -14,16 +14,12 @@ import java.util.Vector;
 import javax.swing.JFrame;
 
 import fr.cop.common.Game;
-import fr.cop.common.entities.Entity;
-import fr.cop.common.entities.champions.Champion;
 import fr.cop.game.core.helpful.logger.SimpleDebugWindow;
 import fr.cop.game.core.inputs.Keyboard;
 import fr.cop.game.core.inputs.Mouse;
 import fr.cop.game.graphics.Screen;
 import fr.cop.game.graphics.hud.HUD;
 import fr.cop.game.graphics.inGameOptions.Frame;
-import fr.cop.game.graphics.sprites.BaseSprite;
-import fr.cop.game.graphics.sprites.SpritesList;
 
 public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L; // Convention java.
@@ -61,7 +57,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	public Frame optionFrame = new Frame();
 
 	private Thread t; // Thread de notre jeu.
-	public Vector<Entity> entities = new Vector<Entity>();
+//	public Vector<Entity> entities = new Vector<Entity>();
 
 	public static boolean isFullScreen;
 	public boolean isGameAnimated = false;
@@ -69,7 +65,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 	public int x = 0;
 	public int y = 0; /* Temporaire */
 	public Game serverGame;
-	private Champion[] tempChamps = new Champion[10];
+//	private Champion[] tempChamps = new Champion[10];
 
 	public Conflict_Of_Pixels_Client() { // Objet etant notre jeu.
 		setSize(size); // Cet objet �tant un canvas, on choisis sa taille.
@@ -155,7 +151,7 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 			debugWindow.setSpellsKeysState(keyboard.spells); // On actualise l'�tat des touches des sorts dans la fen�tre de debug.
 
 			screenGAME.increaseTimer(); // On incr�mente le timer de notre screen, permet d'avoir des animations.
-			serverGame.getChampion(0).move();
+//			serverGame.getChampion(0).move();
 		}
 	}
 
@@ -187,15 +183,15 @@ public class Conflict_Of_Pixels_Client extends Canvas implements Runnable {
 		g.fillRect(0, 0, getWidth(), getHeight()); // ... vider l'�cran.
 		g.drawImage(bufferedImage, 0, 0, imageRenderedWidth, imageRenderedHeight, null); // Puis on dessine notre image.
 
-		Champion c = Game_Frame.GAME.serverGame.getChampion(0);
-		BaseSprite s = SpritesList.getSpriteFromID(c.getSpriteInformation());
-		float cx = c.getServerPosX();
-		int cy = 0;
-		g.drawImage(s.getImage(), (int)cx, cy, 64, 64, null);
+//		ClientChampion c = new ClientChampion(Game_Frame.GAME.serverGame.getChampion(0));
+//		BaseSprite s = SpritesList.getSpriteFromID(c.getSprite());
+//		float cx = c.getServerChamp().getServerPosX();
+//		int cy = 0;
+//		g.drawImage(s.getImage(), (int)cx, cy, 64, 64, null);
 		g.setFont(new Font("Arial Black", Font.BOLD, 20)); // Choix de la police de caract�re.
 		g.setColor(Color.BLUE);
-		g.drawString("x:" + cx + "(" + c.getServerPosX() + ")", 100, 40);
-		g.drawString("y:" + cy, 100, 60);
+//		g.drawString("x:" + cx + "(" + c.getServerPosX() + ")", 100, 40);
+//		g.drawString("y:" + cy, 100, 60);
 
 		hud.refreshGraphics(g, imageRenderedWidth, imageRenderedHeight);
 		if (optionFrame.isVisible()) optionFrame.refresh(g);

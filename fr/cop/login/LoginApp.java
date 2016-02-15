@@ -9,8 +9,8 @@ import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
-import fr.cop.common.Game;
 import fr.cop.common.Profil;
+import fr.cop.game.core.Game;
 import fr.cop.game.core.Game_Frame;
 import fr.cop.game.serverConnection.ServerListener;
 import fr.cop.launcherFX.LauncherV2;
@@ -53,7 +53,7 @@ public class LoginApp extends Application {
 		CheckBox cbPW = new CheckBox();
 		CheckBox cbIP = new CheckBox();
 
-		File logPropFile = new File(Game.gameFolder.getPath() + "\\config\\login.properties"); // Fichiers de propriÃ©tes.
+		File logPropFile = new File(Game_Frame.GAME.serverGame.getPath() + "\\config\\login.properties"); // Fichiers de propriÃ©tes.
 		if (!logPropFile.exists()) {
 			try {
 				logPropFile.createNewFile();
@@ -86,10 +86,10 @@ public class LoginApp extends Application {
 			cbIP.setSelected(true);
 			tfIP.setText(val);
 		}
-		cbUUID.setTooltip(new Tooltip("Cocher cette case afin de garder en mémoire les informations de la ligne."));
-		cbID.setTooltip(new Tooltip("Cocher cette case afin de garder en mémoire les informations de la ligne."));
-		cbPW.setTooltip(new Tooltip("Cocher cette case afin de garder en mémoire les informations de la ligne."));
-		cbIP.setTooltip(new Tooltip("Cocher cette case afin de garder en mémoire les informations de la ligne."));
+		cbUUID.setTooltip(new Tooltip("Cocher cette case afin de garder en mï¿½moire les informations de la ligne."));
+		cbID.setTooltip(new Tooltip("Cocher cette case afin de garder en mï¿½moire les informations de la ligne."));
+		cbPW.setTooltip(new Tooltip("Cocher cette case afin de garder en mï¿½moire les informations de la ligne."));
+		cbIP.setTooltip(new Tooltip("Cocher cette case afin de garder en mï¿½moire les informations de la ligne."));
 
 		btnConnect.setText("Connect");
 		btnConnect.setOnAction(new EventHandler<ActionEvent>() {
@@ -117,7 +117,7 @@ public class LoginApp extends Application {
 
 					while (!isConnected) {
 						if (!Game_Frame.serverListener.isConnected()) {
-							JOptionPane.showMessageDialog(null, "Le serveur ne répond pas.", "Erreur", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Le serveur ne rï¿½pond pas.", "Erreur", JOptionPane.ERROR_MESSAGE);
 							break;
 						}
 
@@ -168,7 +168,7 @@ public class LoginApp extends Application {
 
 	public static void main(String[] args) {
 
-		Game.gameFolder = new File("C:\\Conflict Of Pixels\\");
+		Game.GAME_FOLDER = new File("C:\\Conflict Of Pixels\\");
 		launch(args);
 	}
 

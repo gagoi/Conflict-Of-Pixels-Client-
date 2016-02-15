@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
-import fr.cop.common.Game;
+import fr.cop.game.core.Game;
 import fr.cop.game.core.Game_Frame;
 import fr.cop.game.serverConnection.commands.CommandsList;
 import fr.cop.game.serverConnection.commands.MainCommand;
@@ -64,7 +64,7 @@ public class ServerListener implements Runnable {
 				}
 			}
 		} catch (IOException e) {
-			Game.logger.logErr("<SERVER:ERROR>", "Disconnected");
+			Game_Frame.logger.logErr("<SERVER:ERROR>", "Disconnected");
 		} 
 	}
 
@@ -75,7 +75,7 @@ public class ServerListener implements Runnable {
 			bw.flush();
 			Game_Frame.logger.logTxt("<SERVER:Send>", command);
 		} catch (IOException e) {
-			Game.logger.logTxt("<SERVER:ERROR>", "Serveur non connect�....");
+			Game_Frame.logger.logTxt("<SERVER:ERROR>", "Serveur non connect�....");
 		}
 	}
 }

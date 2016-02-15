@@ -1,11 +1,9 @@
 package fr.cop.game.graphics.sprites;
 
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import fr.cop.common.Game;
 import fr.cop.game.core.Game_Frame;
 
 public class BaseSheet {
@@ -15,7 +13,7 @@ public class BaseSheet {
 	private int pixels[]; // Tableau contenant chaque pixel (son code couleur).
 
 	/*
-	 * Contructeut permettant la création d'une feuille de sprite rectangulaire.
+	 * Contructeut permettant la crï¿½ation d'une feuille de sprite rectangulaire.
 	 * 
 	 * @param path : "/fr/cop/resources/textures/<path>
 	 * 
@@ -25,15 +23,15 @@ public class BaseSheet {
 	 * 
 	 */
 	public BaseSheet(String path, int width, int height) {
-		this.width = width * 16; // On définit la largeur de l'image.
-		this.height = height * 16; // On définit la hauteur de l'image.
-		this.path = path; // On définit  son chemin d'accès.
-		this.pixels = new int[this.height * this.width]; // On créé le tableau de pixel à la bonne taille.
+		this.width = width * 16; // On dï¿½finit la largeur de l'image.
+		this.height = height * 16; // On dï¿½finit la hauteur de l'image.
+		this.path = path; // On dï¿½finit  son chemin d'accï¿½s.
+		this.pixels = new int[this.height * this.width]; // On crï¿½ï¿½ le tableau de pixel ï¿½ la bonne taille.
 		loadImageFile(); // On charge l'image.
 	}
 
 	/*
-	 * Contructeut permettant la création d'une feuille de sprite carrée.
+	 * Contructeut permettant la crï¿½ation d'une feuille de sprite carrï¿½e.
 	 * 
 	 * @param path : "/fr/cop/resources/textures/<path>
 	 * 
@@ -41,10 +39,10 @@ public class BaseSheet {
 	 * 
 	 */
 	public BaseSheet(String path, int size) {
-		this.width = size * 16; // On définit la largeur de l'image.
-		this.height = size * 16; // On définit la hauteur de l'image.
-		this.path = path; // On définit  son chemin d'accès.
-		this.pixels = new int[this.height * this.width]; // On créé le tableau de pixel à la bonne taille.
+		this.width = size * 16; // On dï¿½finit la largeur de l'image.
+		this.height = size * 16; // On dï¿½finit la hauteur de l'image.
+		this.path = path; // On dï¿½finit  son chemin d'accï¿½s.
+		this.pixels = new int[this.height * this.width]; // On crï¿½ï¿½ le tableau de pixel ï¿½ la bonne taille.
 		loadImageFile(); // On charge l'image.
 	}
 
